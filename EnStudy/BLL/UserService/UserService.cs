@@ -66,14 +66,14 @@ namespace EnStudy.BLL
         /// </summary>
         /// <param name="newUserInfo"></param>
         /// <returns></returns>
-        ResultOutput IUserService.RegistUser(IUserReistInput newUserInfo)
+        ResultOutput IUserService.RegistUser(IUserReistInput input)
         {
 
             var result = new ResultOutput();
             //验证输入参数【省略】
 
 
-            var user = _userDAL.GetModels(con => con.AccountNo == newUserInfo.AccountNo.Trim()).FirstOrDefault();
+            var user = _userDAL.GetModels(con => con.AccountNo == input.AccountNo.Trim()).FirstOrDefault();
             if (user != null)
             {
                 //用户名存在
@@ -83,7 +83,7 @@ namespace EnStudy.BLL
             }
             else
             {
-                _userDAL.Add(Mapper.Map<User>(newUserInfo));
+                _userDAL.Add(Mapper.Map<User>(input));
             }
             try
             {
@@ -104,14 +104,14 @@ namespace EnStudy.BLL
         /// </summary>
         /// <param name="updateUserInfo"></param>
         /// <returns></returns>
-        ResultOutput IUserService.UpdateUser(IUserUpdateInput updateUserInfo)
+        ResultOutput IUserService.UpdateUser(IUserUpdateInput input)
         {
             var result = new ResultOutput();
             //验证输入参数【省略】
 
 
-            var user = _userDAL.GetModels(con => con.Id == updateUserInfo.Id).FirstOrDefault();
-            Mapper.Map(updateUserInfo, user);
+            var user = _userDAL.GetModels(con => con.Id == input.Id).FirstOrDefault();
+            Mapper.Map(input, user);
 
             try
             {
@@ -126,5 +126,80 @@ namespace EnStudy.BLL
             }
             return result;
         }
+
+        /// <summary>
+        /// 添加学习计划
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="input">学习计划内容</param>
+        /// <returns></returns>
+
+        public ResultOutput AddStudySchedue(int uId, IStudySchedueInput input)
+        {
+            var result = new ResultOutput();
+            //验证输入参数【省略】
+
+            var user = _userDAL.GetModels(con => con.Id == uId).FirstOrDefault();
+            if(user is null)
+            {
+                result.Status = false;
+                result.Msg = "User Not Found!";
+            }
+            else
+            {
+                if(user.StudySchedue is null)
+                {
+                    user.StudySchedue = new List<StudySchedue>()
+                    {
+                        Mapper.Map<StudySchedue>(input)
+                    };
+                }else
+                {
+                    user.StudySchedue.Add(Mapper.Map<StudySchedue>(input));
+                }
+                try
+                {
+                    _userDAL.SaveChanges();
+                    result.Status = true;
+                    result.Data = user.StudySchedue.ToList();
+                }
+                catch(Exception ex)
+                {
+                    result.Status = false;
+                    result.Data = ex;
+                    result.Msg = "Add Schedue Failed!";
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 删除学习计划
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="schId"></param>
+        /// <returns></returns>
+        public ResultOutput DeleteStudySchedue(int uId, int schId)
+        {
+            var result = new ResultOutput();
+            //验证输入参数【省略】
+            var user = _userDAL.GetModels(con => con.Id == uId).FirstOrDefault();
+            user.StudySchedue.Remove(user.StudySchedue.Where(con => con.Id == schId).FirstOrDefault());
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+                result.Data = user.StudySchedue.ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Data = ex;
+                result.Msg = "Add Schedue Failed!";
+            }
+            return result;
+        }
+
+
     }
 }

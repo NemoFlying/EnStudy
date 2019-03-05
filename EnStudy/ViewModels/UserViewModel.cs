@@ -1,59 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace EnStudy.Models
+namespace EnStudy.ViewModels
 {
-    /// <summary>
-    /// 用户基本信息表
-    /// </summary>
-    public class User
+    public class UserViewModel
     {
-
-        public User()
-        {
-            //默认值
-            RegistDate = DateTime.Now;
-        }
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
 
         /// <summary>
         /// 登陆用户账号
         /// 不能重复
         /// </summary>
-        [Required]
-        [MaxLength(50)]
         public string AccountNo { get; set; }
-
-        /// <summary>
-        /// 登陆密码【MD5加密】
-        /// </summary>
-        [MaxLength(150)]
-        [Required]
-        public string Password { get; set; }
 
         /// <summary>
         /// 昵称
         /// </summary>
-        [MaxLength(50)]
         public string NikeName { get; set; }
 
         /// <summary>
         /// 性别
         /// M/F
         /// </summary>
-        [MaxLength(1)]
         public string Sex { get; set; }
 
         /// <summary>
         /// 生日
         /// </summary>
-        [MaxLength(500)]
         public DateTime BirthDay { get; set; }
 
         /// <summary>
@@ -98,10 +73,5 @@ namespace EnStudy.Models
         /// 注册时间
         /// </summary>
         public DateTime RegistDate { get; set; }
-
-        /// <summary>
-        /// 学习计划
-        /// </summary>
-        public virtual ICollection<StudySchedue> StudySchedue { get;set;}
     }
 }

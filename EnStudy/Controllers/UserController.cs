@@ -1,4 +1,7 @@
-﻿using EnStudy.BLL;
+﻿using AutoMapper;
+using EnStudy.BLL;
+using EnStudy.BLL.Dto;
+using EnStudy.Models;
 using EnStudy.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -38,6 +41,7 @@ namespace EnStudy.Controllers
                 //表示认证通过
                 //Keep Session
                 HttpContext.Session["userinfo"] = result.Data;
+                result.Data = Mapper.Map<UserViewModel>((User)(result.Data));
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -67,6 +71,72 @@ namespace EnStudy.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+
+        /////学习计划部分
+
+        /// <summary>
+        /// 获取当前登录学员的登陆信息
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetUserStudySchedue()
+        {
+            var result = new ResultOutput();
+            try
+            {
+                result.Data = GUserInfo.StudySchedue.Where(con => con.StudyDay >= DateTime.Today).ToList();
+                result.Status = true;
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Msg = "Get Schedue Failed!";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        
+        /// <summary>
+        /// 添加学习计划
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public JsonResult AddUserStudySchedue(IStudySchedueInput input)
+        {
+            var result = _userService.AddStudySchedue(GUserInfo.Id, input);
+            if (result.Status)
+            {
+                result.Data = Mapper.Map<StudySchedueVieModel>((StudySchedue)(result.Data));
+            }
+            else
+            {
+                //Write Log
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 删除计划信息
+        /// </summary>
+        /// <param name="SchedueId"></param>
+        /// <returns></returns>
+        public JsonResult DeleteStudySchedue(int SchedueId)
+        {
+            var result = _userService.DeleteStudySchedue(GUserInfo.Id,SchedueId);
+            if (result.Status)
+            {
+                result.Data = Mapper.Map<StudySchedueVieModel>((StudySchedue)(result.Data));
+            }
+            else
+            {
+                //Write Log
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
 
     }
 }

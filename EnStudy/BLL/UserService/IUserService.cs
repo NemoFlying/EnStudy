@@ -23,13 +23,31 @@ namespace EnStudy.BLL
         /// </summary>
         /// <param name="newUserInfo"></param>
         /// <returns></returns>
-        ResultOutput RegistUser(IUserReistInput newUserInfo);
+        ResultOutput RegistUser(IUserReistInput input);
 
         /// <summary>
         /// 修改用户信息
         /// </summary>
-        /// <param name="updateUserInfo"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        ResultOutput UpdateUser(IUserUpdateInput updateUserInfo);
+        ResultOutput UpdateUser(IUserUpdateInput input);
+
+        /// <summary>
+        /// 添加学习计划
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="input">学习计划内容</param>
+        /// <returns></returns>
+
+        ResultOutput AddStudySchedue(int uId, IStudySchedueInput input);
+
+        /// <summary>
+        /// 删除学习计划
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="schId"></param>
+        /// <returns></returns>
+        ResultOutput DeleteStudySchedue(int uId, int schId);
+
     }
 }

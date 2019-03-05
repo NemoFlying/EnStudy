@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EnStudy.BLL.Dto;
 using EnStudy.Models;
+using EnStudy.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace EnStudy
                 {
                     //注册用户Mapper
                     config.CreateMap<IUserReistInput, User>();
+                    config.CreateMap<User, UserViewModel>();
+
+                    //学习计划
+                    config.CreateMap<StudySchedue, StudySchedueVieModel>();
+                    config.CreateMap<IStudySchedueInput, StudySchedue>();
                 });
             }
 
