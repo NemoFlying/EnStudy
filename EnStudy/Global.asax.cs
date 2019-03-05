@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using EnStudy.BLL.Dto;
+using EnStudy.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +19,25 @@ namespace EnStudy
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Mapping配置
+            MappingConfig.RegisterMaps();
+        }
+
+        /// <summary>
+        /// Auto Mapping
+        /// </summary>
+        public static class MappingConfig
+        {
+            public static void RegisterMaps()
+            {
+                Mapper.Initialize(config =>
+                {
+                    //注册用户Mapper
+                    config.CreateMap<IUserReistInput, User>();
+                });
+            }
+
         }
     }
 }
