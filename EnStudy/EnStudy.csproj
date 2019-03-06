@@ -220,6 +220,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="css\index.css" />
+    <Content Include="css\summernote-bs4.css" />
+    <Content Include="css\summernote-lite.css" />
+    <Content Include="css\summernote.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -342,6 +345,10 @@
     <Content Include="Scripts\layui\lay\modules\upload.js" />
     <Content Include="Scripts\layui\lay\modules\util.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\summernote-bs4.js" />
+    <Content Include="Scripts\summernote-lite.js" />
+    <Content Include="Scripts\summernote.js" />
     <Content Include="Views\Home\arclist\1.gif" />
     <Content Include="Views\Home\arclist\10.gif" />
     <Content Include="Views\Home\arclist\11.gif" />
@@ -435,6 +442,11 @@
     <Content Include="Scripts\layui\font\iconfont.svg" />
     <Content Include="Scripts\layui\font\iconfont.ttf" />
     <Content Include="Scripts\layui\font\iconfont.woff" />
+    <Content Include="Views\Home\StudyNotes.cshtml" />
+    <Content Include="Views\Home\Friends.cshtml" />
+    <Content Include="Views\Home\Notebook.cshtml" />
+    <Content Include="Views\Home\Schedule.cshtml" />
+    <Content Include="Views\Home\Vocabulary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
