@@ -8,13 +8,13 @@ using System.Web;
 namespace EnStudy.Models
 {
     /// <summary>
-    /// 学习日程
+    /// 学习心得评论&回复
     /// </summary>
-    public class StudySchedue
+    public class SpeakComents
     {
-        public StudySchedue()
+        public SpeakComents()
         {
-            CreateTime = DateTime.Now;
+            ComentTime = DateTime.Now;
         }
 
         [Key]
@@ -22,26 +22,29 @@ namespace EnStudy.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// 学习日期【By 天】
+        /// 评论时间
         /// </summary>
-        public DateTime StudyDay { get; set; }
+        public DateTime ComentTime { get; set; }
 
         /// <summary>
-        /// 学习内容
+        /// 评论内容【加密存储】
         /// </summary>
         [Required]
-        public string StudyContents { get; set; }
+        public string Contents { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 评论人用户信息
         /// </summary>
-        [Required]
-        public DateTime CreateTime { get; set; }
+        public virtual User User { get; set; }
 
         /// <summary>
-        /// 用户信息
+        /// 针对哪一条评论
         /// </summary>
-        public virtual User user { get; set; }
+        public virtual UserSpeak UserSpeak { get; set; }
 
+        /// <summary>
+        /// 子级评论是哪条
+        /// </summary>
+        public virtual SpeakComents CSpeakComents { get; set; }
     }
 }

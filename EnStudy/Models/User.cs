@@ -53,8 +53,7 @@ namespace EnStudy.Models
         /// <summary>
         /// 生日
         /// </summary>
-        [MaxLength(500)]
-        public DateTime BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         /// <summary>
         /// QQ
@@ -103,5 +102,16 @@ namespace EnStudy.Models
         /// 学习计划
         /// </summary>
         public virtual ICollection<StudySchedue> StudySchedue { get;set;}
+
+        /// <summary>
+        /// 学习心得
+        /// </summary>
+        public virtual ICollection<UserSpeak> UserSpeak { get; set; }
+        
+        /// <summary>
+        /// 学习心得评论
+        /// </summary>
+        public virtual ICollection<SpeakComents> SpeakComents { get; set; }
+
     }
 }

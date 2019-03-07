@@ -158,9 +158,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SpeakComents.cs" />
     <Compile Include="Models\StudySchedue.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSpeak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\StudySchedueInput.cs" />
     <Compile Include="ViewModels\StudySchedueVieModel.cs" />
     <Compile Include="ViewModels\UserReistInput.cs" />
     <Compile Include="ViewModels\UserUpdateInput.cs" />

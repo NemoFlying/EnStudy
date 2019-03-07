@@ -29,7 +29,7 @@ namespace EnStudy.ViewModels
         /// <summary>
         /// 生日
         /// </summary>
-        public DateTime BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         /// <summary>
         /// QQ

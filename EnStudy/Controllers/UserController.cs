@@ -41,6 +41,7 @@ namespace EnStudy.Controllers
                 //表示认证通过
                 //Keep Session
                 HttpContext.Session["userinfo"] = result.Data;
+
                 result.Data = Mapper.Map<UserViewModel>((User)(result.Data));
             }
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -101,12 +102,12 @@ namespace EnStudy.Controllers
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public JsonResult AddUserStudySchedue(IStudySchedueInput input)
+        public JsonResult AddUserStudySchedue(StudySchedueInput input)
         {
             var result = _userService.AddStudySchedue(GUserInfo.Id, input);
             if (result.Status)
             {
-                result.Data = Mapper.Map<StudySchedueVieModel>((StudySchedue)(result.Data));
+                result.Data = Mapper.Map<List<StudySchedueVieModel>>(result.Data);
             }
             else
             {
@@ -125,7 +126,7 @@ namespace EnStudy.Controllers
             var result = _userService.DeleteStudySchedue(GUserInfo.Id,SchedueId);
             if (result.Status)
             {
-                result.Data = Mapper.Map<StudySchedueVieModel>((StudySchedue)(result.Data));
+                result.Data = Mapper.Map<List<StudySchedueVieModel>>(result.Data);
             }
             else
             {

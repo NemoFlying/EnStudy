@@ -18,14 +18,19 @@ namespace EnStudy.DAL
 
         public DbSet<User> User { get; set; }
 
+        public DbSet<StudySchedue> StudySchedue { get; set; }
 
+        public DbSet<UserSpeak> UserSpeak { get; set; }
 
-
+        public DbSet<SpeakComents> SpeakComents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<User>().HasMany(t => t.SpeakComents)
+            //    .WithRequired(p => p.User).WillCascadeOnDelete(false);
         }
     }
 }

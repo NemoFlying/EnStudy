@@ -55,7 +55,7 @@ namespace EnStudy.BLL
                 //认证通过
                 result.Status = true;
                 result.Data = user;
-                result.Data = ((User)(result.Data)).Password = "";
+                result.Data = (User)(result.Data);
             }
             return result;
             throw new NotImplementedException();
