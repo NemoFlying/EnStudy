@@ -7,11 +7,10 @@ namespace EnStudy.BLL
 {
     public class ResultOutput
     {
-
         /// <summary>
         /// 状态
         /// </summary>
-        public bool Status { get; set; }
+        public bool Status { get; set; } = false;
 
         /// <summary>
         /// 返回文本信息

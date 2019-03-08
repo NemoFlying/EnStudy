@@ -31,6 +31,9 @@ namespace EnStudy.DAL
 
             //modelBuilder.Entity<User>().HasMany(t => t.SpeakComents)
             //    .WithRequired(p => p.User).WillCascadeOnDelete(false);
+            //建立朋友关系表
+
+            modelBuilder.Entity<UserFriend>().HasRequired(m=>m.user).WithMany(m=>m.Friends);
         }
     }
 }

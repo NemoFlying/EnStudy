@@ -49,5 +49,40 @@ namespace EnStudy.BLL
         /// <returns></returns>
         ResultOutput DeleteStudySchedue(int uId, int schId);
 
+
+        /// <summary>
+        /// 获取自己说说列表【不进行分页，获取最近10条】
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <returns></returns>
+        ResultOutput GetUserSpeak(int uId);
+
+        /// <summary>
+        /// 用户发表心情
+        /// </summary>
+        /// <param name="uId">用户Id</param>
+        /// <param name="contents">内容</param>
+        /// <returns></returns>
+        ResultOutput AddUserSpeak(int uId,string contents);
+
+        /// <summary>
+        /// 删除心情
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="usId">心情ID</param>
+        /// <returns></returns>
+        ResultOutput DeleteUserSpeak(int uId, int usId);
+
+        /// <summary>
+        /// 针对心情留言
+        /// </summary>
+        /// <param name="fromUId">留言人</param>
+        /// <param name="toUId">被留言人</param>
+        /// <param name="usId">被留言的心情</param>
+        /// <param name="contents"></param>
+        /// <returns></returns>
+        ResultOutput AddSpeakComents(int fUId, int toUId, int usId, int? pscId, string contents);
+
+        ResultOutput AddFriend(int UId, int FId);
     }
 }

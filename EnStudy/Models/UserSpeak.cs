@@ -32,6 +32,12 @@ namespace EnStudy.Models
         [Required]
         public string Contents { get; set; }
 
+        /// <summary>
+        /// 权限
+        /// Public 所有人可见
+        /// Private 仅个人可见
+        /// </summary>
+        public string Permission { get; set; } = "Public";
 
         /// <summary>
         /// 用户信息

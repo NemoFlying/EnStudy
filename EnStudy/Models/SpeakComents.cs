@@ -45,6 +45,6 @@ namespace EnStudy.Models
         /// <summary>
         /// 子级评论是哪条
         /// </summary>
-        public virtual SpeakComents CSpeakComents { get; set; }
+        public virtual SpeakComents PSpeakComents { get; set; }
     }
 }

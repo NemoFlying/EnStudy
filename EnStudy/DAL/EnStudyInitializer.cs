@@ -32,12 +32,12 @@ namespace EnStudy.DAL
             user.UserSpeak = new List<UserSpeak>() { speak };
             context.User.Add(user);
 
+            //添加评论
             var Coments = new SpeakComents()
             {
                 Contents = "一楼",
-                //UserSpeak = speak,
-                User = user
             };
+            user.SpeakComents = new List<SpeakComents>() { Coments };
             user.UserSpeak.FirstOrDefault().SpeakComents = new List<SpeakComents>()
             {
                 Coments
@@ -51,25 +51,35 @@ namespace EnStudy.DAL
                 Password = "aaaaa",
                 QqId = "895190626"
             };
+            context.User.Add(nemo);
 
             var nemoConments = new SpeakComents()
             {
-                Contents = "二楼",
-                UserSpeak = speak,
-                User = nemo
+                Contents = "二楼"
+
+            };
+            nemo.SpeakComents = new List<SpeakComents>()
+            {
+                nemoConments
             };
             user.UserSpeak.FirstOrDefault().SpeakComents.Add(nemoConments);
 
             var rAdmin = new SpeakComents()
             {
-                Contents = "回复一楼",
-                User = nemo
+                Contents = "回复一楼"
             };
-            Coments.CSpeakComents = rAdmin;
-            user.UserSpeak.FirstOrDefault().SpeakComents.FirstOrDefault().CSpeakComents = rAdmin;
+            rAdmin.PSpeakComents = Coments;
+            nemo.SpeakComents.Add(rAdmin);
+            user.UserSpeak.FirstOrDefault().SpeakComents.Add(rAdmin);
 
-            //context.User.Add(nemo);
-
+            ////添加Nemo
+            var Jerry = new User()
+            {
+                AccountNo = "Jerry",
+                Password = "aaaaa",
+                QqId = "895190626"
+            };
+            context.User.Add(Jerry);
             context.SaveChanges();
 
 

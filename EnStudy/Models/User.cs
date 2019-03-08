@@ -113,5 +113,12 @@ namespace EnStudy.Models
         /// </summary>
         public virtual ICollection<SpeakComents> SpeakComents { get; set; }
 
+        /// <summary>
+        /// 朋友列表
+        /// </summary>
+        public virtual ICollection<UserFriend> Friends { get; set; }
+
+
+
     }
 }

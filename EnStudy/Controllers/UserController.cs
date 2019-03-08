@@ -136,8 +136,26 @@ namespace EnStudy.Controllers
         }
 
 
+        public JsonResult GetOwnerUserSpeak(int uId)
+        {
+            var result = _userService.GetUserSpeak(uId);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
 
+        public JsonResult AddSpeakComents(int fUid, int toUId, int usId, int? pscId, string contents)
+        {
+            var result = _userService.AddSpeakComents(fUid, toUId, usId, pscId, contents);
+            return Json(result, JsonRequestBehavior.AllowGet); ;
+        }
+
+        public void tt()
+        {
+
+
+
+            _userService.AddFriend(1, 2);
+        }
 
     }
 }
