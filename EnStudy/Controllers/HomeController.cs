@@ -21,7 +21,7 @@ namespace EnStudy.Controllers
         /// 学友管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult StudyNotes()
+        public ActionResult Mine()
         {
             return View();
         }

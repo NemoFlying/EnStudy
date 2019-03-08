@@ -447,11 +447,11 @@
     <Content Include="Scripts\layui\font\iconfont.svg" />
     <Content Include="Scripts\layui\font\iconfont.ttf" />
     <Content Include="Scripts\layui\font\iconfont.woff" />
-    <Content Include="Views\Home\StudyNotes.cshtml" />
     <Content Include="Views\Home\Friends.cshtml" />
     <Content Include="Views\Home\Notebook.cshtml" />
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Vocabulary.cshtml" />
+    <Content Include="Views\Home\Mine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
