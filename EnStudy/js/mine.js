@@ -6,25 +6,7 @@ layui.use('element', function () {
 });
 
 $(function () {
-    //获取省份
-    $.ajax({
-        type: "GET",
-        url: "http://119.29.166.254:9090/api/provinces",
-        async: false,
-        success: function (reData) {
-            //console.log(reData);
-            $(reData).each(function () {
-                //console.log(this.id);
-                $(".province").append(`
-                            <option value="`+ this.id + `">` + this.name + `</option>
-                        `);
-            });
 
-        },
-        error: function (data) {
-            alert("下载模板失败！");
-        }
-    });
     //获取对应省份数据
 
 
@@ -41,23 +23,23 @@ $(function () {
     //Demo
     layui.use('form', function () {
         var form = layui.form;
-        form.render("select");
         //监听提交
         form.on('select(test)', function (data) {
             var provinceId = data.value; //得到被选中的值
             $.ajax({
                 type: "POST",
                 url: "http://119.29.166.254:9090/api/university/getUniversityByProvinceId?id=" + provinceId + "",
-                async: false,
                 success: function (reData) {
+                    $(".university").empty();
                     console.log(reData);
                     $(reData).each(function () {
-                        console.log(this);
+                        
+                        //console.log(this);
                         $(".university").append(`
-                                    <option value="`+ this.id + `">` + this.name + `</option>
-                                `);
+                            <option value="`+ this.id + `">` + this.name + `</option>
+                        `);
                     });
-
+                    form.render("select");
                 },
                 error: function (data) {
                     alert("下载模板失败！");
