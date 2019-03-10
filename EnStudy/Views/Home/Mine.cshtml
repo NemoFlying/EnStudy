@@ -79,7 +79,40 @@
                                 <label class="layui-form-label">省份</label>
                                 <div class="layui-input-block">
                                     <select name="province" lay-filter="test" class="province" lay-verify="required">
-
+                                        <option value="1">北京</option>
+                                        <option value="2">天津</option>
+                                        <option value="3">河北</option>
+                                        <option value="4">山西</option>
+                                        <option value="5">内蒙古</option>
+                                        <option value="6">辽宁</option>
+                                        <option value="7">吉林</option>
+                                        <option value="8">黑龙江</option>
+                                        <option value="9">上海</option>
+                                        <option value="10">江苏</option>
+                                        <option value="11">浙江</option>
+                                        <option value="12">安徽</option>
+                                        <option value="13">福建</option>
+                                        <option value="14">江西</option>
+                                        <option value="15">山东</option>
+                                        <option value="16">河南</option>
+                                        <option value="17">湖北</option>
+                                        <option value="18">湖南</option>
+                                        <option value="19">广东</option>
+                                        <option value="20">广西</option>
+                                        <option value="21">海南</option>
+                                        <option value="22">重庆</option>
+                                        <option value="23">四川</option>
+                                        <option value="24">贵州</option>
+                                        <option value="25">云南</option>
+                                        <option value="26">西藏</option>
+                                        <option value="27">陕西</option>
+                                        <option value="28">甘肃</option>
+                                        <option value="29">青海</option>
+                                        <option value="30">宁夏</option>
+                                        <option value="31">新疆</option>
+                                        <option value="32">香港</option>
+                                        <option value="33">澳门</option>
+                                        <option value="34">台湾</option>
                                     </select>
                                 </div>
                             </div>
@@ -154,92 +187,8 @@
     <script src="~/Scripts/layui/layui.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
-    <script>
-        //注意：导航 依赖 element 模块，否则无法进行功能性操作
-        layui.use('element', function () {
-            var element = layui.element;
+    <script src="~/js/mine.js"></script>
 
-            //…
-        });
-
-        $(function () {
-            //获取省份
-            $.ajax({
-                type: "GET",
-                url: "http://119.29.166.254:9090/api/provinces",
-                async: false,
-                success: function (reData) {
-                    //console.log(reData);
-                    $(reData).each(function () {
-                        //console.log(this.id);
-                        $(".province").append(`
-                            <option value="`+ this.id + `">` + this.name + `</option>
-                        `);
-                    });
-
-                },
-                error: function (data) {
-                    alert("下载模板失败！");
-                }
-            });
-            //获取对应省份数据
-
-            
-            layui.use('carousel', function () {
-                var carousel = layui.carousel;
-                //建造实例
-                carousel.render({
-                    elem: '#test1'
-                    , width: '100%' //设置容器宽度
-                    , arrow: 'none' //始终显示箭头
-                    //,anim: 'updown' //切换动画方式
-                });
-            });
-            //Demo
-            layui.use('form', function () {
-                var form = layui.form;
-                form.render("select");
-                //监听提交
-                form.on('select(test)', function (data) {
-                    var provinceId = data.value; //得到被选中的值
-                    $.ajax({
-                        type: "POST",
-                        url: "http://119.29.166.254:9090/api/university/getUniversityByProvinceId?id=" + provinceId +"",
-                        async: false,
-                        success: function (reData) {
-                            console.log(reData);
-                            $(reData).each(function () {
-                                console.log(this);
-                                $(".university").append(`
-                                    <option value="`+ this.id + `">` + this.name + `</option>
-                                `);
-                            });
-
-                        },
-                        error: function (data) {
-                            alert("下载模板失败！");
-                        }
-                    });
-                });
-            });
-            layui.use('upload', function () {
-                var upload = layui.upload;
-
-                //执行实例
-                var uploadInst = upload.render({
-                    elem: '#test2' //绑定元素
-                    , url: '/upload/' //上传接口
-                    , done: function (res) {
-                        //上传完毕回调
-                    }
-                    , error: function () {
-                        //请求异常回调
-                    }
-                });
-            });
-        });
-
-    </script>
 
 </body>
 </html>
