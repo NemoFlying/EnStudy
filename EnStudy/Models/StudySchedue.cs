@@ -12,11 +12,6 @@ namespace EnStudy.Models
     /// </summary>
     public class StudySchedue
     {
-        public StudySchedue()
-        {
-            CreateTime = DateTime.Now;
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
@@ -36,7 +31,7 @@ namespace EnStudy.Models
         /// 创建时间
         /// </summary>
         [Required]
-        public DateTime CreateTime { get; set; }
+        public DateTime CreateTime { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 用户信息

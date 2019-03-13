@@ -12,11 +12,6 @@ namespace EnStudy.Models
     /// </summary>
     public class SpeakComents
     {
-        public SpeakComents()
-        {
-            ComentTime = DateTime.Now;
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
@@ -24,7 +19,7 @@ namespace EnStudy.Models
         /// <summary>
         /// 评论时间
         /// </summary>
-        public DateTime ComentTime { get; set; }
+        public DateTime ComentTime { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 评论内容【加密存储】

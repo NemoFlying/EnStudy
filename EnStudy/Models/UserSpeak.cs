@@ -12,11 +12,6 @@ namespace EnStudy.Models
     /// </summary>
     public class UserSpeak
     {
-        public UserSpeak()
-        {
-            SpeakTime = DateTime.Now;
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
@@ -24,7 +19,7 @@ namespace EnStudy.Models
         /// <summary>
         /// 发表时间
         /// </summary>
-        public DateTime SpeakTime { get; set; }
+        public DateTime SpeakTime { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 发表内容【加密存储】

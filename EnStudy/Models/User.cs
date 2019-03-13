@@ -12,12 +12,6 @@ namespace EnStudy.Models
     /// </summary>
     public class User
     {
-
-        public User()
-        {
-            //默认值
-            RegistDate = DateTime.Now;
-        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //设置自动增长
         public int Id { get; set; }
@@ -96,7 +90,7 @@ namespace EnStudy.Models
         /// <summary>
         /// 注册时间
         /// </summary>
-        public DateTime RegistDate { get; set; }
+        public DateTime RegistDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 学习计划
