@@ -1,0 +1,194 @@
+﻿
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="cn" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="cn">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>用户页</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <ul class="layui-nav header">
+        <li class="searchLi">
+            <input class="searchInput" type="text" name="search" value="" />
+            <button class="layui-btn layui-btn-normal">搜索</button>
+        </li>
+        @*<li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>*@
+        <li class="layui-nav-item">
+            <a href="">个人中心</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+    <div class="body">
+        <ul>
+            <li class="itemBody">
+                <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
+                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+
+                    <li class="layui-nav-item"><a href="~/Home/index">学习心得</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
+                </ul>
+            </li>
+            <li class="itemBody centerBody">
+
+                <div class="comment">
+                    <div class="com_form">
+                        <form class="layui-form">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">昵称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="nickname" required lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">例如：你猜我是谁</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码框</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">例如：张三</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码框</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">例如：**********</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">省份</label>
+                                <div class="layui-input-block">
+                                    <select name="province" lay-filter="test" class="province" lay-verify="required">
+                                        <option value="1">北京</option>
+                                        <option value="2">天津</option>
+                                        <option value="3">河北</option>
+                                        <option value="4">山西</option>
+                                        <option value="5">内蒙古</option>
+                                        <option value="6">辽宁</option>
+                                        <option value="7">吉林</option>
+                                        <option value="8">黑龙江</option>
+                                        <option value="9">上海</option>
+                                        <option value="10">江苏</option>
+                                        <option value="11">浙江</option>
+                                        <option value="12">安徽</option>
+                                        <option value="13">福建</option>
+                                        <option value="14">江西</option>
+                                        <option value="15">山东</option>
+                                        <option value="16">河南</option>
+                                        <option value="17">湖北</option>
+                                        <option value="18">湖南</option>
+                                        <option value="19">广东</option>
+                                        <option value="20">广西</option>
+                                        <option value="21">海南</option>
+                                        <option value="22">重庆</option>
+                                        <option value="23">四川</option>
+                                        <option value="24">贵州</option>
+                                        <option value="25">云南</option>
+                                        <option value="26">西藏</option>
+                                        <option value="27">陕西</option>
+                                        <option value="28">甘肃</option>
+                                        <option value="29">青海</option>
+                                        <option value="30">宁夏</option>
+                                        <option value="31">新疆</option>
+                                        <option value="32">香港</option>
+                                        <option value="33">澳门</option>
+                                        <option value="34">台湾</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">所在大学</label>
+                                <div class="layui-input-block">
+                                    <select name="university" class="university" lay-verify="required">
+                                    </select>
+                                </div>
+                            </div>
+
+                            @*<div class="layui-form-item">
+            <label class="layui-form-label">开关</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch">
+            </div>
+        </div>*@
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">单选框</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="sex" value="M" title="男">
+                                    <input type="radio" name="sex" value="W" title="女" checked>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">头像</label>
+                                <div class="layui-input-block">
+                                    <button type="button" id="test2">
+                                        <i class="layui-icon">&#xe660;</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">个人标签</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="Individual_labels" required lay-verify="required" placeholder="请输入个人标签" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">例如:开朗</div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">个人签名</label>
+                                <div class="layui-input-block">
+                                    <textarea name="desc" placeholder="请输入个人签名" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" type="button" lay-submit lay-filter="formDemo">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </li>
+            <li class="itemBody itemR">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
+                        </div>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
+    <script src="~/js/mine.js"></script>
+
+
+</body>
+</html>

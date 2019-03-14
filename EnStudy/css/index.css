@@ -1,0 +1,374 @@
+﻿@media screen and (min-width:1367px) {
+    .layui-nav {
+        border-radius: 0;
+    }
+
+
+    .searchLi {
+        width: 60%;
+        display: inline-block;
+        margin: 20px 9%;
+    }
+
+    .searchInput {
+        border: none;
+        height: 38px;
+        position: relative;
+        left: 6px;
+        top: 1.1px;
+    }
+
+    body {
+        /*min-height: 1000px;*/
+        background: url("../assets/img/HomeBg.jpg") no-repeat;
+        background-size: 100%;
+    }
+
+    .body {
+        width: 80%;
+        min-height: 2100px;
+        padding: 4% 10%;
+        margin-top: 80px;
+    }
+
+    .header {
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        top: 0;
+    }
+
+    .leftList {
+        height: 500px;
+        position: fixed;
+        z-index: 999;
+    }
+
+    .layui-nav {
+        background: #50b0e0;
+    }
+
+    .layui-nav-tree .layui-nav-item a:hover {
+        background: #3a6eb7;
+    }
+
+    .itemBody {
+        float: left;
+    }
+
+    .centerBody {
+        width: 62%;
+        height: 500px;
+        margin: 0 15%;
+    }
+
+    .itemR {
+        width: 14%;
+        height: 500px;
+        background: red;
+        position: fixed;
+        z-index: 999;
+        left: 73%;
+    }
+
+    .emotion {
+        background: url("../assets/img/smile.png") no-repeat;
+        background-size: 100%;
+        height: 32px;
+        width: 32px;
+        display: inline-block;
+    }
+
+        .emotion:hover {
+            background: url("../assets/img/smileH.png") no-repeat;
+            background-size: 100%;
+            height: 32px;
+            width: 32px;
+            display: inline-block;
+        }
+
+    .comment {
+        position: relative;
+        background: #fff;
+        padding: 20px 50px 50px;
+        border: 1px solid #DDD;
+        border-radius: 5px;
+    }
+
+        .comment h3 {
+            height: 28px;
+            line-height: 28px
+        }
+
+    .com_form {
+        width: 100%;
+        position: relative
+    }
+
+    .input {
+        width: 98%;
+        height: 60px;
+        border: 1px solid #ccc;
+        padding: 14px 8px;
+    }
+
+    .com_form p {
+        height: 28px;
+        line-height: 28px;
+        position: relative;
+        margin-top: 10px;
+    }
+
+
+
+    .qqFace {
+        margin-top: 4px;
+        background: #fff;
+        padding: 2px;
+        border: 1px #dfe6f6 solid;
+    }
+
+        .qqFace table td {
+            padding: 0;
+        }
+
+            .qqFace table td img {
+                cursor: pointer;
+                border: 1px #fff solid;
+            }
+
+                .qqFace table td img:hover {
+                    border: 1px #0066cc solid;
+                }
+
+    #show {
+        min-height: 2000px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 5px;
+        border: 1px solid #DDD;
+        vertical-align: top;
+    }
+
+    .sub_btn {
+        float: right;
+    }
+
+    .itemImgBook img {
+        width: 100%;
+        height: 280px;
+    }
+
+    .itemMessages {
+        background: #e5e5e5;
+        margin: 10px 0;
+        padding: 10px 20px;
+    }
+
+    #test2 {
+        height: 32px;
+        width: 32px;
+        border: none;
+        background: none;
+    }
+
+        #test2 .layui-icon {
+            width: 100%;
+            height: 100%;
+            font-size: 32px;
+            position: relative;
+            top: -4px;
+            left: 10px;
+        }
+
+    .MessageBoard {
+        padding: 10px 40px;
+    }
+}
+@media screen and (max-width:1366px) {
+
+.layui-nav {
+    border-radius: 0;
+}
+
+
+.searchLi {
+    width: 60%;
+    display: inline-block;
+    margin: 20px 9%;
+}
+
+.searchInput {
+    border: none;
+    height: 38px;
+    position: relative;
+    left: 6px;
+    top: 1.1px;
+}
+
+body {
+    /*min-height: 1000px;*/
+    background: url("../assets/img/HomeBg.jpg") no-repeat;
+    background-size: 100%;
+}
+
+.body {
+    width: 80%;
+    min-height: 2100px;
+    padding: 4% 10%;
+    margin-top: 80px;
+}
+
+.header {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    top: 0;
+}
+
+.leftList {
+    height: 500px;
+    position: fixed;
+    z-index: 999;
+}
+
+.layui-nav {
+    background: #50b0e0;
+}
+
+.layui-nav-tree .layui-nav-item a:hover {
+    background: #3a6eb7;
+}
+
+.itemBody {
+    position:fixed;
+    z-index:999;
+}
+
+.centerBody {
+    width: 48%;
+    height: 500px;
+    margin: 0 17%;
+}
+
+.itemR {
+    width: 14%;
+    height: 500px;
+    background: red;
+    left: 77%;
+}
+
+.emotion {
+    background: url("../assets/img/smile.png") no-repeat;
+    background-size: 100%;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+}
+
+    .emotion:hover {
+        background: url("../assets/img/smileH.png") no-repeat;
+        background-size: 100%;
+        height: 32px;
+        width: 32px;
+        display: inline-block;
+    }
+
+.comment {
+    position: relative;
+    background: #fff;
+    padding: 20px 50px 50px;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+}
+
+    .comment h3 {
+        height: 28px;
+        line-height: 28px
+    }
+
+.com_form {
+    width: 100%;
+    position: relative
+}
+
+.input {
+    width: 98%;
+    height: 60px;
+    border: 1px solid #ccc;
+    padding: 14px 8px;
+}
+
+.com_form p {
+    height: 28px;
+    line-height: 28px;
+    position: relative;
+    margin-top: 10px;
+}
+
+
+
+.qqFace {
+    margin-top: 4px;
+    background: #fff;
+    padding: 2px;
+    border: 1px #dfe6f6 solid;
+}
+
+.qqFace table td {
+    padding: 0;
+}
+
+.qqFace table td img {
+    cursor: pointer;
+    border: 1px #fff solid;
+}
+
+.qqFace table td img:hover {
+    border: 1px #0066cc solid;
+}
+
+#show {
+    min-height: 2000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 5px;
+    border: 1px solid #DDD;
+    vertical-align: top;
+}
+
+.sub_btn {
+    float: right;
+}
+
+.itemImgBook img {
+    width: 100%;
+    height: 280px;
+}
+
+.itemMessages {
+    background: #e5e5e5;
+    margin: 10px 0;
+    padding: 10px 20px;
+}
+
+#test2 {
+    height: 32px;
+    width: 32px;
+    border: none;
+    background: none;
+}
+
+#test2 .layui-icon {
+    width: 100%;
+    height: 100%;
+    font-size: 32px;
+    position: relative;
+    top: -4px;
+    left: 10px;
+}
+
+.MessageBoard {
+    padding: 10px 40px;
+}
+}
