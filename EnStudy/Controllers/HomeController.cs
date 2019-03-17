@@ -34,7 +34,14 @@ namespace EnStudy.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// 好友管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SearchFriends()
+        {
+            return View();
+        }
         /// <summary>
         /// 笔记本
         /// </summary>

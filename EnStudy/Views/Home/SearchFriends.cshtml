@@ -11,20 +11,20 @@
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
     <link href="~/css/index.css" rel="stylesheet" />
-    
+    <link href="~/css/friends.css" rel="stylesheet" />
 </head>
 <body>
 
     <ul class="layui-nav header">
         <li class="searchLi">
             <input class="searchInput" type="text" name="search" value="" />
-            <button class="layui-btn layui-btn-normal searchBtn">搜索</button>
+            <button class="layui-btn layui-btn-normal">搜索</button>
         </li>
         @*<li class="layui-nav-item">
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
         <li class="layui-nav-item">
-            <a href="~/Home/mine">个人中心</a>
+            <a href="">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
@@ -51,23 +51,21 @@
             <li class="itemBody centerBody">
 
                 <div class="comment">
-                    <div class="com_form">
-                        <textarea class="input" id="saytext" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
-                        <p>
-                            <button type="button" class="layui-btn sub_btn">发表</button>
-
-                            <span class="emotion"></span>
-                            <button type="button" id="test2">
-                                <i class="layui-icon">&#xe660;</i>
-                            </button>
-                            
-                        </p>
-                    </div>
-                </div>
-                <div id="show">
-                    <ul class="one">
+                    <ul>
+                        <li class="friendsList">
+                            <div class="userImgDiv">
+                                <img class="userImg" src="~/assets/img/headerImg.jpg" alt="Alternate Text" />
+                            </div>
+                            <p class="itemsP">张三</p>
+                            <p class="itemsP">男</p>
+                            <p class="itemsP">清华大学</p>
+                            <div>
+                                <button type="button" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i>添加</button>
+                            </div>
+                        </li>
                     </ul>
                 </div>
+
             </li>
             <li class="itemBody itemR">
                 <div class="layui-carousel" id="test1">
@@ -95,46 +93,7 @@
             //…
         });
 
-        $(function () {
-            $(".searchBtn").click(function () {
-                window.location.href ="SearchFriends"
-            });
-            $('.emotion').qqFace({
 
-                id: 'facebox',
-
-                assign: 'saytext',
-
-                path: '../assets/img/arclist/'	//表情存放的路径
-
-            });
-
-            $(".sub_btn").click(function () {
-
-                var str = $("#saytext").val();
-
-                //$(".one").append("<li>"+replace_em(str)+"</li>");
-                $(".one").append("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>加油！</p></li>")
-
-            });
-
-        });
-
-        //查看结果
-
-        function replace_em(str) {
-
-            str = str.replace(/\</g, '&lt;');
-
-            str = str.replace(/\>/g, '&gt;');
-
-            str = str.replace(/\n/g, '<br/>');
-
-            str = str.replace(/\[em_([0-9]*)\]/g, '<img src="../assets/img/arclist/$1.gif" border="0" />');
-
-            return str;
-
-        }
 
         layui.use('carousel', function () {
             var carousel = layui.carousel;
@@ -146,21 +105,7 @@
                 //,anim: 'updown' //切换动画方式
             });
         });
-        layui.use('upload', function () {
-            var upload = layui.upload;
 
-            //执行实例
-            var uploadInst = upload.render({
-                elem: '#test2' //绑定元素
-                , url: '/upload/' //上传接口
-                , done: function (res) {
-                    //上传完毕回调
-                }
-                , error: function () {
-                    //请求异常回调
-                }
-            });
-        });
     </script>
 
 </body>
