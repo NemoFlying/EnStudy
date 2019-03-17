@@ -151,15 +151,22 @@ namespace EnStudy.Controllers
         {
             //默认
             input.UserId = 1;
+            //input.UserId = GUserInfo.Id;
             var result = _userService.GetFriendSpeakPage(input);
             return Json(result, JsonRequestBehavior.AllowGet);
             
         }
 
-
-        public JsonResult AddSpeakComents(int fUid, int toUId, int usId, int? pscId, string contents)
+        /// <summary>
+        /// 添加留言信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public JsonResult AddSpeakComents(AddSpeakComentsInput input)
         {
-            var result = _userService.AddSpeakComents(fUid, toUId, usId, pscId, contents);
+            //input.FromUserId = GUserInfo.Id;
+            input.FromUserId = 1;
+            var result = _userService.AddSpeakComents(input);
             return Json(result, JsonRequestBehavior.AllowGet); ;
         }
 
