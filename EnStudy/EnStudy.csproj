@@ -274,6 +274,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\mine.js" />
+    <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
