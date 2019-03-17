@@ -142,6 +142,20 @@ namespace EnStudy.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 获取朋友圈
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public JsonResult GetFriendSpeak(GetFriendSpeakPageInput input)
+        {
+            //默认
+            input.UserId = 1;
+            var result = _userService.GetFriendSpeakPage(input);
+            return Json(result, JsonRequestBehavior.AllowGet);
+            
+        }
+
 
         public JsonResult AddSpeakComents(int fUid, int toUId, int usId, int? pscId, string contents)
         {

@@ -8,16 +8,19 @@ using AutoMapper;
 using EnStudy.BLL.Dto;
 using EnStudy.DAL;
 using EnStudy.Models;
+using EnStudy.ViewModels;
 
 namespace EnStudy.BLL
 {
     public class UserService : IUserService
     {
         private readonly IUserDAL _userDAL;
+        private readonly IUserSpeakDAL _userSpeakDAL;
 
         public UserService()
         {
             _userDAL = new UserDAL();
+            _userSpeakDAL = new UserSpeakDAL();
         }
 
         /// <summary>
@@ -365,5 +368,85 @@ namespace EnStudy.BLL
             _userDAL.SaveChanges();
             return null;
         }
+
+
+        /// <summary>
+        /// 获取朋友圈信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public ResultOutput GetFriendSpeakPage(GetFriendSpeakPageInput input)
+        {
+            var result = new ResultOutput();
+            var user = _userDAL.GetModels(con => con.Id == input.UserId).FirstOrDefault();
+            var userList = new List<User>();
+            user.Friends.ToList().ForEach(item => userList.Add(item.user));
+            var userSpeakList = _userSpeakDAL.GetModels(
+                con => userList.Contains(con.user)
+                ).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
+
+            var output = new GetFriendSpeakPageOutput()
+            {
+                PageSize = input.PageSize,
+                CurrentPage = input.CurrentPage + 1
+            };
+            userSpeakList.ToList().ForEach(
+                userSpeak =>
+                {
+                    var userSpeakView = new UserSpeakViewModel()
+                    {
+                        user = Mapper.Map<UserViewModel>(userSpeak.user),
+                        Contents = userSpeak.Contents,
+                        SpeakTime = userSpeak.SpeakTime,
+                        Id = userSpeak.Id,
+                        Coment = new List<UserSpeakComentViewModel>()
+                    };
+                    var coments = userSpeak.SpeakComents.Where(con => con.PSpeakComents is null).OrderBy(con => con.ComentTime);
+                    coments.ToList().ForEach(fComent =>
+                    {
+                        userSpeakView.Coment.Add(ConvertSpeakComents(userSpeak, fComent));
+
+                    });
+
+                    output.userSpeak.Add(userSpeakView);
+                });
+
+            result.Status = true;
+            result.Data = output;
+            return result;
+        }
+        
+        
+        /// <summary>
+        /// 递归获取留言列表
+        /// </summary>
+        /// <param name="userSpeak"></param>
+        /// <param name="coments"></param>
+        /// <returns></returns>
+
+        private UserSpeakComentViewModel ConvertSpeakComents(UserSpeak userSpeak,SpeakComents coments)
+        {
+            //找到是否有子集
+            var childComent = userSpeak.SpeakComents.Where(con => con.PSpeakComents == coments).ToList();
+            if (childComent.Count > 0)
+            {
+                var ComentsView = Mapper.Map<UserSpeakComentViewModel>(coments);
+                ComentsView.CSpeakComent = new List<UserSpeakComentViewModel>();
+                //表示还有子集
+                childComent.ForEach(item =>
+                {
+                    //继续寻找子集
+                    ComentsView.CSpeakComent.Add(ConvertSpeakComents(userSpeak, item));
+                });
+                return ComentsView;
+            }
+            else
+            {
+                //表示没有子集
+                return Mapper.Map<UserSpeakComentViewModel>(coments);
+            }
+            
+        }
+
     }
 }

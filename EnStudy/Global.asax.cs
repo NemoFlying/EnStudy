@@ -41,6 +41,8 @@ namespace EnStudy
                     //学习计划
                     config.CreateMap<StudySchedue, StudySchedueVieModel>();
                     config.CreateMap<IStudySchedueInput, StudySchedue>();
+
+                    config.CreateMap<SpeakComents, UserSpeakComentViewModel>();
                 });
             }
 

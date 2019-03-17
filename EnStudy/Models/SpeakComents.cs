@@ -38,7 +38,7 @@ namespace EnStudy.Models
         public virtual UserSpeak UserSpeak { get; set; }
 
         /// <summary>
-        /// 子级评论是哪条
+        /// 父级评论是哪条
         /// </summary>
         public virtual SpeakComents PSpeakComents { get; set; }
     }

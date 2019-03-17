@@ -84,5 +84,14 @@ namespace EnStudy.BLL
         ResultOutput AddSpeakComents(int fUId, int toUId, int usId, int? pscId, string contents);
 
         ResultOutput AddFriend(int UId, int FId);
+
+        /// <summary>
+        /// 获取朋友圈信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        ResultOutput GetFriendSpeakPage(GetFriendSpeakPageInput input);
+
+
     }
 }
