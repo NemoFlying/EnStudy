@@ -309,51 +309,7 @@ namespace EnStudy.BLL
 
         }
 
-        /// <summary>
-        /// 针对心情留言
-        /// </summary>
-        /// <param name="fromUId">留言人</param>
-        /// <param name="toUId">被留言人</param>
-        /// <param name="usId">被留言的心情</param>
-        /// <param name="contents"></param>
-        /// <returns></returns>
-        public ResultOutput AddSpeakComents(int fUId, int toUId, int usId,int? pscId, string contents)
-        {
-            var result = new ResultOutput();
-            var fUser = _userDAL.GetModels(con => con.Id == fUId).FirstOrDefault();
-            var tUser = _userDAL.GetModels(con => con.Id == toUId).FirstOrDefault();
-            if(fUser is null || tUser is null)
-            {
-                result.Msg = "Params Is Valited Failed!";
-                return result;
-            }
-            var newComent = new SpeakComents()
-            {
-                Contents = contents
-            };
-            if(pscId.HasValue)
-            {
-                //添加父级
-                newComent.PSpeakComents = tUser.UserSpeak.Where(con=>con.Id==usId).FirstOrDefault()
-                    .SpeakComents.Where(con => con.Id == pscId).FirstOrDefault();
-            }
-            newComent.User = fUser;
-            tUser.UserSpeak.Where(con => con.Id == usId).FirstOrDefault().SpeakComents.Add(newComent);
-            try
-            {
-                _userDAL.SaveChanges();
-                result.Status = true;
-                //返回所有评论
-                result.Data = fUser.UserSpeak.Where(con => con.Id == usId).FirstOrDefault().SpeakComents.Take(50).ToList();
-            }
-            catch (Exception ex)
-            {
-                result.Data = ex;
-                result.Msg = "Add UserSpeak Failed!";
-            }
-            return result;
-
-        }
+        
 
 
         public ResultOutput AddFriend(int UId,int FId)
@@ -385,7 +341,6 @@ namespace EnStudy.BLL
             var userSpeakList = _userSpeakDAL.GetModels(
                 con => userList.Contains(con.user.Id)
                 ).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
-            //var userSpeakList = _userSpeakDAL.GetModels(con=>1==1).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
 
             var output = new GetFriendSpeakPageOutput()
             {
@@ -418,8 +373,7 @@ namespace EnStudy.BLL
             result.Data = output;
             return result;
         }
-        
-        
+
         /// <summary>
         /// 递归获取留言列表
         /// </summary>
@@ -449,6 +403,68 @@ namespace EnStudy.BLL
                 return Mapper.Map<UserSpeakComentViewModel>(coments);
             }
             
+        }
+
+        /// <summary>
+        /// 添加留言信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public ResultOutput AddSpeakComents(AddSpeakComentsInput input)
+        {
+            var result = new ResultOutput();
+            var fromUser = _userDAL.GetModels(con => con.Id == input.FromUserId).FirstOrDefault();
+            var toUser = _userDAL.GetModels(con => con.Id == input.ToUserId).FirstOrDefault();
+            var userSpeak = new UserSpeak();
+            //默认都可以发表评论
+            if (toUser != null)
+            {
+                userSpeak = toUser.UserSpeak.Where(con => con.Id == input.SpeakId).FirstOrDefault();
+            }
+            else
+            {
+                result.Msg = "Params Is Valited Failed!";
+                return result;
+            }
+            if (userSpeak is null || fromUser is null)
+            {
+                result.Msg = "Params Is Valited Failed!";
+                return result;
+            }
+            //创建留言Model
+            var newComent = new SpeakComents()
+            {
+                Contents = input.Msg
+            };
+
+            if (input.ComentId.HasValue)
+            {
+                //添加父级
+                newComent.PSpeakComents = userSpeak.SpeakComents.Where(con => con.Id == input.ComentId.Value).FirstOrDefault();
+            }
+            newComent.User = fromUser;
+            userSpeak.SpeakComents.Add(newComent);
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+                var comentsViewModel = new List<UserSpeakComentViewModel>();
+
+                //返回所有评论
+                var coments = userSpeak.SpeakComents.Where(con => con.PSpeakComents is null).OrderBy(con => con.ComentTime);
+                coments.ToList().ForEach(fComent =>
+                {
+                    comentsViewModel.Add(ConvertSpeakComents(userSpeak, fComent));
+
+                });
+                result.Data = comentsViewModel;
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+                result.Msg = "Add UserSpeak Failed!";
+            }
+            return result;
         }
 
     }

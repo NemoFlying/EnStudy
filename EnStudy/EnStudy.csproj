@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\ResultOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\AddSpeakComentsInput.cs" />
     <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageInput.cs" />
     <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageOutput.cs" />
     <Compile Include="BLL\UserService\Dto\ISearchNewFriendInput.cs" />

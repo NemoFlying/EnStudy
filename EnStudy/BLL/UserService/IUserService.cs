@@ -73,16 +73,6 @@ namespace EnStudy.BLL
         /// <returns></returns>
         ResultOutput DeleteUserSpeak(int uId, int usId);
 
-        /// <summary>
-        /// 针对心情留言
-        /// </summary>
-        /// <param name="fromUId">留言人</param>
-        /// <param name="toUId">被留言人</param>
-        /// <param name="usId">被留言的心情</param>
-        /// <param name="contents"></param>
-        /// <returns></returns>
-        ResultOutput AddSpeakComents(int fUId, int toUId, int usId, int? pscId, string contents);
-
         ResultOutput AddFriend(int UId, int FId);
 
         /// <summary>
@@ -91,6 +81,13 @@ namespace EnStudy.BLL
         /// <param name="input"></param>
         /// <returns></returns>
         ResultOutput GetFriendSpeakPage(GetFriendSpeakPageInput input);
+
+        /// <summary>
+        /// 针对心情留言
+        /// </summary>
+        /// <returns></returns>
+        ResultOutput AddSpeakComents(AddSpeakComentsInput input);
+
 
 
     }
