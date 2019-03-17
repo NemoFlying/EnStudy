@@ -379,13 +379,13 @@ namespace EnStudy.BLL
         {
             var result = new ResultOutput();
             var user = _userDAL.GetModels(con => con.Id == input.UserId).FirstOrDefault();
-            var userList = new List<User>();
-            user.Friends.ToList().ForEach(item => userList.Add(item.user));
-            userList.Add(user);
-            //var userSpeakList = _userSpeakDAL.GetModels(
-            //    con => userList.Contains(con.user)
-            //    ).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
-            var userSpeakList = _userSpeakDAL.GetModels(con=>1==1).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
+            var userList = new List<int>();
+            user.Friends.ToList().ForEach(item => userList.Add(item.user.Id));
+            userList.Add(user.Id);
+            var userSpeakList = _userSpeakDAL.GetModels(
+                con => userList.Contains(con.user.Id)
+                ).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
+            //var userSpeakList = _userSpeakDAL.GetModels(con=>1==1).OrderByDescending(con => con.SpeakTime).Skip(input.PageSize * input.CurrentPage).Take(input.PageSize);
 
             var output = new GetFriendSpeakPageOutput()
             {

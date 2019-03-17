@@ -20,6 +20,8 @@ namespace EnStudy.ViewModels
         /// </summary>
         public string Contents { get; set; }
 
+        public UserViewModel User { get; set; }
+
         /// <summary>
         /// 嵌套评论
         /// </summary>
