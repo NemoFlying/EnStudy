@@ -73,9 +73,9 @@ $(function () {
                 $(item.CSpeakComent).each(function (i, item) {
                     console.log(item);
                     $(".CSpeakComent").append(`
-                        <p>`+ this.User.AccountNo +`</p>
-                        <p>`+ replace_em(this.Contents) +`</p>
-                        <p class='ComentTimeItems'>`+ (new Date(parseInt(this.ComentTime.replace(/\D/igm, "")))).toLocaleString()+`</p>
+                        <p>`+ item.User.AccountNo +`</p>
+                        <p>`+ replace_em(item.Contents) +`</p>
+                        <p class='ComentTimeItems'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString()+`</p>
                     `);
                 });
             });
