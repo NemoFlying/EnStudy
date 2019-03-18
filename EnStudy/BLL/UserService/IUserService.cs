@@ -51,13 +51,6 @@ namespace EnStudy.BLL
 
 
         /// <summary>
-        /// 获取自己说说列表【不进行分页，获取最近10条】
-        /// </summary>
-        /// <param name="uId"></param>
-        /// <returns></returns>
-        ResultOutput GetUserSpeak(int uId);
-
-        /// <summary>
         /// 用户发表心情
         /// </summary>
         /// <param name="uId">用户Id</param>

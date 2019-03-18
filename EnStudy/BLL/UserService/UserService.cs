@@ -203,28 +203,6 @@ namespace EnStudy.BLL
             return result;
         }
 
-
-        /// <summary>
-        /// 获取自己说说列表【不进行分页，获取最近10条】
-        /// 可以在Controller获取
-        /// </summary>
-        /// <param name="uId"></param>
-        /// <returns></returns>
-        public ResultOutput GetUserSpeak(int uId)
-        {
-            var result = new ResultOutput();
-            var user = _userDAL.GetModels(con => con.Id == uId).FirstOrDefault();
-            if (user is null)  //用户为空
-            {
-                result.Msg = "User Can't Be Find!";
-                return result;
-            }else
-            {
-                result.Data = user.UserSpeak.OrderByDescending(con => con.SpeakTime).Take(10).ToList();
-            }
-            return result;
-        }
-
         /// <summary>
         /// 用户发表心情
         /// </summary>
@@ -259,9 +237,11 @@ namespace EnStudy.BLL
             try
             {
                 _userDAL.SaveChanges();
-                result.Status = true;
-                //返回前10条留言【默认10条】
-                result.Data = user.UserSpeak.OrderByDescending(con => con.SpeakTime).Take(10).ToList();
+                result = GetFriendSpeakPage(new GetFriendSpeakPageInput()
+                {
+                    UserId = uId,
+                    CurrentPage = 0
+                });
             }
             catch (Exception ex)
             {

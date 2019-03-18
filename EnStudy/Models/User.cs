@@ -95,22 +95,22 @@ namespace EnStudy.Models
         /// <summary>
         /// 学习计划
         /// </summary>
-        public virtual ICollection<StudySchedue> StudySchedue { get;set;}
+        public virtual ICollection<StudySchedue> StudySchedue { get; set; } = new List<StudySchedue>();
 
         /// <summary>
         /// 学习心得
         /// </summary>
-        public virtual ICollection<UserSpeak> UserSpeak { get; set; }
-        
+        public virtual ICollection<UserSpeak> UserSpeak { get; set; } = new List<UserSpeak>();
+
         /// <summary>
         /// 学习心得评论
         /// </summary>
-        public virtual ICollection<SpeakComents> SpeakComents { get; set; }
+        public virtual ICollection<SpeakComents> SpeakComents { get; set; } = new List<SpeakComents>();
 
         /// <summary>
         /// 朋友列表
         /// </summary>
-        public virtual ICollection<UserFriend> Friends { get; set; }
+        public virtual ICollection<UserFriend> Friends { get; set; } = new List<UserFriend>();
 
 
 
