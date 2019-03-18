@@ -448,7 +448,7 @@ namespace EnStudy.BLL
         }
 
 
-        //public ResultOutput GetStudyNotes()
+        //public ResultOutput GetStudyNotesListPage()
         //{
 
         //}
