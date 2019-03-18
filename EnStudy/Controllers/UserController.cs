@@ -135,13 +135,6 @@ namespace EnStudy.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
-        public JsonResult GetOwnerUserSpeak(int uId)
-        {
-            var result = _userService.GetUserSpeak(uId);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
         /// <summary>
         /// 获取朋友圈
         /// </summary>
@@ -168,6 +161,17 @@ namespace EnStudy.Controllers
             input.FromUserId = 1;
             var result = _userService.AddSpeakComents(input);
             return Json(result, JsonRequestBehavior.AllowGet); ;
+        }
+
+
+        /// <summary>
+        /// 发表说说
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <returns></returns>
+        public JsonResult AddNewSpeak(string contents)
+        {
+            return Json(_userService.AddUserSpeak(1, contents), JsonRequestBehavior.AllowGet);
         }
 
         public void tt()

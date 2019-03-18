@@ -42,6 +42,6 @@ namespace EnStudy.Models
         /// <summary>
         /// 多条用户评论
         /// </summary>
-        public virtual ICollection<SpeakComents> SpeakComents { get; set; }
+        public virtual ICollection<SpeakComents> SpeakComents { get; set; } = new List<SpeakComents>();
     }
 }
