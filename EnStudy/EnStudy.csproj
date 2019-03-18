@@ -279,7 +279,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\index.js" />
     <Content Include="js\mine.js" />
+    <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -507,6 +509,7 @@
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Vocabulary.cshtml" />
     <Content Include="Views\Home\Mine.cshtml" />
+    <Content Include="Views\Home\SearchFriends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
