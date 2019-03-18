@@ -19,7 +19,10 @@ function replace_em(str) {
 
 }
 
+$(document).click(function () {
+    //$(".liuyan").show();
 
+});
 $(function () {
     $('#emotion').qqFace({
 
@@ -71,29 +74,10 @@ $(function () {
                 <p class='SpeakTime'>`+ (new Date(parseInt(item.SpeakTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
                 <p class='MessageBoard' title='`+ item.Id +`'>`+ replace_em(item.Contents) +`</p>
                 <div class='Coment'></div>
-                    <div class="com_form">
-                        <textarea class="input msgText" rows='5' style='resize: none;' id="saytext1" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
-                        <p>
-                            <button type="button" class="layui-btn sub_btn">发表</button>
-
-                            <span class="emotion emotion1" id="emotion"></span>
-                            <button type="button" id="test2" class='addmsgBtn'>
-                                <i class="layui-icon">&#xe660;</i>
-                            </button>
-
-                        </p>
-                    </div>
+                    <div class="com_form com_form1"><span class='liuyan'>留言</span></div>
             `);
             $(".one").append(li);
-            li.find('.emotion1').qqFace({
 
-                id: 'facebox',
-
-                assign: 'saytext1',
-
-                path: '../assets/img/arclist/'	//表情存放的路径
-
-            });
             $(item.Coment).each(function (i, item) {
                 //console.log(item);
                 li.find(".Coment").append(`
@@ -116,10 +100,42 @@ $(function () {
                     
                 });
             });
-
+            
         });
 
+        $(".liuyan").click(function () {
+            $(this).hide();
+            $(".msgText").prev().show();
+            $(".msgText").remove();
+            $(".liuyanP").remove();
+            //元素存在时执行的代码
+            $(this).parent().append(`
+                    <textarea class="input msgText" rows='5' style='resize: none;' id="saytext1" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
+                    <p class='liuyanP'>
+                        <button type="button" class="layui-btn sub_btn">发表</button>
+
+                        <span class="emotion emotion1" id="emotion"></span>
+                        <button type="button" id="test2" class='addmsgBtn'>
+                            <i class="layui-icon">&#xe660;</i>
+                        </button>
+
+                    </p>
+                `);
+            $('.emotion1').qqFace({
+
+                id: 'facebox',
+
+                assign: 'saytext1',
+
+                path: '../assets/img/arclist/'	//表情存放的路径
+
+            });
+            
+            
+
+        });
     };
+
     $(".addmsgBtn").click(function () {
         // 被留言的说说Id
         var SpeakId = $(".MessageBoard").attr("title");
