@@ -13,9 +13,12 @@
     <link href="~/css/index.css" rel="stylesheet" />
     <style>
         .addTypeId {
-            width: 50%;
+            width: 60%;
             display: inline-block;
             margin-left: 0;
+        }
+        .addSub_btn{
+            float:right;
         }
     </style>
 </head>
@@ -64,7 +67,6 @@
                                     <label class="layui-form-label">分类标签</label>
                                     <div class="layui-input-block">
                                         <select name="city" class="TypeId" lay-verify="required">
-                                            <option value=""></option>
                                         </select>
                                     </div>
                                 </div>
@@ -74,10 +76,10 @@
                                         <input type="text" name="" placeholder="请输入可以添加分类，可不用添加，直接选择上方已有类型" autocomplete="off" class="layui-input addTypeIdInput">
                                         
                                     </div>
-                                    <button type="button" class="layui-btn sub_btn">发表</button>
+                                    <button type="button" class="layui-btn addSub_btn">添加</button>
                                 </div>
                                 <div class="">
-                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input Title">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入主题" autocomplete="off" class="layui-input Title">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -99,7 +101,29 @@
                     </div>
                 </div>
                 <div id="show">
-                    <ul class="one"></ul>
+                    <div class="showItem">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">选择框</label>
+                                <div class="layui-input-block">
+                                    <select class="TypeIdShow" lay-filter="TypeIdShow" name="TypeId" lay-verify="required">
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'experience'}">主题</th>
+                                <th lay-data="{field:'sign'}">关键字</th>
+                                <th lay-data="{field:'date'}">创建日期</th>
+                                <th lay-data="{field:'info', width:100}">详情</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </li>
             <li class="itemBody itemR">
@@ -121,95 +145,7 @@
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/js/public.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
-    <script>
-        //注意：导航 依赖 element 模块，否则无法进行功能性操作
-        layui.use('form', function () {
-            var form = layui.form;
-
-            //各种基于事件的操作，下面会有进一步介绍
-
-            $(function () {
-
-                $.ajax({
-                    dataType: "json",
-                    url: "../User/GetUserStudySchedue",
-                    data: {
-
-                    },
-                    success: function (reData) {
-                        console.log(reData);
-                        console.log("============")
-                    }
-                });
-
-                //qq表情
-                $('.emotion').qqFace({
-
-                    id: 'facebox',
-
-                    assign: 'saytext',
-
-                    path: '../assets/img/arclist/'	//表情存放的路径
-
-                });
-
-                //添加笔记
-                $(".sub_btn").click(function () {
-                    var Uid = "admin";
-                    var Title = $(".Title").val();
-                    var KeyWords = $(".KeyWords").val();
-                    var Contents = $(".Contents").val();
-                    Contents = escape(Contents);
-                    $.ajax({
-                        dataType: "json",
-                        url: "../User/AddStudyNotes",
-                        data: {
-                            Title: Title,
-                            KeyWords: KeyWords,
-                            Contents: Contents
-                        },
-                        success: function (reData) {
-
-                        }
-                    });
-                    //$(".one").append("<li>"+replace_em(str)+"</li>");
-                    //$(".one").append("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>加油！</p></li>")
-
-                });
-
-            });
-        });
-
-
-
-        //查看结果
-        //转换表情
-        function replace_em(str) {
-
-            str = str.replace(/\</g, '&lt;');
-
-            str = str.replace(/\>/g, '&gt;');
-
-            str = str.replace(/\n/g, '<br/>');
-
-            str = str.replace(/\[em_([0-9]*)\]/g, '<img src="../assets/img/arclist/$1.gif" border="0" />');
-
-            return str;
-
-        }
-
-        //轮播
-        layui.use('carousel', function () {
-            var carousel = layui.carousel;
-            //建造实例
-            carousel.render({
-                elem: '#test1'
-                , width: '100%' //设置容器宽度
-                , arrow: 'none' //始终显示箭头
-                //,anim: 'updown' //切换动画方式
-            });
-        });
-    </script>
+    <script type="text/javascript" src="~/js/NoteBook.js"></script>
 
 </body>
 </html>

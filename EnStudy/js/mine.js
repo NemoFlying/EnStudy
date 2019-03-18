@@ -168,11 +168,11 @@ $(function () {
 
             //    }
             //});
-            var province = $(".province");
+            //var province = $(".province");
 
-            var dl = province.siblings("div.layui-form-select").find('dl');
-            dl.find("dd").removeClass();
-            var dd = dl.find('dd:contains(山西)').addClass("layui-this").click();
+            //var dl = province.siblings("div.layui-form-select").find('dl');
+            //dl.find("dd").removeClass();
+            //var dd = dl.find('dd:contains(山西)').addClass("layui-this").click();
         });
 
     });

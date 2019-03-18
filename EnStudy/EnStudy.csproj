@@ -290,6 +290,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="js\index.js" />
     <Content Include="js\mine.js" />
+    <Content Include="js\NoteBook.js" />
     <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="Scripts\bootstrap.js" />
