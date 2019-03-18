@@ -5,11 +5,23 @@ layui.use('element', function () {
     //…
 });
 
+function replace_em(str) {
 
+    str = str.replace(/\</g, '&lt;');
+
+    str = str.replace(/\>/g, '&gt;');
+
+    str = str.replace(/\n/g, '<br/>');
+
+    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="../assets/img/arclist/$1.gif" border="0" />');
+
+    return str;
+
+}
 
 
 $(function () {
-    $('.emotion').qqFace({
+    $('#emotion').qqFace({
 
         id: 'facebox',
 
@@ -18,7 +30,7 @@ $(function () {
         path: '../assets/img/arclist/'	//表情存放的路径
 
     });
-
+    //发表说说
     $(".sub_btn").click(function () {
 
         var str = $("#saytext").val();
@@ -47,47 +59,81 @@ $(function () {
     });
 
     function GetFriendSpeak(data) {
-        console.log(data);
-        $(data.userSpeak).each(function ( i,item) {
-            console.log(item)
-            $(".one").append(`
-                <li class='itemMessages'>
-                    <p>
-                        <img src='../assets/img/smile.png' alt='头像' />
-                        <span>`+ item.user.AccountNo+`</span>
-                    </p>
-                    <p class='SpeakTime'>`+ (new Date(parseInt(item.SpeakTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
-                    <p class='MessageBoard'>`+ replace_em(item.Contents) +`</p>
-                    <div class='Coment'></div>
-                </li>
+        //console.log(data);
+        $(data.userSpeak).each(function ( i,item ) {
+            console.log(item);
+            var li = $(" <li class='itemMessages'></li>");
+            li.append(`
+                <p>
+                    <img src='../assets/img/smile.png' alt='头像' />
+                    <span>`+ item.user.AccountNo+`</span>
+                </p>
+                <p class='SpeakTime'>`+ (new Date(parseInt(item.SpeakTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
+                <p class='MessageBoard' title='`+ item.Id +`'>`+ replace_em(item.Contents) +`</p>
+                <div class='Coment'></div>
+                    <div class="com_form">
+                        <textarea class="input msgText" rows='5' style='resize: none;' id="saytext1" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
+                        <p>
+                            <button type="button" class="layui-btn sub_btn">发表</button>
+
+                            <span class="emotion emotion1" id="emotion"></span>
+                            <button type="button" id="test2" class='addmsgBtn'>
+                                <i class="layui-icon">&#xe660;</i>
+                            </button>
+
+                        </p>
+                    </div>
             `);
+            $(".one").append(li);
             $(item.Coment).each(function (i, item) {
                 //console.log(item);
-                $(".Coment").append(`
+                li.find(".Coment").append(`
                 <div class='reply'><p><span>` + item.User.AccountNo + `:</span></p><p>` + replace_em(item.Contents) + `</p>
                     
                     <p class='ComentTime'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
                     <div class='CSpeakComent'></div>
                 </div>
             `);
+                
                 $(item.CSpeakComent).each(function (i, item) {
-                    console.log(item);
-                    $(".CSpeakComent").append(`
-                        <p>`+ item.User.AccountNo +`</p>
-                        <p>`+ replace_em(item.Contents) +`</p>
-                        <p class='ComentTimeItems'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString()+`</p>
+                    //console.log(item);
+                    while (item.CSpeakComent) {
+                        $(".CSpeakComent").append(`
+                        <p>`+ item.User.AccountNo + `</p>
+                        <p>`+ replace_em(item.Contents) + `</p>
+                        <p class='ComentTimeItems'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString() + `</p>
                     `);
+                    }
+                    
                 });
+            });
+            $('.emotion1').qqFace({
+
+                id: 'facebox',
+
+                assign: 'saytext1',
+
+                path: '../assets/img/arclist/'	//表情存放的路径
+
             });
         });
 
     };
+    $(".addmsgBtn").click(function () {
+        // 被留言的说说Id
+        var SpeakId = $(".MessageBoard").attr("title");
+        // 被留言的用户Id
+        var ToUserId
+        var msg = $(".msgText").text();
+        console.log(msg, SpeakId)
+    });
     $.ajax({
         dataType: "json",
         url: "../User/GetFriendSpeak",
         data: {
             
         },
+        async: false,
         success: function (reData) {
             if (reData.Status != true) {
                 alert("暂无数据！");
@@ -96,25 +142,11 @@ $(function () {
             }
         }
     });
-    //发表说说
-    $(".")
+
 });
 
 //查看结果
 
-function replace_em(str) {
-
-    str = str.replace(/\</g, '&lt;');
-
-    str = str.replace(/\>/g, '&gt;');
-
-    str = str.replace(/\n/g, '<br/>');
-
-    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="../assets/img/arclist/$1.gif" border="0" />');
-
-    return str;
-
-}
 
 layui.use('carousel', function () {
     var carousel = layui.carousel;
