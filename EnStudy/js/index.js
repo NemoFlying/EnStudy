@@ -85,6 +85,15 @@ $(function () {
                     </div>
             `);
             $(".one").append(li);
+            li.find('.emotion1').qqFace({
+
+                id: 'facebox',
+
+                assign: 'saytext1',
+
+                path: '../assets/img/arclist/'	//表情存放的路径
+
+            });
             $(item.Coment).each(function (i, item) {
                 //console.log(item);
                 li.find(".Coment").append(`
@@ -107,15 +116,7 @@ $(function () {
                     
                 });
             });
-            $('.emotion1').qqFace({
 
-                id: 'facebox',
-
-                assign: 'saytext1',
-
-                path: '../assets/img/arclist/'	//表情存放的路径
-
-            });
         });
 
     };
