@@ -19,6 +19,7 @@ namespace EnStudy.Models
         /// <summary>
         /// 书籍名称
         /// </summary>
+        [Required]
         public string BookName { get; set; }
 
         /// <summary>
@@ -29,6 +30,7 @@ namespace EnStudy.Models
         /// <summary>
         /// 书籍图片地址
         /// </summary>
+        [Required]
         public string BookImgUrl { get; set; }
 
         /// <summary>
@@ -36,7 +38,7 @@ namespace EnStudy.Models
         /// </summary>
         public string BookShopUrl { get; set; }
 
-        public DateTime MyProperty { get; set; } = DateTime.Now;
+        public DateTime CreateTime { get; set; } = DateTime.Now;
 
     }
 }

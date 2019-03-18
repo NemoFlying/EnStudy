@@ -24,6 +24,7 @@ namespace EnStudy.DAL
 
         public DbSet<SpeakComents> SpeakComents { get; set; }
 
+        public DbSet<RecommendedBook> RecommendedBook { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

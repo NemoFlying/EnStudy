@@ -151,6 +151,7 @@
     <Compile Include="BLL\UserService\UserService.cs" />
     <Compile Include="Controllers\EnStudyBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecommendedBookController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\EnStudyContext.cs" />
@@ -515,6 +516,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
     <Folder Include="Views\EnStudyBase\" />
+    <Folder Include="Views\RecommendedBook\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

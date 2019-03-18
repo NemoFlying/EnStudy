@@ -49,21 +49,21 @@ $(function () {
     function GetFriendSpeak(data) {
         console.log(data);
         $(data.userSpeak).each(function ( i,item) {
-            console.log(item)
-            $(".one").append(`
-                <li class='itemMessages'>
-                    <p>
+            console.log(item);
+            var li = $("<li class=itemMessages></li>");
+            li.append(`
+                 <p>
                         <img src='../assets/img/smile.png' alt='头像' />
-                        <span>`+ item.user.AccountNo+`</span>
+                        <span>`+ item.user.AccountNo + `</span>
                     </p>
-                    <p class='SpeakTime'>`+ (new Date(parseInt(item.SpeakTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
+                    <p class='SpeakTime'>`+ (new Date(parseInt(item.SpeakTime.replace(/\D/igm, "")))).toLocaleString() + `</p>
                     <p class='MessageBoard'>`+ replace_em(item.Contents) +`</p>
-                    <div class='Coment'></div>
-                </li>
-            `);
+                    <div class='Coment'></div>    
+            `)
+            $(".one").append(li);
             $(item.Coment).each(function (i, item) {
                 //console.log(item);
-                $(".Coment").append(`
+                li.find(".Coment").append(`
                 <div class='reply'><p><span>` + item.User.AccountNo + `:</span></p><p>` + replace_em(item.Contents) + `</p>
                     
                     <p class='ComentTime'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString() +`</p>

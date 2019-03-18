@@ -80,5 +80,8 @@ namespace EnStudy.DAL
         {
             return dbContext.SaveChanges() > 0;
         }
+        public void RollBack()
+        {
+        }
     }
 }

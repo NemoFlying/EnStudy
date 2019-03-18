@@ -36,7 +36,13 @@ namespace EnStudy.BLL
         public ResultOutput AddRecommendedBook(RecommendedBook input)
         {
             var result = new ResultOutput();
-            _book.Add(input);
+            var rb = new RecommendedBook() {
+                BookImgUrl = input.BookImgUrl,
+                BookName = input.BookName,
+                BookShopUrl = input.BookShopUrl,
+                BookIntroduction = input.BookIntroduction
+            };
+            _book.Add(rb);
 
             try
             {
@@ -52,10 +58,34 @@ namespace EnStudy.BLL
 
         }
 
+        /// <summary>
+        /// 删除推荐书籍
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ResultOutput DeleteRecommendedBook(int id)
         {
             var result = new ResultOutput();
             var book = _book.GetModels(con => con.Id == id).FirstOrDefault();
+            if(book!=null)
+            {
+                _book.Delete(book);
+                try
+                {
+                    _book.SaveChanges();
+                    result.Status = true;
+                    result.Data = _book.GetModels(con => 1 == 1).ToList();
+                }
+                catch(Exception e)
+                {
+                    result.Status = false;
+                    result.Data = e;
+                }
+            }
+            else
+            {
+                result.Status = true;
+            }
             return result;
         }
 

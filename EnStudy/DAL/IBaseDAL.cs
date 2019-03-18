@@ -27,6 +27,8 @@ namespace EnStudy.DAL
         /// <param name="t"></param>
         void Update(T t);
 
+        
+
         /// <summary>
         /// 根据条件获得对象列表
         /// </summary>
@@ -53,5 +55,7 @@ namespace EnStudy.DAL
         /// false 表示没有更改
         /// </summary>
         bool SaveChanges();
+
+        void RollBack();
     }
 }
