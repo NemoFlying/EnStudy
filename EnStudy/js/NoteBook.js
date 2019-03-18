@@ -23,6 +23,7 @@ layui.use('form', function () {
         $.ajax({
             dataType: "json",
             url: "../User/GetStudyNotesType",
+            async: false,
             data: {
 
             },
@@ -32,9 +33,9 @@ layui.use('form', function () {
             }
         });
         //加载已有笔记
-        layui.use('table', function () {
-            var table = layui.table;
-            function GetStudyNotesBriefByTypeIdItem(Data) {
+        function GetStudyNotesBriefByTypeIdItem(Data) {
+            layui.use('table', function () {
+                var table = layui.table;
                 $(".itemShowCount tbody").empty();
                 $(Data).each(function (i, item) {
                     console.log(item);
@@ -55,28 +56,32 @@ layui.use('form', function () {
                     //, limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
                     //支持所有基础参数
                 });
-            };
-            form.on('select(TypeIdShow)', function GetStudyNotesBriefByTypeId(data) {
-                //console.log(data.elem); //得到select原始DOM对象
-                console.log(data.value); //得到被选中的值
-                //console.log(data.othis); //得到美化后的DOM对象
-                
-                $.ajax({
-                    dataType: "json",
-                    url: "../User/GetStudyNotesType",
-                    data: {
-                        id: data.value
-                    },
-                    success: function (reData) {
-                        //console.log(reData.Data);
-                        GetStudyNotesBriefByTypeIdItem(reData.Data);
-                        //form.render("select");
-
-                    }
-                });
             });
 
+        };
+        form.on('select(TypeIdShow)', function GetStudyNotesBriefByTypeId(data) {
+            //console.log(data.elem); //得到select原始DOM对象
+            console.log(data.value); //得到被选中的值
+            //console.log(data.othis); //得到美化后的DOM对象
+
+            $.ajax({
+                dataType: "json",
+                url: "../User/GetStudyNotesType",
+                async: false,
+                data: {
+                    id: data.value
+                },
+                success: function (reData) {
+                    //console.log(reData.Data);
+                    GetStudyNotesBriefByTypeIdItem(reData.Data);
+                    
+
+                }
+            });
         });
+        $(".TypeIdShow").siblings("div.layui-form-select").find('dl dd.layui-this').click();
+        var a = $(".TypeIdShow").siblings("div.layui-form-select").find('dd').text();
+        console.log(a)
         //qq表情
         $('.emotion').qqFace({
 
