@@ -447,5 +447,11 @@ namespace EnStudy.BLL
             return result;
         }
 
+
+        //public ResultOutput GetStudyNotes()
+        //{
+
+        //}
+
     }
 }

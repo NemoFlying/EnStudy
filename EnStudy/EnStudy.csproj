@@ -169,6 +169,8 @@
     </Compile>
     <Compile Include="Models\RecommendedBook.cs" />
     <Compile Include="Models\SpeakComents.cs" />
+    <Compile Include="Models\StudyNodes.cs" />
+    <Compile Include="Models\StudyNotesType.cs" />
     <Compile Include="Models\StudySchedue.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserFriend.cs" />

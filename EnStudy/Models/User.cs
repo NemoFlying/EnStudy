@@ -112,7 +112,15 @@ namespace EnStudy.Models
         /// </summary>
         public virtual ICollection<UserFriend> Friends { get; set; } = new List<UserFriend>();
 
+        /// <summary>
+        /// 笔记类型列表
+        /// </summary>
+        public virtual ICollection<StudyNotesType> StudyNotesType { get; set; } = new List<StudyNotesType>();
 
+        /// <summary>
+        /// 学习笔记
+        /// </summary>
+        public virtual ICollection<StudyNodes> StudyNodes { get; set; } = new List<StudyNodes>();
 
     }
 }
