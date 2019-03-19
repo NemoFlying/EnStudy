@@ -162,7 +162,7 @@ $(function () {
                                     </div>
                                 `)
                             });
-                            //$(".msgText").val("")
+                            $(".msgText").val("")
                         }
                     }
                 });
