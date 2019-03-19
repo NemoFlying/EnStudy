@@ -447,5 +447,174 @@ namespace EnStudy.BLL
             return result;
         }
 
+
+        /// <summary>
+        /// 根据用户Id获取文章类型列表
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <returns></returns>
+        public ResultOutput GetStudyNotesType(int uId)
+        {
+            var result = new ResultOutput();
+            result.Status = true;
+            result.Data = Mapper.Map<List<StudyNoteTypeOutput>>(_userDAL.GetModels(con => con.Id == uId)
+                .FirstOrDefault()
+                .StudyNotesType.ToList()
+                );
+            return result;
+        }
+
+        /// <summary>
+        /// 删除文章类型
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ResultOutput DeleteStudyNotesType(int uId,int id)
+        {
+            var result = new ResultOutput();
+            var NotesTypes = _userDAL.GetModels(con => con.Id == uId)
+                .FirstOrDefault().StudyNotesType;
+            NotesTypes.Remove(NotesTypes.Where(con => con.Id == id).FirstOrDefault());
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+                result.Data = Mapper.Map<List<StudyNoteTypeOutput>>(NotesTypes.ToList());
+            }
+            catch(Exception ex)
+            {
+                result.Data = ex;
+            }
+            return result;
+
+        }
+        /// <summary>
+        /// 添加文章类型
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <returns></returns>
+        public ResultOutput AddStudyNotesType(int uId,string TypeName,string Description)
+        {
+            var result = new ResultOutput();
+            var NotesTypes = _userDAL.GetModels(con => con.Id == uId)
+                .FirstOrDefault().StudyNotesType;
+            var newType = new StudyNotesType()
+            {
+                TypeName = TypeName,
+                Description = Description
+            };
+            NotesTypes.Add(newType);
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+                result.Data = Mapper.Map<List<StudyNoteTypeOutput>>(NotesTypes.ToList());
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据文章类型获取文章列
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="tId"></param>
+        /// <returns></returns>
+        public ResultOutput GetStudyNotesBriefByType(int uId,int tId)
+        {
+            var result = new ResultOutput(true);
+            result.Data = Mapper.Map<List<StudyNotesBriefOuput>>(_userDAL.GetModels(con => con.Id == uId)
+                .FirstOrDefault().StudyNotesType.Where(con => con.Id == tId).FirstOrDefault().StudyNodes.ToList()
+                );
+            return result;
+        }
+
+        /// <summary>
+        /// 根据文章Id获取文章详细
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="nId"></param>
+        /// <returns></returns>
+        public ResultOutput GetStudyNotesDetailById(int uId,int nId)
+        {
+            var result = new ResultOutput() { Status = true };
+            result.Data = Mapper.Map<StudyNotesOutput>(_userDAL.GetModels(con => con.Id == uId)
+                .FirstOrDefault().StudyNodes.Where(con => con.Id == nId).FirstOrDefault());
+            return result;
+        }
+
+        /// <summary>
+        /// 根据学习笔记ID删除
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="nId"></param>
+        /// <returns></returns>
+        public ResultOutput DeleteStudyNotesById(int uId,int nId)
+        {
+            var result = new ResultOutput();
+            var Notes = _userDAL.GetModels(con => con.Id == uId)
+                .FirstOrDefault().StudyNodes;
+            var delNote = Notes.Where(con => con.Id == nId).FirstOrDefault();
+            Notes.Remove(delNote);
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 添加学习笔记
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public ResultOutput AddStudyNotes(StudyNotesInput input)
+        {
+            var result = new ResultOutput();
+            var NotesType = _userDAL.GetModels(con => con.Id == input.Uid).FirstOrDefault()
+                .StudyNotesType.Where(con => con.Id == input.TypeId).FirstOrDefault();
+            if(NotesType!= null)
+            {
+                NotesType.StudyNodes.Add(Mapper.Map<StudyNodes>(input));
+            }
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据关键模糊查找学习笔记
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        public ResultOutput SearchStudyNotes(int uId,string keyWord)
+        {
+            var result = new ResultOutput(true);
+            result.Data = Mapper.Map<List<StudyNotesBriefOuput>>(
+                _userDAL.GetModels(con => con.Id == uId).FirstOrDefault()
+                .StudyNodes.Where(con => con.KeyWords.Contains(keyWord))
+                .ToList()
+                );
+            return result;
+        }
+
+
     }
 }

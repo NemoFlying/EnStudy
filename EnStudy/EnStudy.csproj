@@ -136,25 +136,36 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\RecommendedBookService\IRecommendedBookService.cs" />
+    <Compile Include="BLL\RecommendedBookService\RecommendedBookService.cs" />
     <Compile Include="BLL\ResultOutput.cs" />
     <Compile Include="BLL\UserService\Dto\AddSpeakComentsInput.cs" />
     <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageInput.cs" />
     <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetStudyNotesListPageOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetStudyNotesPageInput.cs" />
     <Compile Include="BLL\UserService\Dto\ISearchNewFriendInput.cs" />
     <Compile Include="BLL\UserService\Dto\IStudySchedueInput.cs" />
     <Compile Include="BLL\UserService\Dto\IUserReistInput.cs" />
     <Compile Include="BLL\UserService\Dto\IUserUpdateInput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesBriefOuput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesInput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNoteTypeOutput.cs" />
     <Compile Include="BLL\UserService\IPage.cs" />
     <Compile Include="BLL\UserService\IUserService.cs" />
     <Compile Include="BLL\UserService\UserService.cs" />
     <Compile Include="Controllers\EnStudyBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecommendedBookController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\EnStudyContext.cs" />
     <Compile Include="DAL\EnStudyContextFactory.cs" />
     <Compile Include="DAL\EnStudyInitializer.cs" />
     <Compile Include="DAL\IBaseDAL.cs" />
+    <Compile Include="DAL\RecommendedBook\IRecommendedBookDAL.cs" />
+    <Compile Include="DAL\RecommendedBook\RecommendedBookDAL.cs" />
     <Compile Include="DAL\UserDAL\IUserDAL.cs" />
     <Compile Include="DAL\UserDAL\UserDAL.cs" />
     <Compile Include="DAL\UserSpeak\IUserSpeakDAL.cs" />
@@ -162,7 +173,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecommendedBook.cs" />
     <Compile Include="Models\SpeakComents.cs" />
+    <Compile Include="Models\StudyNodes.cs" />
+    <Compile Include="Models\StudyNotesType.cs" />
     <Compile Include="Models\StudySchedue.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserFriend.cs" />
@@ -510,6 +524,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
     <Folder Include="Views\EnStudyBase\" />
+    <Folder Include="Views\RecommendedBook\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
