@@ -7,10 +7,20 @@ namespace EnStudy.BLL
 {
     public class ResultOutput
     {
+        public ResultOutput(bool defaultStatus)
+        {
+            this.Status = defaultStatus;
+        }
+
+        public ResultOutput()
+            :this(false)
+        {
+        }
+
         /// <summary>
         /// 状态
         /// </summary>
-        public bool Status { get; set; } = false;
+        public bool Status { get; set; }
 
         /// <summary>
         /// 返回文本信息

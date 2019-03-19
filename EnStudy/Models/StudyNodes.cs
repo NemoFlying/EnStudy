@@ -33,6 +33,11 @@ namespace EnStudy.Models
         public string Contents { get; set; }
 
         /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; } = DateTime.Now;
+
+        /// <summary>
         /// 笔记类型
         /// </summary>
         public virtual StudyNotesType StudyNotesType { get; set; }

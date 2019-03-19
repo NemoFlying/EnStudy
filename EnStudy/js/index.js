@@ -61,7 +61,7 @@ $(function () {
     function GetFriendSpeak(data) {
         //console.log(data);
         $(data.userSpeak).each(function ( i,item ) {
-            console.log(item);
+            console.log(i);
             var li = $(" <li class='itemMessages'></li>");
             li.append(`
                 <p>
@@ -72,7 +72,7 @@ $(function () {
                 <p class='MessageBoard' title='`+ item.Id +`'>`+ replace_em(item.Contents) +`</p>
                 <div class='Coment'></div>
                     <div class="com_form">
-                        <textarea class="input msgText" rows='5' style='resize: none;' id="saytext1" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
+                        <textarea class="input msgText" rows='5' style='resize: none;' id="saytext`+ i+1 +`" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
                         <p>
                             <button type="button" class="layui-btn sub_btn">发表</button>
 
@@ -85,6 +85,15 @@ $(function () {
                     </div>
             `);
             $(".one").append(li);
+            li.find('.emotion1').qqFace({
+
+                id: 'facebox',
+
+                assign: 'saytext'+i+1,
+
+                path: '../assets/img/arclist/'	//表情存放的路径
+
+            });
             $(item.Coment).each(function (i, item) {
                 //console.log(item);
                 li.find(".Coment").append(`
@@ -106,15 +115,6 @@ $(function () {
                     }
                     
                 });
-            });
-            $('.emotion1').qqFace({
-
-                id: 'facebox',
-
-                assign: 'saytext1',
-
-                path: '../assets/img/arclist/'	//表情存放的路径
-
             });
         });
 

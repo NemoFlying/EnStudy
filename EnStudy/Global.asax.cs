@@ -43,6 +43,15 @@ namespace EnStudy
                     config.CreateMap<IStudySchedueInput, StudySchedue>();
 
                     config.CreateMap<SpeakComents, UserSpeakComentViewModel>();
+
+                    config.CreateMap<StudyNotesType, StudyNoteTypeOutput>();
+
+                    config.CreateMap<StudyNodes, StudyNotesBriefOuput>();
+
+                    config.CreateMap<StudyNodes, StudyNotesOutput>()
+                    .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.StudyNotesType.Id));
+
+                    config.CreateMap<StudyNotesInput, StudyNodes>();
                 });
             }
 

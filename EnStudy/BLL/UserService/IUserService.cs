@@ -81,7 +81,67 @@ namespace EnStudy.BLL
         /// <returns></returns>
         ResultOutput AddSpeakComents(AddSpeakComentsInput input);
 
+        /// <summary>
+        /// 根据用户Id获取文章类型列表
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <returns></returns>
+        ResultOutput GetStudyNotesType(int uId);
 
+        /// <summary>
+        /// 删除文章类型
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        ResultOutput DeleteStudyNotesType(int uId, int id);
+
+        /// <summary>
+        /// 添加文章类型
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="tId"></param>
+        /// <returns></returns>
+        ResultOutput AddStudyNotesType(int uId, string TypeName, string Description);
+
+        /// <summary>
+        /// 根据文章类型获取文章列
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="tId"></param>
+        /// <returns></returns>
+        ResultOutput GetStudyNotesBriefByType(int uId, int tId);
+
+        /// <summary>
+        /// 根据文章Id获取文章详细
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="nId"></param>
+        /// <returns></returns>
+        ResultOutput GetStudyNotesDetailById(int uId, int nId);
+
+        /// <summary>
+        /// 根据学习笔记ID删除
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="nId"></param>
+        /// <returns></returns>
+        ResultOutput DeleteStudyNotesById(int uId, int nId);
+
+        /// <summary>
+        /// 添加学习笔记
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        ResultOutput AddStudyNotes(StudyNotesInput input);
+
+        /// <summary>
+        /// 根据关键模糊查找学习笔记
+        /// </summary>
+        /// <param name="uId"></param>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        ResultOutput SearchStudyNotes(int uId, string keyWord);
 
     }
 }

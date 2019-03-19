@@ -163,7 +163,6 @@ namespace EnStudy.Controllers
             return Json(result, JsonRequestBehavior.AllowGet); ;
         }
 
-
         /// <summary>
         /// 发表说说
         /// </summary>
@@ -173,6 +172,79 @@ namespace EnStudy.Controllers
         {
             return Json(_userService.AddUserSpeak(1, contents), JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// 添加笔记本类型
+        /// </summary>
+        /// <param name="TypeName"></param>
+        /// <param name="Description"></param>
+        /// <returns></returns>
+        public JsonResult AddStudyNotesType(string TypeName, string Description)
+        {
+            return Json(_userService.AddStudyNotesType(1, TypeName, Description), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据Id删除笔记本类型
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult DeleteStudyNotesType(int id)
+        {
+            return Json(_userService.DeleteStudyNotesType(1,id), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 获取笔记本类型列表
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetStudyNotesType()
+        {
+            return Json(_userService.GetStudyNotesType(1), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据笔记本类型获得简要列表
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult GetStudyNotesBriefByTypeId(int id)
+        {
+            return Json(_userService.GetStudyNotesBriefByType(1, id), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据ID获取文章详细信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult GetStudyNotesById(int id)
+        {
+            return Json(_userService.GetStudyNotesDetailById(1, id), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 根据ID删除学习笔记
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult DeleteStudyNotesById(int id)
+        {
+            return Json(_userService.DeleteStudyNotesById(1, id), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 添加学习笔记
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public JsonResult AddStudyNotes(StudyNotesInput input)
+        {
+            input.Uid = 1;
+            return Json(_userService.AddStudyNotes(input), JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public void tt()
         {

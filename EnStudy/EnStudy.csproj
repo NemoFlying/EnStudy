@@ -142,10 +142,16 @@
     <Compile Include="BLL\UserService\Dto\AddSpeakComentsInput.cs" />
     <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageInput.cs" />
     <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetStudyNotesListPageOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetStudyNotesPageInput.cs" />
     <Compile Include="BLL\UserService\Dto\ISearchNewFriendInput.cs" />
     <Compile Include="BLL\UserService\Dto\IStudySchedueInput.cs" />
     <Compile Include="BLL\UserService\Dto\IUserReistInput.cs" />
     <Compile Include="BLL\UserService\Dto\IUserUpdateInput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesBriefOuput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesInput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNoteTypeOutput.cs" />
     <Compile Include="BLL\UserService\IPage.cs" />
     <Compile Include="BLL\UserService\IUserService.cs" />
     <Compile Include="BLL\UserService\UserService.cs" />
