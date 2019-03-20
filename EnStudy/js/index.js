@@ -19,7 +19,10 @@ function replace_em(str) {
 
 }
 
+$(document).click(function () {
+    //$(".liuyan").show();
 
+});
 $(function () {
     $('#emotion').qqFace({
 
@@ -40,7 +43,7 @@ $(function () {
             dataType: "json",
             url: "../User/AddNewSpeak",
             data: {
-                contents: str
+                contents: strs
             },
             success: function (reData) {
                 console.log(reData);
@@ -48,7 +51,7 @@ $(function () {
                     alert("发表失败！");
                 } else {
                     //GetFriendSpeak(reData.Data);
-                    $(".one").append("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
+                    $(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
                 }
             }
         });
@@ -61,43 +64,24 @@ $(function () {
     function GetFriendSpeak(data) {
         //console.log(data);
         $(data.userSpeak).each(function ( i,item ) {
-            console.log(i);
+            console.log(item);
             var li = $(" <li class='itemMessages'></li>");
             li.append(`
                 <p>
                     <img src='../assets/img/smile.png' alt='头像' />
-                    <span>`+ item.user.AccountNo+`</span>
+                    <span class='userId' title='`+item.user.Id+`'>`+ item.user.AccountNo+`</span>
                 </p>
                 <p class='SpeakTime'>`+ (new Date(parseInt(item.SpeakTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
-                <p class='MessageBoard' title='`+ item.Id +`'>`+ replace_em(item.Contents) +`</p>
+                <p class='MessageBoard' title='`+ item.Id + `'>` + replace_em(unescape(item.Contents)) +`</p>
                 <div class='Coment'></div>
-                    <div class="com_form">
-                        <textarea class="input msgText" rows='5' style='resize: none;' id="saytext`+ i+1 +`" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
-                        <p>
-                            <button type="button" class="layui-btn sub_btn">发表</button>
-
-                            <span class="emotion emotion1" id="emotion"></span>
-                            <button type="button" id="test2" class='addmsgBtn'>
-                                <i class="layui-icon">&#xe660;</i>
-                            </button>
-
-                        </p>
-                    </div>
+                    <div class="com_form com_form1"><span class='liuyan'>留言</span></div>
             `);
             $(".one").append(li);
-            li.find('.emotion1').qqFace({
 
-                id: 'facebox',
-
-                assign: 'saytext'+i+1,
-
-                path: '../assets/img/arclist/'	//表情存放的路径
-
-            });
             $(item.Coment).each(function (i, item) {
                 //console.log(item);
                 li.find(".Coment").append(`
-                <div class='reply'><p><span>` + item.User.AccountNo + `:</span></p><p>` + replace_em(item.Contents) + `</p>
+                <div class='reply'><p><span>` + item.User.AccountNo + `:</span></p><p>` + replace_em(unescape(item.Contents)) + `</p>
                     
                     <p class='ComentTime'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
                     <div class='CSpeakComent'></div>
@@ -116,17 +100,79 @@ $(function () {
                     
                 });
             });
+            
         });
 
+        $(".liuyan").click(function () {
+            $(this).hide();
+            $(".msgText").prev().show();
+            $(".msgText").remove();
+            $(".liuyanP").remove();
+            //元素存在时执行的代码
+            $(this).parent().append(`
+                    <textarea class="input msgText" rows='5' style='resize: none;' id="saytext1" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
+                    <p class='liuyanP'>
+                        <button type="button" class="layui-btn send_btn">发送</button>
+
+                        <span class="emotion emotion1" id="emotion"></span>
+                        <button type="button" id="test2" class='addmsgBtn'>
+                            <i class="layui-icon">&#xe660;</i>
+                        </button>
+
+                    </p>
+                `);
+            $('.emotion1').qqFace({
+
+                id: 'facebox',
+
+                assign: 'saytext1',
+
+                path: '../assets/img/arclist/'	//表情存放的路径
+
+            });
+            $(".send_btn").click(function () {
+                // 被留言的说说Id
+                var SpeakId = $(this).parents(".itemMessages").find(".MessageBoard").attr("title");
+                // 被留言的用户Id
+                var ToUserId = $(this).parents(".itemMessages").find(".userId").attr("title");
+                var msg = $(".msgText").val();
+                var strs = escape(msg);
+                var Coment = $(this).parents(".itemMessages").find(".Coment");
+                console.log(strs, SpeakId);
+                $.ajax({
+                    dataType: "json",
+                    url: "../User/AddSpeakComents",
+                    data: {
+                        ToUserId: ToUserId,
+                        SpeakId: SpeakId,
+                        Msg: strs
+                    },
+                    async: false,
+                    success: function (reData) {
+                        if (reData.Status != true) {
+                            alert("暂无数据！");
+                        } else {
+                            //console.log(reData)
+                            $(reData.Data).each(function (i, item) {
+                                console.log(item);
+                                Coment.append(`
+                                    <div class='reply'><p><span title='`+ item.Id+`'>`+ item.User.AccountNo + `:</span></p><p>` + replace_em(unescape(item.Contents))+`</p>
+                                        <p class='ComentTime'>`+ (new Date(parseInt(item.ComentTime.replace(/\D/igm, "")))).toLocaleString() +`</p>
+                                        <div class='CSpeakComent'></div>
+                                    </div>
+                                `)
+                            });
+                            $(".msgText").val("")
+                        }
+                    }
+                });
+            });  
+            
+
+        });
     };
-    $(".addmsgBtn").click(function () {
-        // 被留言的说说Id
-        var SpeakId = $(".MessageBoard").attr("title");
-        // 被留言的用户Id
-        var ToUserId
-        var msg = $(".msgText").text();
-        console.log(msg, SpeakId)
-    });
+
+
     $.ajax({
         dataType: "json",
         url: "../User/GetFriendSpeak",

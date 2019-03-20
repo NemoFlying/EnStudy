@@ -20,10 +20,11 @@ $(function () {
             //,anim: 'updown' //切换动画方式
         });
     });
-    //Demo
+    //表单
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
+        //下拉框的二级联动
         form.on('select(test)', function (data) {
             var provinceId = data.value; //得到被选中的值
             $.ajax({
@@ -47,6 +48,7 @@ $(function () {
             });
         });
     });
+    //上传图片
     layui.use('upload', function () {
         var upload = layui.upload;
 
@@ -62,4 +64,13 @@ $(function () {
             }
         });
     });
+
+    $(".submitBtn").click(function () {
+       
+    });
+    $(".tianji").click(function () {
+        var a = $(".province").find("option[text='天津']").attr("select", true);
+        console.log(a);
+    });
+    
 });
