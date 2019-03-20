@@ -52,7 +52,7 @@
 
                 <div class="comment">
                     <div class="com_form">
-                        <form class="layui-form">
+                        <form class="layui-form" >
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">昵称</label>
@@ -62,7 +62,7 @@
                                 <div class="layui-form-mid layui-word-aux">例如：你猜我是谁</div>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">密码框</label>
+                                <label class="layui-form-label">用户名</label>
                                 <div class="layui-input-inline">
                                     <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
                                 </div>
@@ -80,7 +80,7 @@
                                 <div class="layui-input-block">
                                     <select name="province" lay-filter="test" class="province" lay-verify="required">
                                         <option value="1">北京</option>
-                                        <option value="2">天津</option>
+                                        <option value="2" selected>天津</option>
                                         <option value="3">河北</option>
                                         <option value="4">山西</option>
                                         <option value="5">内蒙古</option>
@@ -159,8 +159,9 @@
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn" type="button" lay-submit lay-filter="formDemo">立即提交</button>
+                                    <button class="layui-btn submitBtn" type="button" lay-submit lay-filter="formDemo">立即提交</button>
                                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                    <button type="button" class="tianji">田鸡</button>
                                 </div>
                             </div>
                         </form>
