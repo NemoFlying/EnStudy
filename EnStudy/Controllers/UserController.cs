@@ -47,6 +47,7 @@ namespace EnStudy.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+
         /// <summary>
         /// 【注册新用户接收方法】
         /// </summary>
@@ -54,6 +55,12 @@ namespace EnStudy.Controllers
         public JsonResult RegistUser(UserReistInput newUser)
         {
             return Json(_userService.RegistUser(newUser), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetCurrentUserInfo()
+        {
+            return Json(_userService.GetUserInfo(1), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
