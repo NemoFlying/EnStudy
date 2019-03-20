@@ -30,7 +30,7 @@ namespace EnStudy.BLL
         /// <param name="password">密码</param>
         /// <returns>
         /// 返回登录信息
-        ResultOutput IUserService.LogonAuthen(string accountNo, string password)
+        public ResultOutput LogonAuthen(string accountNo, string password)
         {
             //为空检测
             if(string.IsNullOrEmpty(accountNo)||string.IsNullOrEmpty(password))
@@ -69,7 +69,7 @@ namespace EnStudy.BLL
         /// </summary>
         /// <param name="newUserInfo"></param>
         /// <returns></returns>
-        ResultOutput IUserService.RegistUser(IUserReistInput input)
+        public ResultOutput RegistUser(IUserReistInput input)
         {
 
             var result = new ResultOutput();
@@ -103,11 +103,23 @@ namespace EnStudy.BLL
         }
 
         /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ResultOutput GetUserInfo(int id)
+        {
+            var result = new ResultOutput(true);
+            result.Data = Mapper.Map<UserViewModel>(_userDAL.GetModels(con => con.Id == id).FirstOrDefault());
+            return result;
+        }
+
+        /// <summary>
         /// 修改用户信息
         /// </summary>
         /// <param name="updateUserInfo"></param>
         /// <returns></returns>
-        ResultOutput IUserService.UpdateUser(IUserUpdateInput input)
+        public ResultOutput UpdateUser(IUserUpdateInput input)
         {
             var result = new ResultOutput();
             //验证输入参数【省略】

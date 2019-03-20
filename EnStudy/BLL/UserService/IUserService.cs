@@ -26,6 +26,13 @@ namespace EnStudy.BLL
         ResultOutput RegistUser(IUserReistInput input);
 
         /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        ResultOutput GetUserInfo(int id);
+
+        /// <summary>
         /// 修改用户信息
         /// </summary>
         /// <param name="input"></param>
