@@ -8,55 +8,68 @@ layui.use('element', function () {
 $(function () {
 
     //获取对应省份数据
+    layui.use('form', function () {
+        var form = layui.form;
+        $.ajax({
+            dataType: "json",
+            url: "../User/GetCurrentUserInfo",
+            data: {
+            },
+            success: function (reData) {
+                console.log(reData);
+                if (reData.Status != true) {
+                } else {
+                    $(reData.Data).each(function (i, item) {
+                        $(".AccountNo").val(item.AccountNo);
+                        $(".AccountNo").attr("id", item.Id);
+                        //昵称
+                        if (item.NikeName != null) {
+                            $(".NikeName").val(item.NikeName);
+                        }
+                        //省份
+                        if (item.Addr != null) {
 
-    $.ajax({
-        dataType: "json",
-        url: "../User/GetCurrentUserInfo",
-        data: {
-        },
-        success: function (reData) {
-            console.log(reData);
-            if (reData.Status != true) {
-            } else {
-                $(reData.Data).each(function ( i, item) {
-                    $(".AccountNo").val(item.AccountNo);
-                    $(".AccountNo").attr("id", item.Id);
-                    //昵称
-                    if (item.NikeName !=null) {
-                        $(".NikeName").val(item.NikeName);
-                    }
-                    //省份
-                    if (item.Addr !=null) {
-                        var province = $(".province");
-                        var dl = province.siblings("div.layui-form-select").find('dl');
-                        dl.find("dd").removeClass();
-                        var dd = dl.find('dd:contains(' + item.Addr +')').addClass("layui-this").click();
-                    }
-                    //大学
-                    if (item.UniversityName != null) {
+                            
+                            console.log(item.Addr)
+                            var province = $(".province");
+                            var dl = province.siblings("div.layui-form-select").find('dl');
+                            console.log(province.siblings(".layui-form-select").length);
+                            dl.find("dd").removeClass("layui-this");
+                            //dl.find('dd:contains(山西)').addClass("layui-this").click();
 
-                        var UniversityName = $(".UniversityName");
-                        var dl = UniversityName.siblings("div.layui-form-select").find('dl');
-                        dl.find("dd").removeClass();
-                        var dd = dl.find('dd:contains(' + item.UniversityName + ')').addClass("layui-this").click();
-                    }
-                    //性别
-                    if (item.Sex !=null) {
-                        $(".sex").find("input").removeAttr("checked");
-                        $(".sex").find("input[value=" + item.Sex +"]").attr("checked");
-                    }
-                    //个性标签
-                    if (item.PersonalLabel != null) {
-                        $(".PersonalLabel").val(item.PersonalLabel);
-                    }
-                    //个性签名
-                    if (item.Signature != null) {
-                        $(".Signature").val(item.Signature);
-                    }
-                });
+
+
+
+                            var dd = dl.find('dd:contains("' + item.Addr +'")').addClass("layui-this").click();
+                        }
+                        //大学
+                        if (item.UniversityName != null) {
+
+                            var UniversityName = $(".UniversityName");
+                            var dl = UniversityName.siblings("div.layui-form-select").find('dl');
+                            dl.find("dd").removeClass();
+                            var dd = dl.find('dd:contains(' + item.UniversityName + ')').addClass("layui-this").click();
+                        }
+                        //性别
+                        if (item.Sex != null) {
+                            $(".sex").find("input").removeAttr("checked");
+                            $(".sex").find("input[value=" + item.Sex + "]").attr("checked");
+                        }
+                        //个性标签
+                        if (item.PersonalLabel != null) {
+                            $(".PersonalLabel").val(item.PersonalLabel);
+                        }
+                        //个性签名
+                        if (item.Signature != null) {
+                            $(".Signature").val(item.Signature);
+                        }
+                    });
+                }
             }
-        }
+        });
+
     });
+    
 
     layui.use('carousel', function () {
         var carousel = layui.carousel;
@@ -129,35 +142,37 @@ $(function () {
             var UniversityName = $(".university").siblings("div.layui-form-select").find("input").val();
             var PersonalLabel = $(".PersonalLabel").val();
             var Signature = $(".Signature").val();
-            //console.log(Id);
-            //console.log(Password);
-            //console.log(NikeName);
-            //console.log(Sex);
-            //console.log(Addr);
-            //console.log(UniversityName);
-            //console.log(PersonalLabel);
-            //console.log(Signature);
-            $.ajax({
-                dataType: "json",
-                url: "../User/UpdateUser",
-                data: {
-                    Id: Id,
-                    Password: Password,
-                    NikeName: NikeName,
-                    Sex: Sex,
-                    Addr: Addr,
-                    UniversityName: UniversityName,
-                    PersonalLabel: PersonalLabel,
-                    Signature: Signature
-                },
-                success: function (reData) {
-                    console.log(reData);
+            console.log(Id);
+            console.log(Password);
+            console.log(NikeName);
+            console.log(Sex);
+            console.log(Addr);
+            console.log(UniversityName);
+            console.log(PersonalLabel);
+            console.log(Signature);
+            //$.ajax({
+            //    dataType: "json",
+            //    url: "../User/UpdateUser",
+            //    data: {
+            //        Id: Id,
+            //        Password: Password,
+            //        NikeName: NikeName,
+            //        Sex: Sex,
+            //        Addr: Addr,
+            //        UniversityName: UniversityName,
+            //        PersonalLabel: PersonalLabel,
+            //        Signature: Signature
+            //    },
+            //    success: function (reData) {
+            //        console.log(reData);
 
-                }
-            });
-            //var dl = province.siblings("div.layui-form-select").find('dl');
-            //dl.find("dd").removeClass();
-            //var dd = dl.find('dd:contains(山西)').addClass("layui-this").click();
+            //    }
+            //});
+            var province = $(".province");
+
+            var dl = province.siblings("div.layui-form-select").find('dl');
+            dl.find("dd").removeClass();
+            var dd = dl.find('dd:contains(山西)').addClass("layui-this").click();
         });
 
     });
