@@ -26,7 +26,7 @@
 
     .body {
         width: 80%;
-        min-height: 2100px;
+        height: auto;
         padding: 4% 10%;
         margin-top: 80px;
     }
@@ -150,9 +150,7 @@
         vertical-align: top;
     }
 
-    .sub_btn {
-        float: right;
-    }
+
 
     .itemImgBook img {
         width: 100%;
@@ -219,7 +217,7 @@
 
     .body {
         width: 80%;
-        min-height: 2100px;
+        height: auto;
         padding: 4% 10%;
         margin-top: 80px;
     }
@@ -343,9 +341,6 @@
         vertical-align: top;
     }
 
-    .sub_btn {
-        float: right;
-    }
 
     .itemImgBook img {
         width: 100%;
@@ -397,4 +392,7 @@
 }
 .layui-show {
     z-index: 999;
+}
+.sub_btn, .send_btn {
+    float: right;
 }

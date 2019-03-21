@@ -57,7 +57,10 @@ namespace EnStudy.Controllers
             return Json(_userService.RegistUser(newUser), JsonRequestBehavior.AllowGet);
         }
 
-
+        /// <summary>
+        /// 获取当前用户信息
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetCurrentUserInfo()
         {
             return Json(_userService.GetUserInfo(1), JsonRequestBehavior.AllowGet);
