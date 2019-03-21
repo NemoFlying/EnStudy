@@ -45,10 +45,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -126,11 +136,59 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\RecommendedBookService\IRecommendedBookService.cs" />
+    <Compile Include="BLL\RecommendedBookService\RecommendedBookService.cs" />
+    <Compile Include="BLL\ResultOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\AddSpeakComentsInput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageInput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetFriendSpeakPageOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetStudyNotesListPageOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\GetStudyNotesPageInput.cs" />
+    <Compile Include="BLL\UserService\Dto\ISearchNewFriendInput.cs" />
+    <Compile Include="BLL\UserService\Dto\IStudySchedueInput.cs" />
+    <Compile Include="BLL\UserService\Dto\IUserReistInput.cs" />
+    <Compile Include="BLL\UserService\Dto\IUserUpdateInput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesBriefOuput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesInput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNotesOutput.cs" />
+    <Compile Include="BLL\UserService\Dto\StudyNoteTypeOutput.cs" />
+    <Compile Include="BLL\UserService\IPage.cs" />
+    <Compile Include="BLL\UserService\IUserService.cs" />
+    <Compile Include="BLL\UserService\UserService.cs" />
+    <Compile Include="Controllers\EnStudyBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecommendedBookController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DAL\BaseDAL.cs" />
+    <Compile Include="DAL\EnStudyContext.cs" />
+    <Compile Include="DAL\EnStudyContextFactory.cs" />
+    <Compile Include="DAL\EnStudyInitializer.cs" />
+    <Compile Include="DAL\IBaseDAL.cs" />
+    <Compile Include="DAL\RecommendedBook\IRecommendedBookDAL.cs" />
+    <Compile Include="DAL\RecommendedBook\RecommendedBookDAL.cs" />
+    <Compile Include="DAL\UserDAL\IUserDAL.cs" />
+    <Compile Include="DAL\UserDAL\UserDAL.cs" />
+    <Compile Include="DAL\UserSpeak\IUserSpeakDAL.cs" />
+    <Compile Include="DAL\UserSpeak\UserSpeakDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecommendedBook.cs" />
+    <Compile Include="Models\SpeakComents.cs" />
+    <Compile Include="Models\StudyNodes.cs" />
+    <Compile Include="Models\StudyNotesType.cs" />
+    <Compile Include="Models\StudySchedue.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserFriend.cs" />
+    <Compile Include="Models\UserSpeak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\StudySchedueInput.cs" />
+    <Compile Include="ViewModels\StudySchedueVieModel.cs" />
+    <Compile Include="ViewModels\UserReistInput.cs" />
+    <Compile Include="ViewModels\UserSpeakComentViewModel.cs" />
+    <Compile Include="ViewModels\UserSpeakViewModel.cs" />
+    <Compile Include="ViewModels\UserUpdateInput.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\img\arclist\1.gif" />
@@ -230,13 +288,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\index.js" />
     <Content Include="js\mine.js" />
+    <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="css\font\summernote.eot" />
     <Content Include="css\font\summernote.ttf" />
     <Content Include="css\font\summernote.woff" />
+    <Content Include="DOC\外语学习网站的设计与实现.doc" />
+    <Content Include="DOC\接口设计.docx" />
+    <Content Include="DOC\数据库设计.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -455,11 +518,14 @@
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Vocabulary.cshtml" />
     <Content Include="Views\Home\Mine.cshtml" />
+    <Content Include="Views\Home\SearchFriends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\EnStudyBase\" />
+    <Folder Include="Views\RecommendedBook\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

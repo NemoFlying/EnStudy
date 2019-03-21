@@ -18,7 +18,7 @@
     <ul class="layui-nav header">
         <li class="searchLi">
             <input class="searchInput" type="text" name="search" value="" />
-            <button class="layui-btn layui-btn-normal">搜索</button>
+            <button class="layui-btn layui-btn-normal searchBtn">搜索</button>
         </li>
         @*<li class="layui-nav-item">
                 <a href="">控制台<span class="layui-badge">9</span></a>
@@ -52,21 +52,20 @@
 
                 <div class="comment">
                     <div class="com_form">
-                        <textarea class="input" id="saytext" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
+                        <textarea class="input" id="saytext" style="resize:none;" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
                         <p>
                             <button type="button" class="layui-btn sub_btn">发表</button>
 
-                            <span class="emotion"></span>
+                            <span class="emotion" id="emotion"></span>
                             <button type="button" id="test2">
                                 <i class="layui-icon">&#xe660;</i>
                             </button>
-                            
+
                         </p>
                     </div>
                 </div>
                 <div id="show">
-                    <ul class="one">
-                    </ul>
+                    <ul class="one"></ul>
                 </div>
             </li>
             <li class="itemBody itemR">
@@ -86,80 +85,14 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/layui/layui.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/js/public.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
+    <script src="~/js/index.js"></script>
     <script>
-        //注意：导航 依赖 element 模块，否则无法进行功能性操作
-        layui.use('element', function () {
-            var element = layui.element;
-
-            //…
-        });
-
         $(function () {
 
-            $('.emotion').qqFace({
-
-                id: 'facebox',
-
-                assign: 'saytext',
-
-                path: '../assets/img/arclist/'	//表情存放的路径
-
-            });
-
-            $(".sub_btn").click(function () {
-
-                var str = $("#saytext").val();
-
-                //$(".one").append("<li>"+replace_em(str)+"</li>");
-                $(".one").append("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>加油！</p></li>")
-
-            });
-
-        });
-
-        //查看结果
-
-        function replace_em(str) {
-
-            str = str.replace(/\</g, '&lt;');
-
-            str = str.replace(/\>/g, '&gt;');
-
-            str = str.replace(/\n/g, '<br/>');
-
-            str = str.replace(/\[em_([0-9]*)\]/g, '<img src="../assets/img/arclist/$1.gif" border="0" />');
-
-            return str;
-
-        }
-
-        layui.use('carousel', function () {
-            var carousel = layui.carousel;
-            //建造实例
-            carousel.render({
-                elem: '#test1'
-                , width: '100%' //设置容器宽度
-                , arrow: 'none' //始终显示箭头
-                //,anim: 'updown' //切换动画方式
-            });
-        });
-        layui.use('upload', function () {
-            var upload = layui.upload;
-
-            //执行实例
-            var uploadInst = upload.render({
-                elem: '#test2' //绑定元素
-                , url: '/upload/' //上传接口
-                , done: function (res) {
-                    //上传完毕回调
-                }
-                , error: function () {
-                    //请求异常回调
-                }
-            });
+            
         });
     </script>
-
 </body>
 </html>
