@@ -36,6 +36,7 @@ namespace EnStudy
                 {
                     //注册用户Mapper
                     config.CreateMap<IUserReistInput, User>();
+                    config.CreateMap<IUserUpdateInput, User>();
                     config.CreateMap<User, UserViewModel>();
 
                     //学习计划
