@@ -288,6 +288,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\GetRecommendedBooks.js" />
     <Content Include="js\index.js" />
     <Content Include="js\mine.js" />
     <Content Include="js\NoteBook.js" />

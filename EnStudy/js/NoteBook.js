@@ -38,9 +38,7 @@ layui.use('form', function () {
                 var table = layui.table;
                 $(".itemShowCount tbody").empty();
                 $(Data).each(function (i, item) {
-                    console.log(item);
-                    var a = $(".itemShowCount").length;
-                    console.log(a);
+                    //console.log(item);
                     $(".itemShowCount tbody").append(`
                     <tr>
                         <td>`+ item.TypeName + `</td>
@@ -61,7 +59,7 @@ layui.use('form', function () {
         };
         form.on('select(TypeIdShow)', function GetStudyNotesBriefByTypeId(data) {
             //console.log(data.elem); //得到select原始DOM对象
-            console.log(data.value); //得到被选中的值
+            //console.log(data.value); //得到被选中的值
             //console.log(data.othis); //得到美化后的DOM对象
 
             $.ajax({
@@ -80,8 +78,8 @@ layui.use('form', function () {
             });
         });
         $(".TypeIdShow").siblings("div.layui-form-select").find('dl dd.layui-this').click();
-        var a = $(".TypeIdShow").siblings("div.layui-form-select").find('dd').text();
-        console.log(a)
+        //var a = $(".TypeIdShow").siblings("div.layui-form-select").find('dd.layui-this').text();
+        //console.log(a);
         //qq表情
         $('.emotion').qqFace({
 
