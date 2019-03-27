@@ -288,8 +288,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\GetRecommendedBooks.js" />
     <Content Include="js\index.js" />
     <Content Include="js\mine.js" />
+    <Content Include="js\NoteBook.js" />
     <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -306,6 +308,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.qqFace.js" />
     <Content Include="Scripts\jquery.validate.js" />
