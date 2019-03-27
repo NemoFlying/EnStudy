@@ -269,8 +269,16 @@
     <Content Include="assets\img\book1.jpg" />
     <Content Include="assets\img\book2.jpg" />
     <Content Include="assets\img\close-circle.png" />
+    <Content Include="assets\img\closesee.png" />
+    <Content Include="assets\img\ggg.jpeg" />
     <Content Include="assets\img\headerImg.jpg" />
     <Content Include="assets\img\HomeBg.jpg" />
+    <Content Include="assets\img\iii.jpg" />
+    <Content Include="assets\img\m.jpg" />
+    <Content Include="assets\img\mm.jpg" />
+    <Content Include="assets\img\mmm.jpg" />
+    <Content Include="assets\img\opensee.png" />
+    <Content Include="assets\img\sign.jpg" />
     <Content Include="assets\img\smile.png" />
     <Content Include="assets\img\smileH.png" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -280,6 +288,7 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="css\friends.css" />
     <Content Include="css\index.css" />
+    <Content Include="css\Logon.css" />
     <Content Include="css\Schedule.css" />
     <Content Include="css\summernote-bs4.css" />
     <Content Include="css\summernote-lite.css" />
@@ -522,6 +531,8 @@
     <Content Include="Views\Home\Vocabulary.cshtml" />
     <Content Include="Views\Home\Mine.cshtml" />
     <Content Include="Views\Home\SearchFriends.cshtml" />
+    <Content Include="Views\Home\Logon.cshtml" />
+    <Content Include="Views\Home\LogonSignup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

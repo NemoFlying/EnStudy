@@ -49,6 +49,7 @@ namespace EnStudy
 
                     config.CreateMap<StudyNodes, StudyNotesBriefOuput>();
 
+                    config.CreateMap<StudySchedue, StudySchedueVieModel>();
                     config.CreateMap<StudyNodes, StudyNotesOutput>()
                     .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.StudyNotesType.Id));
 

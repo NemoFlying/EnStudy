@@ -9,6 +9,23 @@ namespace EnStudy.Controllers
     public class HomeController : Controller
     {
         /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Logon()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LogonSignup()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 主页
         /// </summary>
         /// <returns></returns>

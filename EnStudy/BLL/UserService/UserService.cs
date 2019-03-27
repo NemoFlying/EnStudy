@@ -74,8 +74,11 @@ namespace EnStudy.BLL
 
             var result = new ResultOutput();
             //验证输入参数【省略】
-
-
+            //密码加密
+            var md5 = new MD5CryptoServiceProvider();
+            var pwd = BitConverter.ToString(md5.ComputeHash(Encoding.Default.GetBytes(input.AccountNo.Trim() + input.Password)));
+            pwd = pwd.Replace("-", "");
+            input.Password = pwd;
             var user = _userDAL.GetModels(con => con.AccountNo == input.AccountNo.Trim()).FirstOrDefault();
             if (user != null)
             {
