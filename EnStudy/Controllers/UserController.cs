@@ -275,6 +275,16 @@ namespace EnStudy.Controllers
         }
 
         /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <returns></returns>
+        public JsonResult DeleteUser(int UId)
+        {
+            return Json(_userService.DeleteUser(UId), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
         /// 添加朋友
         /// </summary>
         /// <param name="fUId"></param>

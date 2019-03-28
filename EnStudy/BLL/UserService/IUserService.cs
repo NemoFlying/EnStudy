@@ -81,6 +81,13 @@ namespace EnStudy.BLL
         ResultOutput SeachUser(string key);
 
         /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <returns></returns>
+        ResultOutput DeleteUser(int UId);
+
+        /// <summary>
         /// 获取朋友列表
         /// </summary>
         /// <param name="UId"></param>
