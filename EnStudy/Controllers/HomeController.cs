@@ -33,7 +33,14 @@ namespace EnStudy.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// 管理员主页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AdminIndex()
+        {
+            return View();
+        }
         /// <summary>
         /// 个人信息管理
         /// </summary>

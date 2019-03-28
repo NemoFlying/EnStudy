@@ -534,6 +534,7 @@
     <Content Include="Views\Home\SearchFriends.cshtml" />
     <Content Include="Views\Home\Logon.cshtml" />
     <Content Include="Views\Home\LogonSignup.cshtml" />
+    <Content Include="Views\Home\AdminIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

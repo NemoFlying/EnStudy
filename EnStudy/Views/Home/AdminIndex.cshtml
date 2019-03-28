@@ -1,0 +1,110 @@
+﻿
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="cn" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="cn">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>用户页</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <style>
+        .addTypeId {
+            width: 60%;
+            display: inline-block;
+            margin-left: 0;
+        }
+
+        .addSub_btn {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="layui-nav header">
+        <li class="searchLi">
+            <input class="searchInput" type="text" name="search" value="" />
+            <button class="layui-btn layui-btn-normal">搜索</button>
+        </li>
+        @*<li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>*@
+        <li class="layui-nav-item">
+            <a href="">个人中心</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+    <div class="body">
+        <ul>
+            <li class="itemBody">
+                <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
+                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+
+                    <li class="layui-nav-item"><a href="~/Home/index">用户管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Friends">书籍推荐</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
+                </ul>
+            </li>
+            <li class="itemBody centerBody">
+
+
+                <div id="show">
+                    <div class="showItem">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">选择框</label>
+                                <div class="layui-input-block">
+                                    <select class="TypeIdShow" lay-filter="TypeIdShow" name="TypeId" lay-verify="required"></select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'experience'}">主题</th>
+                                <th lay-data="{field:'sign'}">关键字</th>
+                                <th lay-data="{field:'date'}">创建日期</th>
+                                <th lay-data="{field:'info', width:100}">详情</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </li>
+            <li class="itemBody itemR">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item class="imgShow">
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
+                        </div>
+                        @*<div class="itemImgBook">
+                                <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                            </div>*@
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/js/public.js"></script>
+    <script src="~/js/GetRecommendedBooks.js"></script>
+    <script src="~/js/SearchFriends.js"></script>
+
+</body>
+</html>
