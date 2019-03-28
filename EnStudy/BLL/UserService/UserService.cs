@@ -325,6 +325,30 @@ namespace EnStudy.BLL
             result.Data = Mapper.Map<List<UserViewModel>>(user);
             return result;
         }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <returns></returns>
+        public ResultOutput DeleteUser(int UId)
+        {
+            var result = new ResultOutput(true);
+            var user = _userDAL.GetModels(con => con.Id == UId).FirstOrDefault();
+            _userDAL.Delete(user);
+            try
+            {
+                _userDAL.SaveChanges();
+                result = SeachUser("*");
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+                result.Msg = "Delete User Failed!";
+            }
+            return result;
+        }
+
         /// <summary>
         /// 获取朋友列表
         /// </summary>
