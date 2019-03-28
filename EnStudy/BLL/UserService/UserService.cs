@@ -304,20 +304,57 @@ namespace EnStudy.BLL
 
         }
 
-        
+        /// <summary>
+        /// 根据关键字查询学友
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public ResultOutput SeachUser(string key)
+        {
+            var result = new ResultOutput(true);
+            var user = _userDAL.GetModels(con => con.AccountNo.Contains(key) || con.NikeName.Contains(key));
+            result.Data = Mapper.Map<List<UserViewModel>>(user?.ToList());
+            return result;
+        }
+        /// <summary>
+        /// 获取朋友列表
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <returns></returns>
+        public ResultOutput GetUserFriends(int UId)
+        {
+            var result = new ResultOutput(true);
+            var friend = _userDAL.GetModels(con => con.Id == UId).FirstOrDefault().Friends;
+            var user = new List<User>();
+            friend.ToList().ForEach(item => user.Add(item.user));
+            result.Data = Mapper.Map<List<UserViewModel>>(user);
+            return result;
+        }
 
-
+        /// <summary>
+        /// 添加朋友
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="FId"></param>
+        /// <returns></returns>
         public ResultOutput AddFriend(int UId,int FId)
         {
+            var result = new ResultOutput(false);
             var user = _userDAL.GetModels(con => con.Id == UId).FirstOrDefault();
             var fuser = _userDAL.GetModels(con => con.Id == FId).FirstOrDefault();
-            var suser = _userDAL.GetModels(con => con.Id == 3).FirstOrDefault();
             user.Friends.Add(new UserFriend() { Friend = fuser });
-            user.Friends.Add(new UserFriend() { Friend = suser });
             fuser.Friends.Add(new UserFriend() { Friend = user });
-            fuser.Friends.Add(new UserFriend() { Friend = suser });
-            _userDAL.SaveChanges();
-            return null;
+            try
+            {
+                _userDAL.SaveChanges();
+                result = GetUserFriends(UId);
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+                result.Msg = "Add UserSpeak Failed!";
+            }
+            return result;
         }
 
 

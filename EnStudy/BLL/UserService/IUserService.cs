@@ -73,6 +73,25 @@ namespace EnStudy.BLL
         /// <returns></returns>
         ResultOutput DeleteUserSpeak(int uId, int usId);
 
+        /// <summary>
+        /// 根据关键字查询学友
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        ResultOutput SeachUser(string key);
+
+        /// <summary>
+        /// 获取朋友列表
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <returns></returns>
+        ResultOutput GetUserFriends(int UId);
+        /// <summary>
+        /// 添加朋友
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="FId"></param>
+        /// <returns></returns>
         ResultOutput AddFriend(int UId, int FId);
 
         /// <summary>
