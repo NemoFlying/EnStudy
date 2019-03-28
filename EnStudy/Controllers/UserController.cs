@@ -284,5 +284,9 @@ namespace EnStudy.Controllers
             return Json(_userService.AddFriend(GUserInfo.Id, fUId), JsonRequestBehavior.AllowGet);
         }
 
+
+
+
+
     }
 }

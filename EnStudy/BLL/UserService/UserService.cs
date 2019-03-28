@@ -312,8 +312,17 @@ namespace EnStudy.BLL
         public ResultOutput SeachUser(string key)
         {
             var result = new ResultOutput(true);
-            var user = _userDAL.GetModels(con => con.AccountNo.Contains(key) || con.NikeName.Contains(key));
-            result.Data = Mapper.Map<List<UserViewModel>>(user?.ToList());
+            var user = new List<User>();
+            if (key=="*")
+            {
+                user = _userDAL.GetModels(con => con.AccountNo!= "admin")?.ToList();
+            }
+            else
+            {
+                user = _userDAL.GetModels(con => con.AccountNo.Contains(key) || con.NikeName.Contains(key))
+                    .Where(con=>con.AccountNo!="admin")?.ToList();
+            }
+            result.Data = Mapper.Map<List<UserViewModel>>(user);
             return result;
         }
         /// <summary>
