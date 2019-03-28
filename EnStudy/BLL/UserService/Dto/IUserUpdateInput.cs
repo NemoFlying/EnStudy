@@ -26,11 +26,11 @@ namespace EnStudy.BLL.Dto
         [MaxLength(1)]
         string Sex { get; set; }
 
-        /// <summary>
-        /// 生日
-        /// </summary>
-        [MaxLength(500)]
-        DateTime BirthDay { get; set; }
+        ///// <summary>
+        ///// 生日
+        ///// </summary>
+        //[MaxLength(500)]
+        //DateTime BirthDay { get; set; }
 
         /// <summary>
         /// QQ

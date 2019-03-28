@@ -11,11 +11,24 @@
 
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
-
     <link href="~/css/index.css" rel="stylesheet" />
     <link href="~/css/Schedule.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/summernote-bs4.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-
+    <style>
+        .layui-inline{
+            margin:20px 0;
+        }
+        .date {
+            height: 30px !important;
+        }
+        .ItemShow {
+            margin: 20px;
+            padding: 20px;
+            background: #f3f3f3;
+        }
+    </style>
     @*<script src="~/Scripts/summernote-lite.js"></script>*@
 </head>
 <body>
@@ -56,8 +69,13 @@
             <li class="itemBody centerBody">
 
                 <div class="comment">
+                    <div class="layui-inline">
+                        <!-- 注意：这一层元素并不是必须的 -->
+                        <input type="text" class="layui-input date" placeholder="请选择日期" id="test1">
+                    </div>
                     <div id="summernote"></div>
-                    <div class="formDiv"><button type="button" class="layui-btn layui-btn-normal studyNotesBtn">提交</button></div>
+
+                    <div class="formDiv"><button type="button" class="layui-btn layui-btn-normal StudySchedueBtn">提交</button></div>
                 </div>
                 <div id="show">
                     <ul class="one"></ul>
@@ -77,24 +95,15 @@
             </li>
         </ul>
     </div>
-
     <script src="~/Scripts/layui/layui.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
-    @*https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css*@
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    @*https://code.jquery.com/jquery-3.2.1.slim.min.js*@
-    <script src="~/Scripts/jquery-3.3.1.slim.js"></script>
-    @*https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js*@
-    <script src="~/Scripts/popper.min.js"></script>
-    @*https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js*@
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    @*https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css*@
-    <link href="~/css/summernote-bs4.css" rel="stylesheet" />
-    @*https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js*@
-    <script src="~/Scripts/summernote-bs4.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/css/summernote.css" rel="stylesheet" />
+    <script src="~/Scripts/summernote.js"></script>
     <script src="~/js/Schedule.js"></script>
     <script src="~/js/public.js"></script>
+    <script src="~/js/SearchFriends.js"></script>
 
 </body>
 </html>

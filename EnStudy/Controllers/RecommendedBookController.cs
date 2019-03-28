@@ -42,6 +42,11 @@ namespace EnStudy.Controllers
             return Json(_bookService.AddRecommendedBook(input), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 删除书籍
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
         public JsonResult DeleteRecommendedBook(int bookId)
         {
             //权限判断

@@ -9,6 +9,23 @@ namespace EnStudy.Controllers
     public class HomeController : Controller
     {
         /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Logon()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LogonSignup()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 主页
         /// </summary>
         /// <returns></returns>
@@ -18,7 +35,7 @@ namespace EnStudy.Controllers
         }
 
         /// <summary>
-        /// 学友管理
+        /// 个人信息管理
         /// </summary>
         /// <returns></returns>
         public ActionResult Mine()
@@ -35,7 +52,7 @@ namespace EnStudy.Controllers
             return View();
         }
         /// <summary>
-        /// 好友管理
+        /// 添加好友管理
         /// </summary>
         /// <returns></returns>
         public ActionResult SearchFriends()

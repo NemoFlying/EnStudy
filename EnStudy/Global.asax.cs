@@ -36,6 +36,7 @@ namespace EnStudy
                 {
                     //注册用户Mapper
                     config.CreateMap<IUserReistInput, User>();
+                    config.CreateMap<IUserUpdateInput, User>();
                     config.CreateMap<User, UserViewModel>();
 
                     //学习计划
@@ -48,6 +49,7 @@ namespace EnStudy
 
                     config.CreateMap<StudyNodes, StudyNotesBriefOuput>();
 
+                    config.CreateMap<StudySchedue, StudySchedueVieModel>();
                     config.CreateMap<StudyNodes, StudyNotesOutput>()
                     .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.StudyNotesType.Id));
 

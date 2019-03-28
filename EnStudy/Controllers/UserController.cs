@@ -57,7 +57,10 @@ namespace EnStudy.Controllers
             return Json(_userService.RegistUser(newUser), JsonRequestBehavior.AllowGet);
         }
 
-
+        /// <summary>
+        /// 获取当前用户信息
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetCurrentUserInfo()
         {
             return Json(_userService.GetUserInfo(1), JsonRequestBehavior.AllowGet);
@@ -84,7 +87,7 @@ namespace EnStudy.Controllers
         /////学习计划部分
 
         /// <summary>
-        /// 获取当前登录学员的登陆信息
+        /// 获取学习计划
         /// </summary>
         /// <returns></returns>
         public JsonResult GetUserStudySchedue()
@@ -92,7 +95,7 @@ namespace EnStudy.Controllers
             var result = new ResultOutput();
             try
             {
-                result.Data = GUserInfo.StudySchedue.Where(con => con.StudyDay >= DateTime.Today).ToList();
+                result.Data = Mapper.Map<List<StudySchedueVieModel>>( GUserInfo.StudySchedue.Where(con => con.StudyDay >= DateTime.Today).ToList());
                 result.Status = true;
             }
             catch(Exception ex)
@@ -111,6 +114,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddUserStudySchedue(StudySchedueInput input)
         {
+            //var result = _userService.AddStudySchedue(GUserInfo.Id, input);
             var result = _userService.AddStudySchedue(GUserInfo.Id, input);
             if (result.Status)
             {
