@@ -1,9 +1,9 @@
 ﻿$(function () {
     $.ajax({
         dataType: "json",
-        url: "../User/AddNewSpeak",
+        url: "../User/GetUserList",
         data: {
-            contents: strs
+            key: "*"
         },
         success: function (reData) {
             console.log(reData);
@@ -11,7 +11,7 @@
                 alert("发表失败！");
             } else {
                 //GetFriendSpeak(reData.Data);
-                $(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
+                //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
             }
         }
     });
