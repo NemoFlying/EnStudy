@@ -42,6 +42,14 @@ namespace EnStudy.Controllers
             return View();
         }
         /// <summary>
+        /// 管理员书籍
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Book()
+        {
+            return View();
+        }
+        /// <summary>
         /// 个人信息管理
         /// </summary>
         /// <returns></returns>

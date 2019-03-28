@@ -298,6 +298,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\admin.js" />
+    <Content Include="js\book.js" />
     <Content Include="js\GetRecommendedBooks.js" />
     <Content Include="js\index.js" />
     <Content Include="js\mine.js" />
@@ -536,6 +537,7 @@
     <Content Include="Views\Home\Logon.cshtml" />
     <Content Include="Views\Home\LogonSignup.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\Home\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

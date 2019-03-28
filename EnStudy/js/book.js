@@ -2,7 +2,7 @@
 layui.use('form', function () {
     var form = layui.form;
     $(function () {
-        function GetUserList(Data) {
+        function GetRecommendedBooks(Data) {
             layui.use('table', function () {
                 var table = layui.table;
                 $(Data).each(function (i, item) {
@@ -31,20 +31,16 @@ layui.use('form', function () {
 
         $.ajax({
             dataType: "json",
-            url: "../User/GetUserList",
+            url: "../User/RecommendedBook",
             data: {
-                key: "*"
             },
             success: function (reData) {
                 console.log(reData);
                 if (reData.Status != true) {
-                    alert("没有用户信息！");
+                    alert("没有书籍信息！");
                 } else {
-                    
-                    GetUserList(reData.Data);
-                    $(".delBtn").click(function () {
-                        $(this).
-                    });
+
+                    GetRecommendedBooks(reData.Data);
                     //GetUserList(reData.Data);
                     //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
                 }
