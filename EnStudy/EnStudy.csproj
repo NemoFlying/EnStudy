@@ -303,6 +303,7 @@
     <Content Include="js\NoteBook.js" />
     <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
+    <Content Include="js\SearchFriends.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="css\font\summernote.eot" />

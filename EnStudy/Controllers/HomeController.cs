@@ -35,7 +35,7 @@ namespace EnStudy.Controllers
         }
 
         /// <summary>
-        /// 学友管理
+        /// 个人信息管理
         /// </summary>
         /// <returns></returns>
         public ActionResult Mine()
@@ -52,7 +52,7 @@ namespace EnStudy.Controllers
             return View();
         }
         /// <summary>
-        /// 好友管理
+        /// 添加好友管理
         /// </summary>
         /// <returns></returns>
         public ActionResult SearchFriends()
