@@ -1,22 +1,52 @@
-﻿
+﻿function delBtn(opt) {
+    var UserIdId = $(opt).parents("tr").find("td:nth(0) div").text();
+    //console.log(UserIdId);
+
+    $.ajax({
+        dataType: "json",
+        url: "../User/DeleteUser",
+        data: {
+            UId: UserIdId
+        },
+        success: function (reData) {
+            console.log(reData);
+            if (reData.Status != true) {
+                alert("删除失败！");
+            } else {
+
+                GetUserList(reData.Data);
+
+            }
+        }
+    });
+};
 layui.use('form', function () {
     var form = layui.form;
+
+
+
+
     $(function () {
-        function GetUserList(Data) {
+
+
+        function GetUserList(data) {
             layui.use('table', function () {
                 var table = layui.table;
-                $(Data).each(function (i, item) {
-                    console.log(item)
-                    $(".itemShowCount tbody").empty();
+                $(".itemShowCount tbody").empty();
+                $(data).each(function (i, item) {
+                    //console.log(item);
+                    
                     $(".itemShowCount tbody").append(`
-                <tr>
-                    <td>`+ item.Id + `</td>
-                    <td>`+ item.AccountNo + `</td>
-                    <td>`+ item.QqId + `</td>
-                    <td><button class="layui-btn layui-btn-danger layui-btn-sm delBtn">删除</button></td>
-                </tr>
-            `);
+                        <tr>
+                            <td class='UserId'>`+ item.Id + `</td>
+                            <td>`+ item.AccountNo + `</td>
+                            <td>`+ item.QqId + `</td>
+                            <td><button type='button' class="layui-btn layui-btn-danger layui-btn-sm delBtn" onclick='delBtn(this)'>删除</button></td>
+                        </tr>
+                    `);
                 });
+
+
                 table.init('itemShowCount', {
                     height: "auto" //设置高度
                     //, limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
@@ -42,11 +72,9 @@ layui.use('form', function () {
                 } else {
                     
                     GetUserList(reData.Data);
-                    $(".delBtn").click(function () {
-                        //$(this).
-                    });
-                    //GetUserList(reData.Data);
-                    //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
+
+
+                   
                 }
             }
         });
