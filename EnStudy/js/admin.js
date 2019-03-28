@@ -43,7 +43,7 @@ layui.use('form', function () {
                     
                     GetUserList(reData.Data);
                     $(".delBtn").click(function () {
-                        $(this).
+                        //$(this).
                     });
                     //GetUserList(reData.Data);
                     //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
