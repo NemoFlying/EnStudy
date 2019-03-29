@@ -8,28 +8,20 @@
     <meta charset="utf-8" />
     <title>用户页</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
     <link href="~/css/index.css" rel="stylesheet" />
-    <link href="~/css/Schedule.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/css/summernote-bs4.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <style>
-        .layui-inline{
-            margin:20px 0;
+        .addTypeId {
+            width: 60%;
+            display: inline-block;
+            margin-left: 0;
         }
-        .date {
-            height: 30px !important;
-        }
-        .ItemShow {
-            margin: 20px;
-            padding: 20px;
-            background: #f3f3f3;
+
+        .addSub_btn {
+            float: right;
         }
     </style>
-    @*<script src="~/Scripts/summernote-lite.js"></script>*@
 </head>
 <body>
 
@@ -42,7 +34,7 @@
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
         <li class="layui-nav-item">
-            <a href="~/Home/mine">个人中心</a>
+            <a href="">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
@@ -57,51 +49,47 @@
                 <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
                     <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
 
-                    <li class="layui-nav-item"><a href="~/Home/index">学习心得</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/adminindex">用户管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/book">书籍推荐</a></li>
                 </ul>
             </li>
             <li class="itemBody centerBody">
 
-                <div class="comment">
-                    <div class="layui-inline">
-                        <!-- 注意：这一层元素并不是必须的 -->
-                        <input type="text" class="layui-input date" placeholder="请选择日期" id="test1">
-                    </div>
-                    <div id="summernote"></div>
 
-                    <div class="formDiv"><button type="button" class="layui-btn layui-btn-normal StudySchedueBtn">提交</button></div>
-                </div>
                 <div id="show">
-                    <ul class="one"></ul>
+                    <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'experience'}">Id</th>
+                                <th lay-data="{field:'sign'}">账号</th>
+                                <th lay-data="{field:'date'}">QqId</th>
+                                <th lay-data="{field:'info', width:100}">功能</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </li>
             <li class="itemBody itemR">
                 <div class="layui-carousel" id="test1">
-                    <div carousel-item>
+                    <div carousel-item class="imgShow">
                         <div class="itemImgBook">
                             <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
                         </div>
-                        <div class="itemImgBook">
-                            <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
-                        </div>
+                        @*<div class="itemImgBook">
+                                <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                            </div>*@
                     </div>
                 </div>
             </li>
         </ul>
     </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/layui/layui.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/jquery.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <link href="~/css/summernote.css" rel="stylesheet" />
-    <script src="~/Scripts/summernote.js"></script>
-    <script src="~/js/Schedule.js"></script>
     <script src="~/js/public.js"></script>
-    <script src="~/js/SearchFriends.js"></script>
-
+    <script src="~/js/GetRecommendedBooks.js"></script>
+    @*<script src="~/js/SearchFriends.js"></script>*@
+    <script src="~/js/admin.js"></script>
 </body>
 </html>

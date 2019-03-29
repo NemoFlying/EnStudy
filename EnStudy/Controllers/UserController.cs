@@ -87,7 +87,7 @@ namespace EnStudy.Controllers
         /////学习计划部分
 
         /// <summary>
-        /// 获取当前登录学员的登陆信息
+        /// 获取学习计划
         /// </summary>
         /// <returns></returns>
         public JsonResult GetUserStudySchedue()
@@ -95,7 +95,7 @@ namespace EnStudy.Controllers
             var result = new ResultOutput();
             try
             {
-                result.Data = GUserInfo.StudySchedue.Where(con => con.StudyDay >= DateTime.Today).ToList();
+                result.Data = Mapper.Map<List<StudySchedueVieModel>>( GUserInfo.StudySchedue.Where(con => con.StudyDay >= DateTime.Today).ToList());
                 result.Status = true;
             }
             catch(Exception ex)
@@ -115,7 +115,7 @@ namespace EnStudy.Controllers
         public JsonResult AddUserStudySchedue(StudySchedueInput input)
         {
             //var result = _userService.AddStudySchedue(GUserInfo.Id, input);
-            var result = _userService.AddStudySchedue(1, input);
+            var result = _userService.AddStudySchedue(GUserInfo.Id, input);
             if (result.Status)
             {
                 result.Data = Mapper.Map<List<StudySchedueVieModel>>(result.Data);
@@ -154,8 +154,8 @@ namespace EnStudy.Controllers
         public JsonResult GetFriendSpeak(GetFriendSpeakPageInput input)
         {
             //默认
-            input.UserId = 1;
-            //input.UserId = GUserInfo.Id;
+            //input.UserId = 1;
+            input.UserId = GUserInfo.Id;
             var result = _userService.GetFriendSpeakPage(input);
             return Json(result, JsonRequestBehavior.AllowGet);
             
@@ -168,8 +168,8 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddSpeakComents(AddSpeakComentsInput input)
         {
-            //input.FromUserId = GUserInfo.Id;
-            input.FromUserId = 1;
+            input.FromUserId = GUserInfo.Id;
+            //input.FromUserId = 1;
             var result = _userService.AddSpeakComents(input);
             return Json(result, JsonRequestBehavior.AllowGet); ;
         }
@@ -181,7 +181,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddNewSpeak(string contents)
         {
-            return Json(_userService.AddUserSpeak(1, contents), JsonRequestBehavior.AllowGet);
+            return Json(_userService.AddUserSpeak(GUserInfo.Id, contents), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddStudyNotesType(string TypeName, string Description)
         {
-            return Json(_userService.AddStudyNotesType(1, TypeName, Description), JsonRequestBehavior.AllowGet);
+            return Json(_userService.AddStudyNotesType(GUserInfo.Id, TypeName, Description), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult DeleteStudyNotesType(int id)
         {
-            return Json(_userService.DeleteStudyNotesType(1,id), JsonRequestBehavior.AllowGet);
+            return Json(_userService.DeleteStudyNotesType(GUserInfo.Id, id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult GetStudyNotesType()
         {
-            return Json(_userService.GetStudyNotesType(1), JsonRequestBehavior.AllowGet);
+            return Json(_userService.GetStudyNotesType(GUserInfo.Id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult GetStudyNotesBriefByTypeId(int id)
         {
-            return Json(_userService.GetStudyNotesBriefByType(1, id), JsonRequestBehavior.AllowGet);
+            return Json(_userService.GetStudyNotesBriefByType(GUserInfo.Id, id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult GetStudyNotesById(int id)
         {
-            return Json(_userService.GetStudyNotesDetailById(1, id), JsonRequestBehavior.AllowGet);
+            return Json(_userService.GetStudyNotesDetailById(GUserInfo.Id, id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult DeleteStudyNotesById(int id)
         {
-            return Json(_userService.DeleteStudyNotesById(1, id), JsonRequestBehavior.AllowGet);
+            return Json(_userService.DeleteStudyNotesById(GUserInfo.Id, id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -251,19 +251,52 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddStudyNotes(StudyNotesInput input)
         {
-            input.Uid = 1;
+            input.Uid = GUserInfo.Id;
             return Json(_userService.AddStudyNotes(input), JsonRequestBehavior.AllowGet);
         }
 
-
-
-        public void tt()
+        /// <summary>
+        /// 获取当前登录人员朋友列表
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetUserFriends()
         {
-
-
-
-            _userService.AddFriend(1, 2);
+            return Json(_userService.GetUserFriends(GUserInfo.Id), JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// 查询人员列表
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public JsonResult GetUserList(string key)
+        {
+            return Json(_userService.SeachUser(key.Trim()), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <returns></returns>
+        public JsonResult DeleteUser(int UId)
+        {
+            return Json(_userService.DeleteUser(UId), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 添加朋友
+        /// </summary>
+        /// <param name="fUId"></param>
+        /// <returns></returns>
+        public JsonResult AddFriend(int fUId)
+        {
+            return Json(_userService.AddFriend(GUserInfo.Id, fUId), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
 
     }
 }
