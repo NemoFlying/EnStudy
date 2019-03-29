@@ -114,7 +114,8 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddUserStudySchedue(StudySchedueInput input)
         {
-            var result = _userService.AddStudySchedue(GUserInfo.Id, input);
+            //var result = _userService.AddStudySchedue(GUserInfo.Id, input);
+            var result = _userService.AddStudySchedue(1, input);
             if (result.Status)
             {
                 result.Data = Mapper.Map<List<StudySchedueVieModel>>(result.Data);
