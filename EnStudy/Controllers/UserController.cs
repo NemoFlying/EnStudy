@@ -114,7 +114,6 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult AddUserStudySchedue(StudySchedueInput input)
         {
-            //var result = _userService.AddStudySchedue(GUserInfo.Id, input);
             var result = _userService.AddStudySchedue(GUserInfo.Id, input);
             if (result.Status)
             {
