@@ -180,8 +180,14 @@
                                 fUId: fUId
                             },
                             success: function (reData) {
-                                console.log(reData);
-                                //GetUserList(reData.Data);
+                                console.log(reData)
+                                if (reData.Status !=true) {
+                                alert("添加失败！");
+                                } else {
+                                alert("添加成功！");
+                                    GetUserList(reData.Data);
+                                }
+
                             }
                         });
                     });

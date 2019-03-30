@@ -97,10 +97,10 @@ $(function () {
                     //var currentdate = year + seperator1 + month + seperator1 + strDate;
                     //console.log(currentdate);
                     var StudyContents = $($("#summernote").summernote("code")).html();
-                    //console.log(StudyContents);
+                    console.log(StudyContents);
                     StudyContents = escape(StudyContents);
 
-                    //console.log(StudyContents);
+                    console.log(StudyContents);
                     $.ajax({
                         dataType: "json",
                         url: "../User/AddUserStudySchedue",
