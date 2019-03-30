@@ -126,9 +126,18 @@ namespace EnStudy.BLL
         {
             var result = new ResultOutput();
             //验证输入参数【省略】
-
-
+            
             var user = _userDAL.GetModels(con => con.Id == input.Id).FirstOrDefault();
+            if (!string.IsNullOrEmpty(input.Password))
+            {
+                var md5 = new MD5CryptoServiceProvider();
+                var pwd = BitConverter.ToString(md5.ComputeHash(Encoding.Default.GetBytes(user.AccountNo.Trim() + input.Password)));
+                pwd = pwd.Replace("-", "");
+                input.Password = pwd;
+            }else
+            {
+                input.Password = user.Password;
+            }
             Mapper.Map(input, user);
 
             try

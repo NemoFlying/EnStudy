@@ -41,9 +41,9 @@ layui.use('form', function () {
                     //console.log(item);
                     $(".itemShowCount tbody").append(`
                     <tr>
-                        <td>`+ item.TypeName + `</td>
-                        <td>`+ item.Description + `</td>
-                        <td>sadsa</td>
+                        <td>`+ item.Title + `</td>
+                        <td>`+ item.KeyWords + `</td>
+                        <td>123</td>
                         <td><button class="layui-btn layui-btn-sm layui-btn-normal">详情</button></td>
                     </tr>
                 `);
@@ -64,15 +64,14 @@ layui.use('form', function () {
 
             $.ajax({
                 dataType: "json",
-                url: "../User/GetStudyNotesType",
+                url: "../User/GetStudyNotesBriefByTypeId",
                 async: false,
                 data: {
                     id: data.value
                 },
                 success: function (reData) {
-                    //console.log(reData.Data);
+                    console.log(reData.Data);
                     GetStudyNotesBriefByTypeIdItem(reData.Data);
-                    
 
                 }
             });
@@ -97,6 +96,7 @@ layui.use('form', function () {
             if (addTypeIdInput == null) {
                 alert("请添加标题,不能为空！");
             } else {
+                console.log()
                 $.ajax({
                     dataType: "json",
                     url: "../User/AddStudyNotesType",
