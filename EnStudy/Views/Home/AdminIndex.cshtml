@@ -11,26 +11,35 @@
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
     <link href="~/css/index.css" rel="stylesheet" />
-    
+    <style>
+        .addTypeId {
+            width: 60%;
+            display: inline-block;
+            margin-left: 0;
+        }
+
+        .addSub_btn {
+            float: right;
+        }
+    </style>
 </head>
 <body>
 
     <ul class="layui-nav header">
         <li class="searchLi">
             <input class="searchInput" type="text" name="search" value="" />
-            <button class="layui-btn layui-btn-normal searchBtn">搜索</button>
+            <button class="layui-btn layui-btn-normal">搜索</button>
         </li>
         @*<li class="layui-nav-item">
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
         <li class="layui-nav-item">
-            <a href="~/Home/mine">个人中心</a>
+            <a href="">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
             <dl class="layui-nav-child">
                 <dd><a href="/Home/logon">退了</a></dd>
-                <dd><a href="/Home/adminindex">admin</a></dd>
             </dl>
         </li>
     </ul>
@@ -40,42 +49,36 @@
                 <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
                     <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
 
-                    <li class="layui-nav-item"><a href="~/Home/index">学习心得</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
-                    @*<li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>*@
+                    <li class="layui-nav-item"><a href="~/Home/adminindex">用户管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/book">书籍推荐</a></li>
                 </ul>
             </li>
             <li class="itemBody centerBody">
 
-                <div class="comment">
-                    <div class="com_form">
-                        <textarea class="input" id="saytext" style="resize:none;" name="saytext" placeholder="试试用外语发表吧，说不定会有小伙伴为你点评哦~"></textarea>
-                        <p>
-                            <button type="button" class="layui-btn sub_btn">发表</button>
 
-                            <span class="emotion" id="emotion"></span>
-                            <button type="button" id="test2">
-                                <i class="layui-icon">&#xe660;</i>
-                            </button>
-
-                        </p>
-                    </div>
-                </div>
                 <div id="show">
-                    <ul class="one"></ul>
+                    <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
+                        <thead>
+                            <tr>
+                                <th lay-data="{field:'experience'}">Id</th>
+                                <th lay-data="{field:'sign'}">账号</th>
+                                <th lay-data="{field:'date'}">QqId</th>
+                                <th lay-data="{field:'info', width:100}">功能</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </li>
             <li class="itemBody itemR">
                 <div class="layui-carousel" id="test1">
-                    <div carousel-item>
+                    <div carousel-item class="imgShow">
                         <div class="itemImgBook">
                             <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
                         </div>
                         @*<div class="itemImgBook">
-                            <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
-                        </div>*@
+                                <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                            </div>*@
                     </div>
                 </div>
             </li>
@@ -85,9 +88,8 @@
     <script src="~/Scripts/layui/layui.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/js/public.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
-    <script src="~/js/index.js"></script>
     <script src="~/js/GetRecommendedBooks.js"></script>
-    <script src="~/js/SearchFriends.js"></script>
+    @*<script src="~/js/SearchFriends.js"></script>*@
+    <script src="~/js/admin.js"></script>
 </body>
 </html>

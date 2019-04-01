@@ -24,14 +24,12 @@
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
         <li class="layui-nav-item">
-            <a href="">个人中心</a>
+            <a href="~/Home/mine">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;">修改信息</a></dd>
-                <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退了</a></dd>
+                <dd><a href="/Home/logon">退了</a></dd>
             </dl>
         </li>
     </ul>
@@ -52,7 +50,7 @@
 
                 <div class="comment">
                     <div class="com_form">
-                        <form class="layui-form">
+                        <form class="layui-form" lay-filter="fromItems">
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">昵称</label>
@@ -161,7 +159,7 @@
                                 <div class="layui-input-block">
                                     <button class="layui-btn submitBtn" type="button" lay-submit lay-filter="formDemo">立即提交</button>
                                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                    <button type="button" class="tianji">田鸡</button>
+                                    @*<button type="button" class="tianji">田鸡</button>*@
                                 </div>
                             </div>
                         </form>

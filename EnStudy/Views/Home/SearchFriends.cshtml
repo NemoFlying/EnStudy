@@ -24,14 +24,12 @@
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
         <li class="layui-nav-item">
-            <a href="">个人中心</a>
+            <a href="~/Home/mine">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;">修改信息</a></dd>
-                <dd><a href="javascript:;">安全管理</a></dd>
-                <dd><a href="javascript:;">退了</a></dd>
+                <dd><a href="/Home/logon">退了</a></dd>
             </dl>
         </li>
     </ul>
@@ -45,14 +43,14 @@
                     <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
+                    @*<li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>*@
                 </ul>
             </li>
             <li class="itemBody centerBody">
 
                 <div class="comment">
-                    <ul>
-                        <li class="friendsList">
+                    <ul class="itemShow">
+                        @*<li class="friendsList">
                             <div class="userImgDiv">
                                 <img class="userImg" src="~/assets/img/headerImg.jpg" alt="Alternate Text" />
                             </div>
@@ -62,7 +60,7 @@
                             <div>
                                 <button type="button" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i>添加</button>
                             </div>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
 
@@ -94,6 +92,108 @@
             //…
         });
 
+        //js获取url参数值
+        function request(paras) {
+            var url = location.href;
+            var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+            var paraObj = {};
+            for (i = 0; j = paraString[i]; i++) {
+                paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+            }
+            var returnValue = paraObj[paras.toLowerCase()];
+            if (typeof (returnValue) == "undefined") {
+                return "";
+            } else {
+                return returnValue;
+            }
+        }
+
+        var SearchNames = decodeURI(request("SearchNames"));//De=‘未设置’
+        console.log(SearchNames);
+        $(function () {
+            //绑定搜索好友
+            function GetUserList(data) {
+                $(data).each(function (i, item) {
+                    if (item.Sex == null) {
+                        $(".itemShow").append(`
+                            <li class="friendsList">
+                                <div class="userImgDiv">
+                                    <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
+                                </div>
+                                <p class="itemsP Id" name='`+ item.Id + `'>` + item.AccountNo + `</p>
+                                <p class="itemsP">`+ item.UniversityName + `</p>
+                                <p class="itemsP" name='`+ item.Sex + `'>无</p>
+                                <div>
+                                    <button type="button" class="layui-btn layui-btn-normal addBtn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                </div>
+                            </li>
+                        `);
+                    }
+                    if (item.Sex == "F") {
+                        $(".itemShow").append(`
+                            <li class="friendsList">
+                                <div class="userImgDiv">
+                                    <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
+                                </div>
+                                <p class="itemsP Id" name='`+ item.Id + `'>` + item.AccountNo + `</p>
+                                <p class="itemsP">`+ item.UniversityName + `</p>
+                                <p class="itemsP" name='`+ item.Sex + `'>女</p>
+                                <div>
+                                    <button type="button" class="layui-btn layui-btn-normal addBtn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                </div>
+                            </li>
+                        `);
+                    }
+                    if (item.Sex == "M") {
+                        $(".itemShow").append(`
+                            <li class="friendsList">
+                                <div class="userImgDiv">
+                                    <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
+                                </div>
+                                <p class="itemsP Id" name='`+ item.Id + `'>` + item.AccountNo + `</p>
+                                <p class="itemsP">`+ item.UniversityName + `</p>
+                                <p class="itemsP" name='`+ item.Sex + `'>男</p>
+                                <div>
+                                    <button type="button" class="layui-btn layui-btn-normal addBtn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                </div>
+                            </li>
+                        `);
+                    }
+                });
+            };
+
+            $.ajax({
+                dataType: "json",
+                url: "../User/GetUserList",
+                data: {
+                    key: SearchNames
+                },
+                success: function (reData) {
+                    console.log(reData);
+                    GetUserList(reData.Data);
+                    $(".addBtn").click(function () {
+                        var fUId = $(this).parents("li").find(".Id").attr("name");
+                        $.ajax({
+                            dataType: "json",
+                            url: "../User/AddFriend",
+                            data: {
+                                fUId: fUId
+                            },
+                            success: function (reData) {
+                                console.log(reData)
+                                if (reData.Status !=true) {
+                                alert("添加失败！");
+                                } else {
+                                alert("添加成功！");
+                                    GetUserList(reData.Data);
+                                }
+
+                            }
+                        });
+                    });
+                }
+            });
+        });
 
 
         layui.use('carousel', function () {

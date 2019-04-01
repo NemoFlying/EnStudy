@@ -50,8 +50,9 @@ $(function () {
                 if (reData.Status != true) {
                     alert("发表失败！");
                 } else {
-                    //GetFriendSpeak(reData.Data);
-                    $(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
+                    GetFriendSpeak(reData.Data);
+                    $("#saytext").val("");
+                    //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>" + AccountNo+"</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
                 }
             }
         });
@@ -63,6 +64,7 @@ $(function () {
 
     function GetFriendSpeak(data) {
         //console.log(data);
+        $(".one").empty();
         $(data.userSpeak).each(function ( i,item ) {
             console.log(item);
             var li = $(" <li class='itemMessages'></li>");

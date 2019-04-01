@@ -63,7 +63,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult GetCurrentUserInfo()
         {
-            return Json(_userService.GetUserInfo(1), JsonRequestBehavior.AllowGet);
+            return Json(_userService.GetUserInfo(GUserInfo.Id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -74,12 +74,6 @@ namespace EnStudy.Controllers
         public JsonResult UpdateUser(UserUpdateInput newUser)
         {
             var result = _userService.UpdateUser(newUser);
-            if (result.Status)
-            {
-                //表示认证通过
-                //Keep Session
-                HttpContext.Session["userinfo"] = result.Data;
-            }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
