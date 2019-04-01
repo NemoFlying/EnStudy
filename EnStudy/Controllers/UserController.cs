@@ -289,7 +289,16 @@ namespace EnStudy.Controllers
         }
 
 
-
+        /// <summary>
+        /// 删除朋友
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="FId"></param>
+        /// <returns></returns>
+        public JsonResult DeleteFriend(int FId)
+        {
+            return Json(_userService.DeleteFriend(GUserInfo.Id, FId), JsonRequestBehavior.AllowGet);
+        }
 
 
     }

@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </form>
-            <div class="div-end"><p class="p-end">若没有账号？点击<a href="LogonSignup"><u>这里</u></a>进行注册</p></div>
+            <div class="div-end"><p class="p-end">若没有账号？点击<a href="../home/LogonSignup"><u>这里</u></a>进行注册</p></div>
         </div>
     </div>
     <script src="~/Scripts/layui/layui.js"></script>
@@ -73,7 +73,7 @@
                     success: function (reData) {
                         console.log(reData);
                         if (reData.Status == true) {
-                            window.location.href = "index";
+                            window.location.href = "../home/index";
                         } else {
                             alert(`登录失败，` + reData.Msg + `！`);
                         }
