@@ -108,6 +108,7 @@
         $(function () {
 
             function GetUserFriends(data) {
+                $(".itemShow").empty();
                 $(data).each(function (i, item) {
                     if (item.Sex == null) {
                         $(".itemShow").append(`
