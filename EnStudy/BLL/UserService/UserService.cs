@@ -16,11 +16,12 @@ namespace EnStudy.BLL
     {
         private readonly IUserDAL _userDAL;
         private readonly IUserSpeakDAL _userSpeakDAL;
-
+        private readonly IUserFriendDAL _userFriendDAL;
         public UserService()
         {
             _userDAL = new UserDAL();
             _userSpeakDAL = new UserSpeakDAL();
+            _userFriendDAL = new UserFriendDAL();
         }
 
         /// <summary>
@@ -368,7 +369,7 @@ namespace EnStudy.BLL
             var result = new ResultOutput(true);
             var friend = _userDAL.GetModels(con => con.Id == UId).FirstOrDefault().Friends;
             var user = new List<User>();
-            friend.ToList().ForEach(item => user.Add(item.user));
+            friend.ToList().ForEach(item => user.Add(item.Friend));
             result.Data = Mapper.Map<List<UserViewModel>>(user);
             return result;
         }
@@ -384,11 +385,39 @@ namespace EnStudy.BLL
             var result = new ResultOutput(false);
             var user = _userDAL.GetModels(con => con.Id == UId).FirstOrDefault();
             var fuser = _userDAL.GetModels(con => con.Id == FId).FirstOrDefault();
+            if (user.Friends.Where(con => con.Friend.Id == fuser.Id).FirstOrDefault() != null)
+                return result;
             user.Friends.Add(new UserFriend() { Friend = fuser });
             fuser.Friends.Add(new UserFriend() { Friend = user });
             try
             {
                 _userDAL.SaveChanges();
+                result = GetUserFriends(UId);
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+                result.Msg = "Add UserSpeak Failed!";
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 删除朋友
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="FId"></param>
+        /// <returns></returns>
+        public ResultOutput DeleteFriend(int UId,int FId)
+        {
+            var result = new ResultOutput(false);
+            var user = _userDAL.GetModels(con => con.Id == UId).FirstOrDefault();
+            var fuser = _userDAL.GetModels(con => con.Id == FId).FirstOrDefault();
+            _userFriendDAL.Delete(_userFriendDAL.GetModels(con => con.user.Id == user.Id && con.Friend.Id == fuser.Id).FirstOrDefault());
+            _userFriendDAL.Delete(_userFriendDAL.GetModels(con => con.user.Id == fuser.Id && con.Friend.Id == user.Id).FirstOrDefault());
+            try
+            {
+                _userFriendDAL.SaveChanges();
                 result = GetUserFriends(UId);
             }
             catch (Exception ex)

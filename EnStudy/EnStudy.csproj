@@ -168,6 +168,8 @@
     <Compile Include="DAL\RecommendedBook\RecommendedBookDAL.cs" />
     <Compile Include="DAL\UserDAL\IUserDAL.cs" />
     <Compile Include="DAL\UserDAL\UserDAL.cs" />
+    <Compile Include="DAL\UserFriend\IUserFriendDAL.cs" />
+    <Compile Include="DAL\UserFriend\UserFriendDAL.cs" />
     <Compile Include="DAL\UserSpeak\IUserSpeakDAL.cs" />
     <Compile Include="DAL\UserSpeak\UserSpeakDAL.cs" />
     <Compile Include="Global.asax.cs">

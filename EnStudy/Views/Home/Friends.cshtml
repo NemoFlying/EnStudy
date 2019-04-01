@@ -179,9 +179,9 @@
                             console.log(UId);
                             $.ajax({
                                 dataType: "json",
-                                url: "../User/DeleteUser",
+                                url: "../User/DeleteFriend",
                                 data: {
-                                    UId: UId
+                                    FId: UId
                                 },
                                 success: function (reData) {
                                     console.log(reData);
