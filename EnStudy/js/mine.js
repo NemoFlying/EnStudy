@@ -31,8 +31,9 @@ $(function () {
             //大学
             if (item.UniversityName != null) {
                 var UniversityName = $(".UniversityName");
-                var dl1 = UniversityName.siblings("div.layui-form-select").find('.layui-select-title input').val(item.UniversityName);
-                    console.log(dl1.val());
+                //var dl1 = UniversityName.siblings("div.layui-form-select").find('.layui-select-title input').val(item.UniversityName);
+                var dl1 = UniversityName.siblings("div.layui-form-select").find('dl dd');
+                console.log(dl1.text());
                 //dl1.find("dd").removeClass("layui-this");
 
                 //var dd = dl1.find('dd:contains(' + item.UniversityName + ')').addClass("layui-this").click();
