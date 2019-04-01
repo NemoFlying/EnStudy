@@ -43,7 +43,7 @@
                     <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
+                    @*<li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>*@
                 </ul>
             </li>
             <li class="itemBody centerBody">
@@ -111,11 +111,12 @@
         var SearchNames = decodeURI(request("SearchNames"));//De=‘未设置’
         console.log(SearchNames);
         $(function () {
-            var bodyH = $(window).height();
-            var imgW =
+
             //绑定搜索好友
-            function GetUserList(data) {
-                $(data).each(function (i, item) {
+            function GetUserList(Data) {
+                $(".itemShow").empty;
+                $(Data).each(function (i, item) {
+
                     if (item.Sex == null) {
                         $(".itemShow").append(`
                             <li class="friendsList">
@@ -162,6 +163,9 @@
                         `);
                     }
                 });
+                var bodyH = $(window).height();
+                $(".userImg").css("height", (bodyH * 0.1) + "px");
+                $(".userImg").css("width", (bodyH * 0.1) + "px");
             };
 
             $.ajax({
@@ -187,8 +191,8 @@
                                 alert("添加失败！");
                                 } else {
                                     alert("添加成功！");
-                                    console.log(reData);
-                                    GetUserList(reData.Data);
+                                    
+                                    //GetUserList(reData.Data);
                                 }
 
                             }
