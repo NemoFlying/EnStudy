@@ -43,7 +43,7 @@
                     <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
-                    @*<li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>*@
+                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
                 </ul>
             </li>
             <li class="itemBody centerBody">
@@ -91,7 +91,7 @@
 
             //…
         });
-
+        
         //js获取url参数值
         function request(paras) {
             var url = location.href;
@@ -111,6 +111,8 @@
         var SearchNames = decodeURI(request("SearchNames"));//De=‘未设置’
         console.log(SearchNames);
         $(function () {
+            var bodyH = $(window).height();
+            var imgW =
             //绑定搜索好友
             function GetUserList(data) {
                 $(data).each(function (i, item) {

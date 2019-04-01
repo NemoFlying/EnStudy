@@ -31,11 +31,19 @@ $(function () {
             //大学
             if (item.UniversityName != null) {
                 var UniversityName = $(".UniversityName");
-                var dl1 = UniversityName.siblings("div.layui-form-select").find('.layui-select-title input').val(item.UniversityName);
+                //var dl1 = UniversityName.siblings("div.layui-form-select").find('.layui-select-title input').val(item.UniversityName);
+                var dl1 = UniversityName.siblings("div.layui-form-select").find('dl');
                     console.log(dl1.val());
-                //dl1.find("dd").removeClass("layui-this");
 
-                //var dd = dl1.find('dd:contains(' + item.UniversityName + ')').addClass("layui-this").click();
+                layui.use('form', function () {
+                    var form = layui.form;
+                    form.render();
+                    var select = 'dd[lay-value=' + item.UniversityName+']';
+                    dl1.find(select).click();
+                    //var dd = dl1.find('dd:contains(' + item.UniversityName + ')').addClass("layui-this").click();
+                    form.render('select');
+                });
+                
             }
             //性别
             if (item.Sex != null) {
@@ -109,7 +117,7 @@ $(function () {
                         
                         //console.log(this);
                         $(".university").append(`
-                            <option value="`+ this.id + `">` + this.name + `</option>
+                            <option name="university" value="`+ this.id + `">` + this.name + `</option>
                         `);
                     });
                     form.render("select");
@@ -178,6 +186,7 @@ $(function () {
                     console.log(reData);
                     alert("更新信息成功！");
                     GetCurrentUserInfo(reData.Data);
+                    form.render();
                 }
             });
             //var province = $(".province");

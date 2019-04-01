@@ -50,7 +50,7 @@
 
                 <div class="comment" style="min-height:700px">
                     <ul class="itemShow">
-                        <h1>暂无好友！</h1>
+                        @*<h1>暂无好友！</h1>*@
                         @*<li class="friendsList">
                             <div class="userImgDiv">
                                 <img class="userImg" src="~/assets/img/headerImg.jpg" alt="Alternate Text" />
@@ -168,7 +168,7 @@
                     if (reData.Data.length == 0) {
                         $(".itemShow").append(`
                             <li class="error">
-                                    <h1>未搜索到该好友！</h1>
+                                    <h1>未添加任何好友！</h1>
                             </li>
                         `);
                     } else {
