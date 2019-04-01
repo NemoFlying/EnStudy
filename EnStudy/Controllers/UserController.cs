@@ -250,6 +250,17 @@ namespace EnStudy.Controllers
         }
 
         /// <summary>
+        /// 根据关键字获取笔记类容（列表）
+        /// </summary>
+        /// <param name="Key"></param>
+        /// <returns></returns>
+        public JsonResult SearchStudyNotes(string Key)
+        {
+            return Json(_userService.SearchStudyNotes(GUserInfo.Id, Key), JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
         /// 获取当前登录人员朋友列表
         /// </summary>
         /// <returns></returns>
