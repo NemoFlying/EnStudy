@@ -1,15 +1,21 @@
 ﻿//注意：导航 依赖 element 模块，否则无法进行功能性操作
-layui.use('element', function () {
+
+var gSchool = null;
+ layui.use('element', function () {
     var element = layui.element;
 
     //…
 });
+
 layui.use('form', function () {
+    var $ = layui.$;
     var form = layui.form;
     $(function () {
-        //绑定个人数据
-        function GetCurrentUserInfo(data) {
-            $(data).each(function (i, item) {
+
+        //获取对应省份数据
+        function GetCurrentUserInfo(Data) {
+
+            $(Data).each(function (i, item) {
                 $(".AccountNo").val(item.AccountNo);
                 $(".AccountNo").attr("id", item.Id);
                 //昵称
@@ -18,26 +24,37 @@ layui.use('form', function () {
                 }
                 //省份
                 if (item.Addr != null) {
-                    console.log(item.Addr);
                     var province = $(".province");
                     var dl = province.siblings("div.layui-form-select").find('dl');
+
                     dl.find("dd").removeClass("layui-this");
-                    //dl.find('dd:contains(山西)').addClass("layui-this").click();
                     var dd = dl.find('dd:contains("' + item.Addr + '")').addClass("layui-this").click();
                 }
                 //大学
+                gSchool = item.UniversityName;
                 if (item.UniversityName != null) {
-                    console.log(item.UniversityName);
-                    var UniversityName = $(".UniversityName");
-                    var dl = UniversityName.siblings("div.layui-form-select").find('dl');
-                    console.log(UniversityName.siblings(".layui-form-select").length);
-                    dl.find("dd").removeClass();
-                    var dd = dl.find('dd:contains(中国民航大学)').addClass("layui-this").click();
+                    form.render("select");
+                    var a = $(".UniversityName").siblings("div.layui-form-select").find('input')[0].value='海南大学';
+                    console.log(a);
+                    //    var form = layui.form;
+                    //    var UniversityName = $(".UniversityName");
+                    //var dl1 = $(".UniversityName").siblings("div.layui-form-select").find('input')[0].value="";
+                    //console.log(dl1)
+                    //dl1.find("dd").removeClass("layui-this");
+
+                    //var dd = dl1.find('dd:contains(' + item.UniversityName + ')').addClass("layui-this").click();
                 }
                 //性别
                 if (item.Sex != null) {
-                    $(".sex").find("input").removeAttr("checked");
-                    $(".sex").find("input[value=" + item.Sex + "]").attr("checked");
+                    //formTest 即 class="layui-form" 所在元素对应的 lay-filter="" 对应的值
+                    layui.use('form', function () {
+                        var form = layui.form;
+
+                        form.val("fromItems", {
+                            "sex": item.Sex
+
+                        })
+                    });
                 }
                 //个性标签
                 if (item.PersonalLabel != null) {
@@ -49,7 +66,6 @@ layui.use('form', function () {
                 }
             });
         };
-        //获取对应省份数据
         layui.use('form', function () {
             var form = layui.form;
             $.ajax({
@@ -61,8 +77,9 @@ layui.use('form', function () {
                     console.log(reData);
                     if (reData.Status != true) {
                     } else {
-
                         GetCurrentUserInfo(reData.Data);
+
+
                     }
                 }
             });
@@ -94,14 +111,15 @@ layui.use('form', function () {
                         $(".university").empty();
                         console.log(reData);
                         $(reData).each(function () {
-
                             //console.log(this);
                             $(".university").append(`
                             <option value="`+ this.id + `">` + this.name + `</option>
                         `);
                         });
+                        
                         form.render("select");
-
+                        
+                        $(".UniversityName").siblings("div.layui-form-select").find('input')[0].value = gSchool;
                     },
                     error: function (data) {
                         alert("下载模板失败！");
@@ -132,7 +150,7 @@ layui.use('form', function () {
         });
         layui.use('form', function () {
             var form = layui.form;
-            $(".tianji").click(function () {
+            $(".submitBtn").click(function () {
                 var Id = $(".AccountNo").attr("id");
                 var Password = $(".pwd").val();
                 var NikeName = $(".NikeName").val();
@@ -164,7 +182,9 @@ layui.use('form', function () {
                     },
                     success: function (reData) {
                         console.log(reData);
+                        alert("更新信息成功！");
                         GetCurrentUserInfo(reData.Data);
+                        form.render("select");
                     }
                 });
                 //var province = $(".province");

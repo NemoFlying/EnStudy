@@ -63,7 +63,7 @@ namespace EnStudy.Controllers
         /// <returns></returns>
         public JsonResult GetCurrentUserInfo()
         {
-            return Json(_userService.GetUserInfo(1), JsonRequestBehavior.AllowGet);
+            return Json(_userService.GetUserInfo(GUserInfo.Id), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -74,12 +74,6 @@ namespace EnStudy.Controllers
         public JsonResult UpdateUser(UserUpdateInput newUser)
         {
             var result = _userService.UpdateUser(newUser);
-            if (result.Status)
-            {
-                //表示认证通过
-                //Keep Session
-                HttpContext.Session["userinfo"] = result.Data;
-            }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -255,6 +249,17 @@ namespace EnStudy.Controllers
         }
 
         /// <summary>
+        /// 根据关键字获取笔记类容（列表）
+        /// </summary>
+        /// <param name="Key"></param>
+        /// <returns></returns>
+        public JsonResult SearchStudyNotes(string Key)
+        {
+            return Json(_userService.SearchStudyNotes(GUserInfo.Id, Key), JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
         /// 获取当前登录人员朋友列表
         /// </summary>
         /// <returns></returns>
@@ -294,7 +299,16 @@ namespace EnStudy.Controllers
         }
 
 
-
+        /// <summary>
+        /// 删除朋友
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="FId"></param>
+        /// <returns></returns>
+        public JsonResult DeleteFriend(int FId)
+        {
+            return Json(_userService.DeleteFriend(GUserInfo.Id, FId), JsonRequestBehavior.AllowGet);
+        }
 
 
     }

@@ -100,7 +100,13 @@ namespace EnStudy.BLL
         /// <param name="FId"></param>
         /// <returns></returns>
         ResultOutput AddFriend(int UId, int FId);
-
+        /// <summary>
+        /// 删除朋友
+        /// </summary>
+        /// <param name="UId"></param>
+        /// <param name="FId"></param>
+        /// <returns></returns>
+        ResultOutput DeleteFriend(int UId, int FId);
         /// <summary>
         /// 获取朋友圈信息
         /// </summary>
