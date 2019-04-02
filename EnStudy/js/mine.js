@@ -159,14 +159,14 @@ layui.use('form', function () {
                 var UniversityName = $(".university").siblings("div.layui-form-select").find("input").val();
                 var PersonalLabel = $(".PersonalLabel").val();
                 var Signature = $(".Signature").val();
-                console.log(Id);
-                console.log(Password);
-                console.log(NikeName);
-                console.log(Sex);
-                console.log(Addr);
-                console.log(UniversityName);
-                console.log(PersonalLabel);
-                console.log(Signature);
+                //console.log(Id);
+                //console.log(Password);
+                //console.log(NikeName);
+                //console.log(Sex);
+                //console.log(Addr);
+                //console.log(UniversityName);
+                //console.log(PersonalLabel);
+                //console.log(Signature);
                 $.ajax({
                     dataType: "json",
                     url: "../User/UpdateUser",
