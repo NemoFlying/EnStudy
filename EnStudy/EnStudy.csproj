@@ -182,10 +182,12 @@
     <Compile Include="Models\StudySchedue.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserFriend.cs" />
+    <Compile Include="Models\UserMovie.cs" />
     <Compile Include="Models\UserSpeak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\StudySchedueInput.cs" />
     <Compile Include="ViewModels\StudySchedueVieModel.cs" />
+    <Compile Include="ViewModels\UserMovieViewModel.cs" />
     <Compile Include="ViewModels\UserReistInput.cs" />
     <Compile Include="ViewModels\UserSpeakComentViewModel.cs" />
     <Compile Include="ViewModels\UserSpeakViewModel.cs" />

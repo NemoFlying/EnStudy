@@ -311,6 +311,26 @@ namespace EnStudy.Controllers
             return Json(_userService.DeleteFriend(GUserInfo.Id, FId), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 获取用户电影
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetUserMovies()
+        {
+            var result = new ResultOutput(true);
+            result.Data = Mapper.Map<UserMovieViewModel>(GUserInfo.UserMovie.ToList());
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteUserMovie(int mId)
+        {
+            return Json(_userService.DeleteUserMovie(GUserInfo.Id, mId), JsonRequestBehavior.AllowGet);
+        }
+
+        
+
+
 
     }
 }
