@@ -91,7 +91,7 @@
 
             //…
         });
-
+        
         //js获取url参数值
         function request(paras) {
             var url = location.href;
@@ -111,9 +111,12 @@
         var SearchNames = decodeURI(request("SearchNames"));//De=‘未设置’
         console.log(SearchNames);
         $(function () {
+
             //绑定搜索好友
-            function GetUserList(data) {
-                $(data).each(function (i, item) {
+            function GetUserList(Data) {
+                $(".itemShow").empty;
+                $(Data).each(function (i, item) {
+
                     if (item.Sex == null) {
                         $(".itemShow").append(`
                             <li class="friendsList">
@@ -160,6 +163,9 @@
                         `);
                     }
                 });
+                var bodyH = $(window).height();
+                $(".userImg").css("height", (bodyH * 0.1) + "px");
+                $(".userImg").css("width", (bodyH * 0.1) + "px");
             };
 
             $.ajax({
@@ -184,8 +190,9 @@
                                 if (reData.Status !=true) {
                                 alert("添加失败！");
                                 } else {
-                                alert("添加成功！");
-                                    GetUserList(reData.Data);
+                                    alert("添加成功！");
+                                    
+                                    //GetUserList(reData.Data);
                                 }
 
                             }

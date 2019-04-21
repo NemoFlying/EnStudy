@@ -43,14 +43,14 @@
                     <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
                     <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
-                    <li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>
+                    @*<li class="layui-nav-item"><a href="~/Home/Vocabulary">词汇短语语法管理</a></li>*@
                 </ul>
             </li>
             <li class="itemBody centerBody">
 
                 <div class="comment" style="min-height:700px">
                     <ul class="itemShow">
-                        <h1>暂无好友！</h1>
+                        @*<h1>暂无好友！</h1>*@
                         @*<li class="friendsList">
                             <div class="userImgDiv">
                                 <img class="userImg" src="~/assets/img/headerImg.jpg" alt="Alternate Text" />
@@ -106,11 +106,20 @@
             });
         });
         $(function () {
-
+            var bodyH = $(window).height();
             function GetUserFriends(data) {
-                $(data).each(function (i, item) {
-                    if (item.Sex == null) {
-                        $(".itemShow").append(`
+                $(".itemShow").empty();
+                if (data.length ==0) {
+                    $(".itemShow").append(`
+                            <li class="error">
+                                    <h1>未添加任何好友！</h1>
+                            </li>
+                        `);
+                } if (data.length>0) {
+                    
+                    $(data).each(function (i, item) {
+                        if (item.Sex == null) {
+                            $(".itemShow").append(`
                             <li class="friendsList">
                                 <div class="userImgDiv">
                                     <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
@@ -123,9 +132,9 @@
                                 </div>
                             </li>
                         `);
-                    }
-                    if (item.Sex == "F") {
-                        $(".itemShow").append(`
+                        }
+                        if (item.Sex == "F") {
+                            $(".itemShow").append(`
                             <li class="friendsList">
                                 <div class="userImgDiv">
                                     <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
@@ -138,9 +147,9 @@
                                 </div>
                             </li>
                         `);
-                    }
-                    if (item.Sex == "M") {
-                        $(".itemShow").append(`
+                        }
+                        if (item.Sex == "M") {
+                            $(".itemShow").append(`
                             <li class="friendsList">
                                 <div class="userImgDiv">
                                     <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
@@ -153,9 +162,14 @@
                                 </div>
                             </li>
                         `);
-                    }
+                        }
 
-                });
+                    });
+                    var bodyH = $(window).height();
+                    $(".userImg").css("height", (bodyH * 0.1) + "px");
+                    $(".userImg").css("width", (bodyH * 0.1) + "px");
+                }
+               
             };
 
             $.ajax({
@@ -168,7 +182,7 @@
                     if (reData.Data.length == 0) {
                         $(".itemShow").append(`
                             <li class="error">
-                                    <h1>未搜索到该好友！</h1>
+                                    <h1>未添加任何好友！</h1>
                             </li>
                         `);
                     } else {
@@ -186,17 +200,18 @@
                                 success: function (reData) {
                                     console.log(reData);
                                     alert("删除成功！");
+                                    $(".itemShow").empty;
                                     GetUserFriends(reData.Data);
 
                                 }
                             });
                         });
-
                     }
 
                     
                 }
             });
+
         })
     </script>
     <script src="~/js/SearchFriends.js"></script>
