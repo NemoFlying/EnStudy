@@ -101,6 +101,13 @@
                     <div class="showItem">
                         <form class="layui-form" action="">
                             <div class="layui-form-item">
+                                <label class="layui-form-label">搜索</label>
+                                <div class="layui-input-block addTypeId">
+                                    <input type="text" name="" placeholder="请输入可以添加分类，可不用添加，直接选择上方已有类型" autocomplete="off" class="layui-input searchNodeInput">
+                                </div>
+                                <button type="button" class="layui-btn searchBtns">搜索</button>
+                            </div>
+                            <div class="layui-form-item">
                                 <label class="layui-form-label">选择框</label>
                                 <div class="layui-input-block">
                                     <select class="TypeIdShow" lay-filter="TypeIdShow" name="TypeId" lay-verify="required"></select>
@@ -113,7 +120,6 @@
                             <tr>
                                 <th lay-data="{field:'experience'}">主题</th>
                                 <th lay-data="{field:'sign'}">关键字</th>
-                                <th lay-data="{field:'date'}">创建日期</th>
                                 <th lay-data="{field:'info', width:100}">详情</th>
                             </tr>
                         </thead>

@@ -89,5 +89,27 @@
     <script src="~/js/index.js"></script>
     <script src="~/js/GetRecommendedBooks.js"></script>
     <script src="~/js/SearchFriends.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                dataType: "json",
+                url: "../User/GetUserStudySchedue",
+                data: {
+                },
+                success: function (reData) {
+                    console.log(reData);
+                    if (reData.Status != true) {
+                        alert("发表失败！");
+                    } else {
+                        $(reData.Data).each(function (i,item) {
+                            alert(unescape(item.StudyContents)+","+(new Date(parseInt(item.StudyDay.replace(/\D/igm, "")))).toLocaleString());
+                        })
+                        
+                        //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>" + AccountNo+"</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
+                    }
+                }
+            });
+        })
+    </script>
 </body>
 </html>
