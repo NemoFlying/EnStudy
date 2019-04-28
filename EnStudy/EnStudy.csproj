@@ -185,6 +185,8 @@
     <Compile Include="Models\UserMovie.cs" />
     <Compile Include="Models\UserSpeak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddMovieInput.cs" />
+    <Compile Include="ViewModels\FileInput.cs" />
     <Compile Include="ViewModels\StudySchedueInput.cs" />
     <Compile Include="ViewModels\StudySchedueVieModel.cs" />
     <Compile Include="ViewModels\UserMovieViewModel.cs" />
@@ -305,6 +307,7 @@
     <Content Include="js\book.js" />
     <Content Include="js\GetRecommendedBooks.js" />
     <Content Include="js\index.js" />
+    <Content Include="js\jquery-form-ajax.js" />
     <Content Include="js\mine.js" />
     <Content Include="js\NoteBook.js" />
     <Content Include="js\public.js" />
