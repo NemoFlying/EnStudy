@@ -89,26 +89,5 @@
     <script src="~/js/index.js"></script>
     <script src="~/js/GetRecommendedBooks.js"></script>
     <script src="~/js/SearchFriends.js"></script>
-    <script>
-        function submit1(opt) {
-            console.log("***************");
-            var $form = $(opt).parents("form");
-            $.nemoajax({
-                url: "@Url.Action("AddNewFiles", "Intelligence")",
-                method: "POST",
-                form: $form,
-                contentType: false,
-                processData: false,//避免对formData序列化处理
-                dataType: "json",
-                success: function (reData) {
-                    console.log(reData);
-                    window.location.href = '../Intelligence/Intelligence_setting';
-                },
-                error: function (reData) {
-                    console.log(reData);
-                }
-            }).SendWithFile();
-        }
-    </script>
 </body>
 </html>

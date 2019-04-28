@@ -16,11 +16,19 @@
     <!-- 轮播 -->
     <div class="layui-carousel DivImg" id="test1">
         <div class="carousel-item" carousel-item>
-            <div><img src="~/assets/img/mmm.jpg" alt="" ></div>
-            <div><img src="~/assets/img/mm.jpg" alt="" ></div>
-            <div><img src="~/assets/img/m.jpg" alt="" ></div>
-            <div><img src="~/assets/img/ggg.jpeg" alt="" ></div>
-            <div><img src="~/assets/img/iii.jpg" alt="" ></div>
+            <div><img src="~/assets/img/mmm.jpg" alt=""></div>
+            <div><img src="~/assets/img/mm.jpg" alt=""></div>
+            <div><img src="~/assets/img/m.jpg" alt=""></div>
+            <div><img src="~/assets/img/ggg.jpeg" alt=""></div>
+            <div><img src="~/assets/img/iii.jpg" alt=""></div>
+        </div>
+        <div class="banner">
+            <ul>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe67b;</i></button><p>注册有礼</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe6fc;</i></button><p>在线咨询</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe678;</i></button><p>下载APP</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe65e;</i></button><p>边学边赚</p></li>
+            </ul>
         </div>
         <!-- 登录界面 -->
         <div class="Registe">
@@ -92,7 +100,7 @@
             carousel.render({
                 elem: '#test1'
                 , width: '100%' //设置容器宽度
-                , arrow: 'always', //始终显示箭头
+                , arrow: 'none', //始终显示箭头
                 interval:3000
                 //,anim: 'updown' //切换动画方式
             });

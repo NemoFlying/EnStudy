@@ -704,9 +704,12 @@ namespace EnStudy.BLL
             var result = new ResultOutput();
             var NotesType = _userDAL.GetModels(con => con.Id == input.Uid).FirstOrDefault()
                 .StudyNotesType.Where(con => con.Id == input.TypeId).FirstOrDefault();
+            var user = _userDAL.GetModels(con => con.Id == input.Uid).FirstOrDefault();
             if(NotesType!= null)
             {
-                NotesType.StudyNodes.Add(Mapper.Map<StudyNodes>(input));
+                var nodes = Mapper.Map<StudyNodes>(input);
+                nodes.StudyNotesType = NotesType;
+                user.StudyNodes.Add(nodes);
             }
             try
             {

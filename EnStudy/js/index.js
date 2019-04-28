@@ -23,6 +23,7 @@ $(document).click(function () {
     //$(".liuyan").show();
 
 });
+
 $(function () {
     $('#emotion').qqFace({
 
@@ -33,6 +34,7 @@ $(function () {
         path: '../assets/img/arclist/'	//表情存放的路径
 
     });
+
     //发表说说
     $(".sub_btn").click(function () {
 
@@ -187,6 +189,7 @@ $(function () {
                 alert("暂无数据！");
             } else {
                 GetFriendSpeak(reData.Data);
+
             }
         }
     });
