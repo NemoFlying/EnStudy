@@ -545,6 +545,7 @@
     <Content Include="Views\Home\LogonSignup.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\Home\Book.cshtml" />
+    <Content Include="Views\Home\Movies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
