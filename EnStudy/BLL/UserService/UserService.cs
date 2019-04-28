@@ -59,7 +59,6 @@ namespace EnStudy.BLL
                 //认证通过
                 result.Status = true;
                 result.Data = user;
-                result.Data = (User)(result.Data);
             }
             return result;
             throw new NotImplementedException();
@@ -738,6 +737,80 @@ namespace EnStudy.BLL
                 .StudyNodes.Where(con => con.KeyWords.Contains(keyWord))
                 .ToList()
                 );
+            return result;
+        }
+
+
+
+        /// <summary>
+        /// 删除用户电影
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="usId">心情ID</param>
+        /// <returns></returns>
+        public ResultOutput DeleteUserMovie(int uId, int mId)
+        {
+            var result = new ResultOutput(true);
+            //验证输入参数
+            var user = _userDAL.GetModels(con => con.Id == uId).FirstOrDefault();
+            if (user is null)  //用户为空
+            {
+                result.Msg = "User Can't Be Find!";
+                return result;
+            }
+            if (user.UserMovie != null)
+            {
+                user.UserMovie.Remove(user.UserMovie.Where(con => con.Id == mId).FirstOrDefault());
+            }
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+                result.Data = user.UserMovie.OrderByDescending(con => con.MovieName).ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+                result.Msg = "Add UserSpeak Failed!";
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// 添加用户电影
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="usId">心情ID</param>
+        /// <returns></returns>
+        public ResultOutput AddUserMovie(int uId, UserMovieViewModel movie)
+        {
+            var result = new ResultOutput(true);
+            //验证输入参数
+            var user = _userDAL.GetModels(con => con.Id == uId).FirstOrDefault();
+            if (user is null)  //用户为空
+            {
+                result.Msg = "User Can't Be Find!";
+                return result;
+            }
+            var newmovie = new UserMovie()
+            {
+                MovieName = movie.MovieName,
+                MovieUrl = movie.MovieUrl,
+                MovieDesc = movie.MovieDesc
+            };
+            user.UserMovie.Add(newmovie);
+            try
+            {
+                _userDAL.SaveChanges();
+                result.Status = true;
+                result.Data = user.UserMovie.OrderByDescending(con => con.MovieName).ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Data = ex;
+                result.Msg = "Add UserSpeak Failed!";
+            }
             return result;
         }
 

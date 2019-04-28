@@ -1,4 +1,5 @@
 ﻿using EnStudy.BLL.Dto;
+using EnStudy.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -181,6 +182,23 @@ namespace EnStudy.BLL
         /// <param name="keyWord"></param>
         /// <returns></returns>
         ResultOutput SearchStudyNotes(int uId, string keyWord);
+
+
+        /// <summary>
+        /// 删除用户电影
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="usId">心情ID</param>
+        /// <returns></returns>
+        ResultOutput DeleteUserMovie(int uId, int mId);
+
+        /// <summary>
+        /// 添加用户电影
+        /// </summary>
+        /// <param name="uId">用户ID</param>
+        /// <param name="usId">心情ID</param>
+        /// <returns></returns>
+        ResultOutput AddUserMovie(int uId, UserMovieViewModel movie);
 
     }
 }
