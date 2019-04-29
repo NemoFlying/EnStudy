@@ -10,6 +10,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//res.layui.com/static/css/global.css?t=1551352891272-6" media="all">
     <link href="~/css/index.css" rel="stylesheet" />
     <style>
         .addTypeId {
@@ -21,67 +22,90 @@
         .addSub_btn {
             float: right;
         }
+        .layui-upload-img {
+            width: 92px;
+            height: 92px;
+            margin: 0 10px 10px 0;
+        }
     </style>
 </head>
 <body>
 
     <ul class="layui-nav header">
-        <li class="searchLi">
+        @*<li class="searchLi">
             <input class="searchInput" type="text" name="search" value="" />
             <button class="layui-btn layui-btn-normal">搜索</button>
-        </li>
+        </li>*@
         @*<li class="layui-nav-item">
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
-        <li class="layui-nav-item">
-            <a href="">个人中心</a>
+        @*<li class="layui-nav-item">
+            <a href="/home/mine">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
             <dl class="layui-nav-child">
                 <dd><a href="/Home/logon">退了</a></dd>
             </dl>
-        </li>
+        </li>*@
     </ul>
     <div class="body">
         <ul>
-            <li class="itemBody">
+            @*<li class="itemBody">
                 <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
-                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+
 
                     <li class="layui-nav-item"><a href="~/Home/adminindex">用户管理</a></li>
                     <li class="layui-nav-item"><a href="~/Home/book">书籍推荐</a></li>
                 </ul>
-            </li>
+            </li>*@
             <li class="itemBody centerBody">
 
-
-                <div id="show">
-                    <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
-                        <thead>
-                            <tr>
-                                <th lay-data="{field:'experience'}">书籍名称</th>
-                                <th lay-data="{field:'sign'}">书籍图片</th>
-                                <th lay-data="{field:'date'}">书籍Id</th>
-                                <th lay-data="{field:'info', width:100}">功能</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                <div class="comment">
+                    <div class="com_form">
+                        <form class="layui-form" lay-filter="fromItems">
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="demo1">
+                                    <p id="demoText"></p>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn submitBtn" type="button" lay-submit lay-filter="formDemo">立即提交</button>
+                                    @*<button type="button" class="tianji">田鸡</button>*@
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                @*<div id="show">
+            <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
+                <thead>
+                    <tr>
+                        <th lay-data="{field:'experience'}">书籍名称</th>
+                        <th lay-data="{field:'sign'}">书籍图片</th>
+                        <th lay-data="{field:'date'}">书籍Id</th>
+                        <th lay-data="{field:'info', width:100}">功能</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>*@
             </li>
-            <li class="itemBody itemR">
+            @*<li class="itemBody itemR">
                 <div class="layui-carousel" id="test1">
                     <div carousel-item class="imgShow">
                         <div class="itemImgBook">
                             <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
                         </div>
-                        @*<div class="itemImgBook">
+                        <div class="itemImgBook">
                                 <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
-                            </div>*@
+                            </div>
                     </div>
                 </div>
-            </li>
+            </li>*@
         </ul>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -91,5 +115,41 @@
     <script src="~/js/GetRecommendedBooks.js"></script>
     @*<script src="~/js/SearchFriends.js"></script>*@
     <script src="~/js/book.js"></script>
+    <script>
+        $(function () {
+            layui.use('upload', function () {
+                var $ = layui.jquery
+                    , upload = layui.upload;
+                //普通图片上传
+                var uploadInst = upload.render({
+                    elem: '#test1'
+                    , url: '../RecommendedBook/AddRecommendedBook'
+                    , before: function (obj) {
+                        //预读本地文件示例，不支持ie8
+                        obj.preview(function (index, file, result) {
+                            $('#demo1').attr('src', result); //图片链接（base64）
+                            console.log(file);
+                        });
+                    }
+                    , done: function (res) {
+                        //如果上传失败
+                        if (res.code > 0) {
+                            return layer.msg('上传失败');
+                        }
+                        //上传成功
+                    }
+                    , error: function () {
+                        //演示失败状态，并实现重传
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function () {
+                            uploadInst.upload();
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>
 </body>
 </html>

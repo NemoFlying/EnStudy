@@ -544,6 +544,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
+    <Folder Include="upload\" />
     <Folder Include="Views\EnStudyBase\" />
     <Folder Include="Views\RecommendedBook\" />
     <Folder Include="Views\User\" />

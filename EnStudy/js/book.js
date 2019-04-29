@@ -29,23 +29,23 @@ layui.use('form', function () {
 
         }
 
-        $.ajax({
-            dataType: "json",
-            url: "../User/RecommendedBook",
-            data: {
-            },
-            success: function (reData) {
-                console.log(reData);
-                if (reData.Status != true) {
-                    alert("没有书籍信息！");
-                } else {
+        //$.ajax({
+        //    dataType: "json",
+        //    url: "../User/RecommendedBook",
+        //    data: {
+        //    },
+        //    success: function (reData) {
+        //        console.log(reData);
+        //        if (reData.Status != true) {
+        //            alert("没有书籍信息！");
+        //        } else {
 
-                    GetRecommendedBooks(reData.Data);
-                    //GetUserList(reData.Data);
-                    //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
-                }
-            }
-        });
+        //            GetRecommendedBooks(reData.Data);
+        //            //GetUserList(reData.Data);
+        //            //$(".one").prepend("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>" + replace_em(str) + "</p></li>");
+        //        }
+        //    }
+        //});
 
     });
 });
