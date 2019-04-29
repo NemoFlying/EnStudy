@@ -11,7 +11,11 @@
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
     <link href="~/css/index.css" rel="stylesheet" />
-    
+    <style>
+        #BadApplePlayer .player .control .status{
+            left:100px !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -74,8 +78,8 @@
                             <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
                         </div>
                         @*<div class="itemImgBook">
-                            <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
-                        </div>*@
+                                <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                            </div>*@
                     </div>
                 </div>
             </li>
@@ -110,5 +114,9 @@
             }).SendWithFile();
         }
     </script>
+    <!--Plus-->
+    <!--音乐播放-->
+    <script>XlchKey = "gcbs";</script>
+    <script src="~/js/Player.js"></script>
 </body>
 </html>

@@ -311,6 +311,7 @@
     <Content Include="js\jquery-form-ajax.js" />
     <Content Include="js\mine.js" />
     <Content Include="js\NoteBook.js" />
+    <Content Include="js\Player.js" />
     <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="js\SearchFriends.js" />
