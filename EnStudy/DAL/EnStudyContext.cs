@@ -31,7 +31,7 @@ namespace EnStudy.DAL
         public DbSet<StudyNodes> StudyNodes { get; set; }
 
 
-        public DbSet<StudyNodes> UserMovie { get; set; }
+        //public DbSet<StudyNodes> UserMovie { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

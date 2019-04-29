@@ -2,7 +2,7 @@
     //默认参数
     var defaults = {
         url: '', //请求地址
-        method: 'POST',//请求方式,默认POST
+        type: 'POST',//请求方式,默认POST
         contentType: false,
         processData: false,//避免对formData序列化处理
         dataType: "json", //返回值类型
@@ -195,7 +195,7 @@
             self.FormFileData.set("FileInfo", JSON.stringify(self.FormFileInfo));
             $.ajax({
                 url: defaults.url,
-                method: 'POST',
+                type: 'POST',
                 data: self.FormFileData,
                 contentType: false,
                 processData: false,
@@ -349,7 +349,7 @@
         //保存表单非文件信息
         $.ajax({
             url: defaults.url,
-            method: 'POST',
+            type: 'POST',
             data: newForm,
             contentType: false,
             processData: false,

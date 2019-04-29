@@ -34,7 +34,7 @@
                 <a href="">控制台<span class="layui-badge">9</span></a>
             </li>*@
         <li class="layui-nav-item">
-            <a href="/home/mine">个人中心</a>
+            <a href="~/Home/mine">个人中心</a>
         </li>
         <li class="layui-nav-item">
             <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
@@ -55,59 +55,48 @@
                 </ul>
             </li>
             <li class="itemBody centerBody">
-                <div class="comment">
-                    <div class="com_form">
-                        <form class="layui-form" lay-filter="fromItems">
 
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">书籍名称</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="BookName" required lay-verify="required" placeholder="请输入书籍名称" autocomplete="off" class="layui-input BookName">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">书籍简介</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="BookIntroduction" required lay-verify="required" placeholder="请输入书籍简介" autocomplete="off" class="layui-input BookIntroduction">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">书籍图片地址</label>
-                                <div class="layui-input-block">
-                                    @*<button type="button" id="test2">
-                                        <i class="layui-icon">&#xe660;</i>
-                                    </button>*@
-                                    <input type="file" name="name" class="BookImgUrl" value="" />
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">书籍购买连接</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="BookShopUrl" required lay-verify="required" placeholder="请输入书籍购买连接" autocomplete="off" class="layui-input BookShopUrl">
-                                </div>
-                            </div>
-
-                            <div class="layui-form-item">
-                                <div class="layui-input-block">
-                                    <button class="layui-btn submitBtn" id="testListAction" type="button" lay-submit lay-filter="formDemo">立即提交</button>
-                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                    @*<button type="button" class="tianji">田鸡</button>*@
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
 
                 <div id="show">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">添加电影</label>
+                                <div class="layui-input-block addTypeId">
+                                    <input type="file" name="" placeholder="" autocomplete="off" class="layui-input addMovie">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">添加名称</label>
+                                <div class="layui-input-block addTypeId">
+                                    <input type="text" name="MovieName" placeholder="请输入添加名称" autocomplete="off" class="layui-input addMovieName">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">添加简介</label>
+                                <div class="layui-input-block addTypeId">
+                                    <input type="text" name="MovieDesc" placeholder="请输入添加简介" autocomplete="off" class="layui-input addMovieIntroduce">
+
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            <button type="button" class="layui-btn sub_btn">发表</button>
+                        </p>
+                    </form>
                     <table class="itemShowCount" id="itemShowCount" lay-filter="itemShowCount">
                         <thead>
                             <tr>
-                                <th lay-data="{field:'Id'}">书籍Id</th>
-                                <th lay-data="{field:'BookName'}">书籍名称</th>
-                                <th lay-data="{field:'BookIntroduction'}">书籍介绍</th>
-                                <th lay-data="{field:'BookShopUrl'}">书籍购买链接</th>
-                                <th lay-data="{field:'info', width:100}">功能</th>
+                                @*<th lay-data="{field:'experience'}">书籍名称</th>
+                                    <th lay-data="{field:'sign'}">书籍图片</th>
+                                    <th lay-data="{field:'date'}">书籍Id</th>
+                                    <th lay-data="{field:'info', width:100}">功能</th>*@
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -133,7 +122,34 @@
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/js/public.js"></script>
     <script src="~/js/GetRecommendedBooks.js"></script>
+
+    <script src="~/js/jquery-form-ajax.js"></script>
+    <script>
+        $(function () {
+            $(".sub_btn").click(function () {
+                console.log("***************");
+                var $form = $(this).parents("form");
+                $.nemoajax({
+                    url: "../User/AddUserMovie",
+                    method: "POST",
+                    form: $form,
+                    contentType: false,
+                    processData: false,//避免对formData序列化处理
+                    dataType: "json",
+                    success: function (reData) {
+                        console.log(reData);
+                        //window.location.href = '../Intelligence/Intelligence_setting';
+                    },
+                    error: function (reData) {
+                        console.log(reData);
+                    }
+                }).SendWithFile();
+            });
+            //function submit1(opt) {
+               
+            //}
+        })
+    </script>
     @*<script src="~/js/SearchFriends.js"></script>*@
-    <script src="~/js/book.js"></script>
 </body>
 </html>
