@@ -766,7 +766,7 @@ namespace EnStudy.BLL
             {
                 _userDAL.SaveChanges();
                 result.Status = true;
-                result.Data = user.UserMovie.OrderByDescending(con => con.MovieName).ToList();
+                result.Data = Mapper.Map<List<UserMovieViewModel>>  (user.UserMovie.OrderByDescending(con => con.MovieName).ToList());
             }
             catch (Exception ex)
             {
@@ -804,7 +804,7 @@ namespace EnStudy.BLL
             {
                 _userDAL.SaveChanges();
                 result.Status = true;
-                result.Data = user.UserMovie.OrderByDescending(con => con.MovieName).ToList();
+                result.Data = Mapper.Map<List<UserMovieViewModel>> (user.UserMovie.OrderByDescending(con => con.MovieName).ToList());
             }
             catch (Exception ex)
             {

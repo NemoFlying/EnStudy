@@ -299,6 +299,7 @@
     <Content Include="css\summernote-bs4.css" />
     <Content Include="css\summernote-lite.css" />
     <Content Include="css\summernote.css" />
+    <Content Include="css\video-js.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -313,6 +314,7 @@
     <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
     <Content Include="js\SearchFriends.js" />
+    <Content Include="js\video.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="css\font\summernote.eot" />
@@ -546,6 +548,7 @@
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\Home\Book.cshtml" />
     <Content Include="Views\Home\Movies.cshtml" />
+    <Content Include="Views\Home\MoviesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -54,6 +54,7 @@ namespace EnStudy
                     .ForMember(dest => dest.TypeId, opt => opt.MapFrom(src => src.StudyNotesType.Id));
 
                     config.CreateMap<StudyNotesInput, StudyNodes>();
+                    config.CreateMap<UserMovie, UserMovieViewModel>();
                 });
             }
 
