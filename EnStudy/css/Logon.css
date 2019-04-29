@@ -72,3 +72,17 @@ u {
 .DivImg {
     height: 100% !important;
 }
+.banner{
+    position:fixed;
+    right:0;
+    top:300px;
+}
+.banner ul {
+    background: #009688;
+    color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.banner ul li{
+    padding:6px;
+}

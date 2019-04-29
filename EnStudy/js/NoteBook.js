@@ -1,4 +1,10 @@
 ﻿//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function () {
+    var element = layui.element;
+
+    //…
+});
+
 layui.use('form', function () {
     var form = layui.form;
 
@@ -34,6 +40,7 @@ layui.use('form', function () {
         });
         //加载已有笔记
         function GetStudyNotesBriefByTypeIdItem(Data) {
+
             layui.use('table', function () {
                 var table = layui.table;
                 $(".itemShowCount tbody").empty();
@@ -43,7 +50,6 @@ layui.use('form', function () {
                     <tr>
                         <td>`+ item.Title + `</td>
                         <td>`+ item.KeyWords + `</td>
-                        <td>123</td>
                         <td><button class="layui-btn layui-btn-sm layui-btn-normal">详情</button></td>
                     </tr>
                 `);
@@ -72,7 +78,21 @@ layui.use('form', function () {
                 success: function (reData) {
                     console.log(reData.Data);
                     GetStudyNotesBriefByTypeIdItem(reData.Data);
-
+                    $(".searchBtns").click(function () {
+                        var keys = $(".searchNodeInput").val();
+                        $.ajax({
+                            dataType: "json",
+                            url: "../User/SearchStudyNotes",
+                            data: {
+                                Key: keys
+                            },
+                            success: function (reData) {
+                                console.log(reData)
+                                GetStudyNotesBriefByTypeIdItem(reData.Data);
+                                //form.render("select");
+                            }
+                        });
+                    });
                 }
             });
         });
@@ -96,7 +116,6 @@ layui.use('form', function () {
             if (addTypeIdInput == null) {
                 alert("请添加标题,不能为空！");
             } else {
-                console.log()
                 $.ajax({
                     dataType: "json",
                     url: "../User/AddStudyNotesType",
@@ -121,6 +140,7 @@ layui.use('form', function () {
             var Title = $(".Title").val();
             var KeyWords = $(".KeyWords").val();
             var Contents = $(".Contents").val();
+            Content = Contents;
             console.log(TypeId);
             console.log(Title);
             console.log(KeyWords);
@@ -136,13 +156,21 @@ layui.use('form', function () {
                     Contents: Contents
                 },
                 success: function (reData) {
-                    console.log(reData)
+                    console.log(reData);
+                    $(".layui-table-body tbody").append(`
+                    <tr>
+                        <td data-field="experience"><div class='layui-table-cell'>`+ Title + `</div></td>
+                        <td data-field="sign"><div class='layui-table-cell'>`+ KeyWords + `</div></td>
+                        <td data-field="info"><div class='layui-table-cell'><button class="layui-btn layui-btn-sm layui-btn-normal">详情</button></div></td>
+                    </tr>
+                `);
                 }
             });
             //$(".one").append("<li>"+replace_em(str)+"</li>");
             //$(".one").append("<li class='itemMessages'><p><img src='../assets/img/smile.png' alt='头像' /><span>用户名：</span><span>张三</span></p><p class='MessageBoard'>加油！</p></li>")
 
         });
+        //搜索笔记
 
     });
 
