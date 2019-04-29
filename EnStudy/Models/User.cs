@@ -122,5 +122,10 @@ namespace EnStudy.Models
         /// </summary>
         public virtual ICollection<StudyNodes> StudyNodes { get; set; } = new List<StudyNodes>();
 
+        /// <summary>
+        /// 学习笔记
+        /// </summary>
+        public virtual ICollection<UserMovie> UserMovie { get; set; } = new List<UserMovie>();
+
     }
 }

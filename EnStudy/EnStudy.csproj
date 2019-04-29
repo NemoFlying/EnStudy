@@ -182,10 +182,14 @@
     <Compile Include="Models\StudySchedue.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserFriend.cs" />
+    <Compile Include="Models\UserMovie.cs" />
     <Compile Include="Models\UserSpeak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddMovieInput.cs" />
+    <Compile Include="ViewModels\FileInput.cs" />
     <Compile Include="ViewModels\StudySchedueInput.cs" />
     <Compile Include="ViewModels\StudySchedueVieModel.cs" />
+    <Compile Include="ViewModels\UserMovieViewModel.cs" />
     <Compile Include="ViewModels\UserReistInput.cs" />
     <Compile Include="ViewModels\UserSpeakComentViewModel.cs" />
     <Compile Include="ViewModels\UserSpeakViewModel.cs" />
@@ -303,6 +307,7 @@
     <Content Include="js\book.js" />
     <Content Include="js\GetRecommendedBooks.js" />
     <Content Include="js\index.js" />
+    <Content Include="js\jquery-form-ajax.js" />
     <Content Include="js\mine.js" />
     <Content Include="js\NoteBook.js" />
     <Content Include="js\public.js" />
@@ -540,6 +545,7 @@
     <Content Include="Views\Home\LogonSignup.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
     <Content Include="Views\Home\Book.cshtml" />
+    <Content Include="Views\Home\Movies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

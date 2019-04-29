@@ -310,6 +310,54 @@ namespace EnStudy.Controllers
             return Json(_userService.DeleteFriend(GUserInfo.Id, FId), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 获取用户电影
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetUserMovies()
+        {
+            var result = new ResultOutput(true);
+            result.Data = Mapper.Map<UserMovieViewModel>(GUserInfo.UserMovie.ToList());
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteUserMovie(int mId)
+        {
+            return Json(_userService.DeleteUserMovie(GUserInfo.Id, mId), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 添加文件
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult AddUserMovie(AddMovieInput input)
+        {
+            if (input.HandleStatus == "FORMSAVE")
+            {
+                //保存表單數據
+                return Json(_userService.AddUserMovie(GUserInfo.Id,new UserMovieViewModel() {
+                     MovieName = input.MovieName,
+                     MovieDesc = input.MovieDesc,
+                     MovieUrl = input.MovieUrl
+                }), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                //繼續保存文件
+                //return new AbpJsonResult
+                //{
+                //    Data = ,
+                //    CamelCase = false,
+                //    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                //};
+                return Json(input.SaveFile(), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
 
     }
 }
