@@ -145,9 +145,22 @@
                     }
                 }).SendWithFile();
             });
-            //function submit1(opt) {
-               
-            //}
+            $.ajax({
+                dataType: "json",
+                url: "../User/GetUserMovies",
+                data: {
+                },
+                success: function (reData) {
+                    console.log(reData);
+                    if (reData.Status != true) {
+                        alert("沒有電影數據！");
+                    } else {
+
+
+                       
+                    }
+                }
+            });
         })
     </script>
     @*<script src="~/js/SearchFriends.js"></script>*@
