@@ -50,10 +50,18 @@ namespace EnStudy.Controllers
             return View();
         }        
         /// <summary>
-        /// 管理员书籍
+        /// 视频管理
         /// </summary>
         /// <returns></returns>
         public ActionResult Movies()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 视频列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MoviesList()
         {
             return View();
         }

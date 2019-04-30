@@ -317,7 +317,7 @@ namespace EnStudy.Controllers
         public JsonResult GetUserMovies()
         {
             var result = new ResultOutput(true);
-            result.Data = Mapper.Map<UserMovieViewModel>(GUserInfo.UserMovie.ToList());
+            result.Data = Mapper.Map<List<UserMovieViewModel>>(GUserInfo.UserMovie.ToList());
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
