@@ -24,9 +24,16 @@ namespace EnStudy.Controllers
         {
             return View();
         }
-
         /// <summary>
-        /// 主页
+        /// 注册
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Tourists()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 主页 
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()

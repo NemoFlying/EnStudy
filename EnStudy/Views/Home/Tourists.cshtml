@@ -1,0 +1,583 @@
+﻿
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="cn" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="cn">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>用户页</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <style>
+        body{
+            background-size:110%;
+        }
+        #BadApplePlayer .player .control .status {
+            left: 100px !important;
+        }
+        #show{
+            margin-top:0;
+            height:auto;
+            min-height:620px;
+        }
+        .itemR{
+            height:auto;
+        }
+        .Section0 {
+            background: white;
+            margin-bottom: 10px;
+            padding: 10px;
+            height:332px;
+            overflow:hidden;
+        }
+        .p, .MsoNormal, .button-div {
+            padding-left: 50px;
+            margin-bottom: 10px;
+        }
+        .MsoNormal span {
+            margin: 10px 0;
+            display:inline-block;
+        }
+        .button-div{
+            
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="layui-nav header">
+        <li class="searchLi">
+            <input class="searchInput" type="text" name="search" value="" />
+            <button class="layui-btn layui-btn-normal searchBtn">搜索</button>
+        </li>
+        @*<li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>*@
+        @*<li class="layui-nav-item">
+                <a href="~/Home/mine">个人中心</a>
+            </li>*@
+        <li class="layui-nav-item">
+            <a href="/Home/Logon" style="font-size:26px;">注册</a>
+        </li>
+    </ul>
+    <div class="body">
+        <ul>
+            <li class="itemBody">
+                <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                @*<ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
+
+
+                        <li class="layui-nav-item"><a href="~/Home/index">学习心得</a></li>
+                        <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
+                        <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
+                        <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
+                        <li class="layui-nav-item"><a href="~/Home/MoviesList">视频列表</a></li>
+                    </ul>*@
+            </li>
+            <li class="itemBody centerBody">
+
+                <div class="Section0 Section1">
+                    <h1 align="center" style="text-align:center;">
+                        <b>
+                            <span><font face="宋体">英语干货：日常交际英语分享</font></span>
+                        </b>
+                    </h1><p class="p">
+                        <span>1.I’ve got news for you.<font face="宋体">我要告诉你一个好消息。</font></span>
+                    </p><p class="p">
+                        <span>2.I’ve got no idea.<font face="宋体">我不知道。</font></span>
+                    </p><p class="p">
+                        <span>3.I’ve had enough.<font face="宋体">我已经吃饱了。</font></span>
+                    </p><p class="p">
+                        <span>4.if I were in your shoes.<font face="宋体">如果我站在你的立场上。</font></span>
+                    </p><p class="p">
+                        <span>5.Is that OK?<font face="宋体">这样可以吗？</font></span>
+                    </p><p class="p">
+                        <span>6.Is this seat taken?<font face="宋体">这位子有人坐吗？</font></span>
+                    </p><p class="p">
+                        <span>7.It all depends.<font face="宋体">视情形而定。</font></span>
+                    </p><p class="p">
+                        <span>8.It can happen to anyone.<font face="宋体">这事可能发生在任何人身上。</font></span>
+                    </p><p class="p">
+                        <span>9.It doesn’t make any difference.<font face="宋体">都一样。</font></span>
+                    </p><p class="p">
+                        <span>10.It doesn’t matter to me.<font face="宋体">这对我来说无所谓。</font></span>
+                    </p><p class="p">
+                        <span>11.Its up to you.<font face="宋体">由你决定。</font></span>
+                    </p><p class="p">
+                        <span>12.I envy you.<font face="宋体">我羡慕你。</font></span>
+                    </p><p class="p">
+                        <span>13.Where can I wash my hands?<font face="宋体">请问洗手间在哪里</font><font face="Calibri">?</font></span>
+                    </p><p class="p">
+                        <span>14.Whats the weather like today?<font face="宋体">今天天气如何</font><font face="Calibri">?</font></span>
+                    </p><p class="p">
+                        <span>15.Where are you headed[<font face="宋体">朝</font><font face="Calibri">…</fon><font face="宋体">方向行进</font><font face="Calibri">]?</fon><font face="宋体">你要到哪里去</font><font face="Calibri">?</font></span>
+                    </p><p class="p">
+                        <span>16.I wasnt born yesterday.<font face="宋体">我又不是三岁小孩。</font></span>
+                    </p><p class="p">
+                        <span>17.It’s a small world.<font face="宋体">世界真小</font><font face="Calibri">!</font></span>
+                    </p><p class="p">
+                        <span>18.The sooner the better.<font face="宋体">越快越好。</font></span>
+                    </p><p class="p">
+                        <span>19.Take your time.<font face="宋体">慢慢来</font><font face="Calibri">/</fon><font face="宋体">别着急。</font></span>
+                    </p><p class="p">
+                        <span>20.Let’s go visit them.<font face="宋体">让我们去拜访他们吧。</font></span>
+                    </p><p class="p">
+                        <span>21.Let’s talk over dinner.<font face="宋体">我们边吃边谈吧。</font></span>
+                    </p><p class="p">
+                        <span>22.Long time no see.<font face="宋体">好久不见。</font></span>
+                    </p><p class="p">
+                        <span>23.Look before you leap.<font face="宋体">三思而后行。</font></span>
+                    </p><p class="p">
+                        <span>24.May I ask you a question?<font face="宋体">我可以问一个问题吗？</font></span>
+                    </p><p class="p">
+                        <span>25.May I have a receipt?<font face="宋体">我可以要一张收据吗？</font></span>
+                    </p><p class="p">
+                        <span>26.May I have your name,please?<font face="宋体">请问你叫什么名字？</font></span>
+                    </p><p class="p">
+                        <span>27.May I pay by credit card?<font face="宋体">我可以用信用卡付款吗？</font></span>
+                    </p><p class="p">
+                        <span>28.May I try it on?<font face="宋体">我能试穿一下吗？</font></span>
+                    </p><p class="p">
+                        <span>29.Maybe it will work.<font face="宋体">也许这个办法会有效。</font></span>
+                    </p><p class="p">
+                        <span>30.How do I address you?<font face="宋体">我怎么称呼你</font><font face="Calibri">?</font></span>
+                    </p><p class="p">
+                        <span>31.What was your name again?<font face="宋体">请再说一次名字好吗</font><font face="Calibri">?</font></span>
+                    </p><p class="p">
+                        <span>32.She turns me off.<font face="宋体">她使我厌烦。</font></span>
+                    </p><p class="p">
+                        <span>33.So far so good.<font face="宋体">目前为止，一切都好。</font></span>
+                    </p><p class="p">
+                        <span>34.Without further ado.<font face="宋体">废话少数，言归正传</font></span>
+                    </p><p class="p">
+                        <span>35.Have/get your back.<font face="宋体">我挺你，我支持你。</font></span>
+                    </p>
+
+                </div>
+                <div class="button-div">
+                    <button class="layui-btn layui-btn-normal showBtn" type="button">展示全部</button>
+                </div>
+                <div class="Section0 Section2">
+                    <h1 align="center" style="text-align:center;">
+                        <b>
+                            <span><font face="宋体">日语学习之绕口令</font></span>
+                        </b>
+                    </h1>
+                    <p class="p">
+                        <span><font face="宋体">生麦、生米、生卵。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーなまむぎなまごめなまたまご。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体"></font>(<font face="宋体">生麦、生米、生鸡蛋。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">美容院、病院、御饼屋、玩具。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーびよういん、びょういん、おもちや、おもちゃ。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体"></font>(<font face="宋体">美容院、医院、糕饼店、玩具。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">桃もガモモも桃のうち。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーもももすももももものうち。</font>(<font face="宋体">桃子和李子都是桃科植物。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">隣の客はよく柿食う客だ。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーとなりのきゃくはよくかきくうきゃくだ。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体"></font>(<font face="宋体">隔壁的客人是真爱吃柿子的客人。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">东京特许许可局。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーとうきょうとっきょきょかきょく。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体"></font>(<font face="宋体">东京专利批准局。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">赤巻纸、青巻纸、黄巻纸。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーあかまきがみ、あおまきがみ、きまきがみ。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体"></font>(<font face="宋体">红卷纸、蓝卷纸、黄卷纸。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">坊主が屏风に上手に坊主の絵をかいた</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーぼうずがびょうぶにじょうずにぼうずのえをかいた。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体"></font>(<font face="宋体">小和尚在屏风上非常好地画了小和尚的画。</font><font face="Calibri">)</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">贵社の记者が汽车にて帰社す。</font></span>
+                    </p><p class="p">
+                        <span><font face="宋体">ーーきしゃのきしゃがきしゃにてきしゃす</font></span>
+                    </p>
+                </div>
+                <div class="button-div">
+                    <button class="layui-btn layui-btn-normal show1Btn" type="button">展示全部</button>
+                </div>
+                <div class="Section0 Section3">
+                    <h1 align="center" style="text-align:center;">
+                        <b>
+                            <span><font face="宋体">韩语基础语法概要</font></span>
+                        </b>
+                    </h1>
+
+                    <p class="MsoNormal">
+                        <span><br></span><span>
+                            <font face="宋体">名词</font>+을/를；宾语助词
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">名词最后面有收音时，用</font>“을”，没有收音时，用“를”。表示宾语。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1〉有收音的名词+을&nbsp;2〉没有收音的名词+를
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例：例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">중국사람</font>(中国人)+&nbsp;을커피(咖啡)+&nbsp;를
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">술</font>(酒)+&nbsp;을복숭아(桃子)+&nbsp;를
+                        </span><span>
+                            <br>
+                        </span><span>
+                            ●动词词干&nbsp;+&nbsp;세요&nbsp;/&nbsp;으세요；请&nbsp;.。为命令式终结词尾,&nbsp;接在动词词干后，表示命令。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1)词干最后便没有收音时,
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">词干</font>+세요
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">보다</font>(看)보&nbsp;+&nbsp;세요&nbsp;=&nbsp;보세요.&nbsp;请看。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">사다</font>(买)사&nbsp;+&nbsp;세요&nbsp;=&nbsp;사세요.&nbsp;请买。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">주다</font>(给)주&nbsp;+&nbsp;세요&nbsp;=&nbsp;주세요.&nbsp;请给。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            2)词干最后有收音时,
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">词干</font>+으세요
+                        </span>
+                    </p><p class="MsoNormal">
+                        <span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">앉다</font>(坐)앉&nbsp;+&nbsp;으세요&nbsp;=&nbsp;앉으세요..&nbsp;请坐。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">닫다</font>(关)닫&nbsp;+&nbsp;으세요&nbsp;=&nbsp;닫으세요..&nbsp;请关。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">읽다</font>(读)읽&nbsp;+&nbsp;으세요&nbsp;=&nbsp;읽으세요..&nbsp;请读。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            ●谓语词干&nbsp;+&nbsp;지않습니다/지않아요
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">动词、形容词词干后</font>&nbsp;+&nbsp;지않다构成否定句，相当于汉语的“不&nbsp;”、“没&nbsp;”。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1)&nbsp;动词的否定型
+                        </span><span>
+                            <br>
+                        </span><span>
+                            2)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">보다</font>(看)보&nbsp;+&nbsp;지않습지않습니다&nbsp;=&nbsp;보지않습니다.(不看)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">쓰다</font>(写)쓰&nbsp;+&nbsp;지않습니다&nbsp;=&nbsp;쓰지않습니다.(不写)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">먹다</font>(吃)먹&nbsp;+&nbsp;지않습니다&nbsp;=&nbsp;먹지않습니다.(不吃)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            *会话当中“안”后面加上动词也可构成否定
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">보다</font>(看)안&nbsp;+&nbsp;봅니다&nbsp;=&nbsp;안봅니다.(不看)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">쓰다</font>(写)안&nbsp;+&nbsp;씁니다&nbsp;=&nbsp;안씁니다.(不写)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">먹다</font>(吃)안&nbsp;+&nbsp;먹습니다&nbsp;=&nbsp;안먹습니다.(不吃)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            2〉形容词的否定型
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">맵다</font>(辣)&nbsp;맵&nbsp;+&nbsp;지않습니다&nbsp;=&nbsp;맵지않습니다.(不辣)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">짜다</font>(咸)&nbsp;짜&nbsp;+&nbsp;지않습니다&nbsp;=&nbsp;짜지않습니다.(不咸)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">따뜻하다</font>(温和)&nbsp;따뜻하&nbsp;+&nbsp;지않습니다&nbsp;=&nbsp;따뜻하지않습니다.(不温和)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">덥다</font>(热)&nbsp;안&nbsp;+&nbsp;덥습니다&nbsp;=안덥습니다&nbsp;(不热)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">춥다</font>(冷)&nbsp;안&nbsp;+&nbsp;춥습니다&nbsp;=&nbsp;안춥습니다&nbsp;(不冷
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">语法</font>
+                        </span><span>
+                            <br>
+                        </span><span>
+                            ●名词+는/은은强调对照的主语助词。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">表示主语接于名词后表示它所陈述的主体。</font>
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">은用于有收音的词后</font>,는用于没有收音后)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1)은(有收音后)&nbsp;2)는(没收音后)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">학생</font>+은저+는
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">중국사람</font>+은친구+는
+                        </span><span>
+                            <br>
+                        </span><span>
+                            ●名词+입니다是&nbsp;。用于句子后面，表示陈述。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">학생입니다是学生。중국사람입니다是中国人。</font>
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">名词</font>+입니까?&nbsp;是&nbsp;吗?&nbsp;是不是&nbsp;?表示疑问。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">언니는학생입니까</font>?&nbsp;你的姐姐是学生吗?
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">영미씨는중국사람입니까</font>?&nbsp;英美是中国人吗?
+                        </span>
+                    </p><p class="MsoNormal">
+                        <span>
+                            ●名词+라고합니다叫&nbsp;。用于句子后部,&nbsp;表示引用,&nbsp;介绍的意思。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1)没有收音的名词+라고합니다&nbsp;2)有收音的名词+이라고합니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">例：例</font>:
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">我叫朴英美。박영미</font>+라고합니다我叫黄惠美。황혜미+이라고
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">합니다</font>
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">我叫陈晓飞。진효비</font>+라고합니다.&nbsp;我叫王丹。왕단+이라고합니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">名词</font>+이/가:&nbsp;主语助词，名词最后有收音时用이，没有收音时用가。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1〉有收音时用이&nbsp;2〉无收音用가
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">饭</font>:밥+이学校:학교+가
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">火</font>:불+이橡皮;지우개+가
+                        </span><span>
+                            <br>
+                        </span><span>
+                            ●动词、形容词词干+ㅂ니다/습니다&nbsp;;&nbsp;陈述式终结词尾。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">表示一种尊敬的语气，用于动词、形容词词干后。</font>
+                        </span><span>
+                            <br>
+                        </span><span>
+                            (在韩国语中，动词、形容词都以“다”结尾,“다”前面的部分称为词干。)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">가다</font>→가&nbsp;+&nbsp;다먹다→먹&nbsp;+&nbsp;다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">訽形词干</font>(没有收音)訽形词干(有收音)
+                        </span><span>
+                            <br>
+                        </span><span>
+                            1)词干后没有收音时，词干+ㅂ니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">가다</font>(走、去)→가+ㅂ니다&nbsp;=&nbsp;갑니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">보다</font>(看)→보+ㅂ니다&nbsp;=&nbsp;봅니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">계시다</font>(在、有的敬语)→계시&nbsp;+&nbsp;ㅂ니다&nbsp;=&nbsp;계십니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            2〉词干最后边有收音时，词干+습니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">있다</font>(有，在)→있+습니다&nbsp;=&nbsp;있습니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">앉다</font>(坐)→앉+습니다&nbsp;=&nbsp;앉습니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">아름답다</font>(美丽)→아름답&nbsp;+&nbsp;습니다&nbsp;=&nbsp;아름답습니다
+                        </span><span>
+                            <br>
+                        </span><span>
+                            ●动词词干+십니다/으십니다,&nbsp;陈述尊敬终结词尾。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">当听者比说话者</font>`年纪大，或者听者是说话者的上级时使用，位于动词词干后。
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">词干最后面没有收音时，用십니다。词干最后面有收音时，用으십니다。</font>
+                        </span><span>
+                            <br>
+                        </span><span>
+                            <font face="宋体">疑问形是십니까</font>?/으십니까?
+                        </span>
+                    </p><p class="MsoNormal"></p>
+                </div>
+                <div class="button-div">
+                    <button class="layui-btn layui-btn-normal show2Btn" type="button">展示全部</button>
+                </div>
+            </li>
+            <li class="itemBody itemR">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
+                        </div>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                        </div>
+                        @*<div class="itemImgBook">
+                                <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                            </div>*@
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <!--Plus-->
+    <!--音乐播放-->
+    <script>XlchKey = "gcbs";</script>
+    <script src="~/js/Player.js"></script>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/js/Tourists.js"></script>
+    <script src="~/js/public.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>*@
+    <script src="~/js/index.js"></script>
+    <script src="~/js/GetRecommendedBooks.js"></script>
+    <script src="~/js/SearchFriends.js"></script>
+
+</body>
+</html>
