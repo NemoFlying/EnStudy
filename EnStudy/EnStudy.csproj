@@ -311,6 +311,7 @@
     <Content Include="js\jquery-form-ajax.js" />
     <Content Include="js\mine.js" />
     <Content Include="js\NoteBook.js" />
+    <Content Include="js\NotebookInfo.js" />
     <Content Include="js\Player.js" />
     <Content Include="js\public.js" />
     <Content Include="js\Schedule.js" />
@@ -552,6 +553,7 @@
     <Content Include="Views\Home\Movies.cshtml" />
     <Content Include="Views\Home\MoviesList.cshtml" />
     <Content Include="Views\Home\Tourists.cshtml" />
+    <Content Include="Views\Home\NotebookInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -106,7 +106,16 @@ namespace EnStudy.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 笔记本
+        /// </summary>
+        /// <returns></returns>
 
+        public ActionResult NotebookInfo()
+        {
+            return View();
+        }
+        
         /// <summary>
         /// 学习日程提醒
         /// </summary>

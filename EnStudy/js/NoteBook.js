@@ -50,7 +50,7 @@ layui.use('form', function () {
                     <tr>
                         <td>`+ item.Title + `</td>
                         <td>`+ item.KeyWords + `</td>
-                        <td><button class="layui-btn layui-btn-sm layui-btn-normal">详情</button></td>
+                        <td><button class="layui-btn layui-btn-sm layui-btn-normal nodeInfoBtn" id="`+item.Id+`">详情</button></td>
                     </tr>
                 `);
 
@@ -60,9 +60,14 @@ layui.use('form', function () {
                     //, limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
                     //支持所有基础参数
                 });
+                $(".nodeInfoBtn").click(function () {
+                    var NodeId = $(this).attr("id");
+                    window.location.href = "NotebookInfo?NodeID=" + NodeId;
+                });
             });
 
         };
+
         form.on('select(TypeIdShow)', function GetStudyNotesBriefByTypeId(data) {
             //console.log(data.elem); //得到select原始DOM对象
             //console.log(data.value); //得到被选中的值

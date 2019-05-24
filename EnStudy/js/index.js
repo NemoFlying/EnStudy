@@ -194,6 +194,23 @@ $(function () {
         }
     });
 
+    $.ajax({
+        dataType: "json",
+        url: "../User/GetUserStudySchedue",
+        //data: {
+
+        //},
+        success: function (reData) {
+            if (reData.Status != true) {
+                alert("暂无日程！");
+            } else {
+                $(reData.Data).each(function (i, item) {
+                    alert(unescape(item.StudyContents));
+                });
+                
+            }
+        }
+    });
 });
 
 //查看结果
