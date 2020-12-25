@@ -1,0 +1,126 @@
+﻿
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="cn" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="cn">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>用户页</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <style>
+        #BadApplePlayer .player .control .status {
+            left: 100px !important;
+        }
+        .itemR{
+            height:auto;
+        }
+        #show {
+            margin-top: 0;
+            height: auto;
+            min-height:800px;
+        }
+        #show h1, #show h3{
+            text-align:center;
+            margin:20px;
+        }
+        #show p{
+            padding:50px;
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="layui-nav header">
+        <li class="searchLi">
+            <input class="searchInput" type="text" name="search" value="" />
+            <button class="layui-btn layui-btn-normal searchBtn">搜索</button>
+        </li>
+        @*<li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>*@
+        <li class="layui-nav-item">
+            <a href="~/Home/mine">个人中心</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/Home/logon">退了</a></dd>
+                <dd><a href="/Home/adminindex">admin</a></dd>
+            </dl>
+        </li>
+    </ul>
+    <div class="body">
+        <ul>
+            <li class="itemBody">
+                <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
+                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+
+                    <li class="layui-nav-item"><a href="~/Home/index">学习心得</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/MoviesList">视频列表</a></li>
+                </ul>
+            </li>
+            <li class="itemBody centerBody">
+
+                <div id="show">
+                    @*<ul class="one"></ul>*@
+                </div>
+            </li>
+            <li class="itemBody itemR">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
+                        </div>
+                        <div class="itemImgBook">
+                                <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                            </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/js/public.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>*@
+    @*<script src="~/js/index.js"></script>*@
+    <script src="~/js/NotebookInfo.js"></script>
+    <script src="~/js/GetRecommendedBooks.js"></script>
+    <script src="~/js/SearchFriends.js"></script>
+    <script>
+        function submit1(opt) {
+
+            var $form = $(opt).parents("form");
+            $.nemoajax({
+                url: "@Url.Action("AddNewFiles", "Intelligence")",
+                method: "POST",
+                form: $form,
+                contentType: false,
+                processData: false,//避免对formData序列化处理
+                dataType: "json",
+                success: function (reData) {
+                    console.log(reData);
+                    window.location.href = '../Intelligence/Intelligence_setting';
+                },
+                error: function (reData) {
+                    console.log(reData);
+                }
+            }).SendWithFile();
+        }
+    </script>
+    <!--Plus-->
+    <!--音乐播放-->
+    @*<script>XlchKey = "gcbs";</script>
+    <script src="~/js/Player.js"></script>*@
+</body>
+</html>

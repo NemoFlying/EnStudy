@@ -1,0 +1,125 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外语网站注册</title>
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Logon.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <!-- 轮播 -->
+    <div class="layui-carousel DivImg" id="test1">
+        <div class="carousel-item" carousel-item>
+            <div><img src="~/assets/img/sign.jpg" alt="" ></div>
+            <div><img src="~/assets/img/mm.jpg" alt="" ></div>
+            <div><img src="~/assets/img/m.jpg" alt="" ></div>
+            <div><img src="~/assets/img/ggg.jpeg" alt="" ></div>
+            <div><img src="~/assets/img/iii.jpg" alt="" ></div>
+        </div>
+        <div class="banner">
+            <ul>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe67b;</i></button><p>注册有礼</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe6fc;</i></button><p>在线咨询</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe678;</i></button><p>下载APP</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe65e;</i></button><p>边学边赚</p></li>
+            </ul>
+        </div>
+        <!-- 注册页面 -->
+        <div class="Signup">
+            <br>
+            <div class="div-title"><p class="p-title">账号注册</p></div>
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block">
+                        <!-- <input type="text" name="title" required  lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input" id="txt1"> -->
+                        <input type="text" id="txt1" class="text userName" placeholder="请输入账号">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <img src="~/assets/img/closesee.png" alt="" id="demo_img" class="CloseEyes " onclick="hideShowPsw()">
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input pwd" id="pas1">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" required lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input confirmPwd" id="pas2">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <!-- <button class="layui-btn" lay-submit lay-filter="formDemo">注册</button> -->
+                        <button id="btn" type="button" class="layui-btn layui-btn-normal RegBtn">注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            var bodyH = $(window).height();
+            $("body").css("height", bodyH + "px");
+            $(".RegBtn").click(function () {
+                var userName = $(".userName").val();
+                var pwd = $(".pwd").val();
+                var confirmPwd = $(".confirmPwd").val();
+                if (pwd == confirmPwd) {
+                    $.ajax({
+                        dataType: "json",
+                        url: "../User/RegistUser",
+                        data: {
+                            AccountNo: userName,
+                            Password: pwd
+                        },
+                        success: function (reData) {
+                            console.log(reData);
+                            if (reData.Status == true) {
+                                alert("注册成功！");
+                                window.location.href = "Logon";
+                            } else {
+                                alert(`注册失败，` + reData.Msg+`！`);
+                            }
+                        }, error: function () {
+                            alert("注册失败！");
+                        }
+                    });
+                } else {
+                    alert("两次密码输入不一致，请重新输入！");
+                }
+            });
+        });
+        //layui控制轮播
+        layui.use('carousel', function () {
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+                , width: '100%' //设置容器宽度
+                , arrow: 'none', //始终显示箭头
+                interval: 3000
+                //,anim: 'updown' //切换动画方式
+            });
+        });
+        //隐藏text block，显示password block
+        function hideShowPsw() {
+            if (pas1.type == "password") {
+                pas1.type = "text";
+                demo_img.src = "../assets/img/opensee.png";
+            } else {
+                pas1.type = "password";
+                demo_img.src = "../assets/img/closesee.png";
+            }
+        }
+    </script>
+</body>
+</html>

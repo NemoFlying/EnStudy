@@ -1,0 +1,122 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外语网站登录</title>
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Logon.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+
+    <!-- 轮播 -->
+    <div class="layui-carousel DivImg" id="test1">
+        <div class="carousel-item" carousel-item>
+            <div><img src="~/assets/img/mmm.jpg" alt=""></div>
+            <div><img src="~/assets/img/mm.jpg" alt=""></div>
+            <div><img src="~/assets/img/m.jpg" alt=""></div>
+            <div><img src="~/assets/img/ggg.jpeg" alt=""></div>
+            <div><img src="~/assets/img/iii.jpg" alt=""></div>
+        </div>
+        <div class="banner">
+            <ul>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe67b;</i></button><p>注册有礼</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe6fc;</i></button><p>在线咨询</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe678;</i></button><p>下载APP</p></li>
+                <li><button class="layui-btn"><i class="layui-icon">&#xe65e;</i></button><p>边学边赚</p></li>
+            </ul>
+        </div>
+        <!-- 登录界面 -->
+        <div class="Registe">
+            <br>
+            <div class="div-title"><p class="p-title">账号登录</p></div>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block">
+                        <!-- <input type="text" name="title" required  lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input" id="txt"> -->
+                        <input type="text" id="txt" class="text userName" placeholder="请输入账号">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <img src="~/assets/img/closesee.png" alt="" id="demo_img" class="CloseEyes " onclick="hideShowPsw()">
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input pwd" id="pas">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <!-- <button class="layui-btn btn" lay-submit lay-filter="formDemo">登录</button> -->
+                        <button id="btn" type="button" class="layui-btn loginBtn">登录</button>
+                    </div>
+                </div>
+            </form>
+            <div class="div-end"><p class="p-end">若没有账号？点击<a href="../home/LogonSignup"><u>这里</u></a>进行注册</p></div>
+        </div>
+    </div>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            var bodyH = $(window).height();
+            console.log(bodyH);
+            $("body").css("height", bodyH + "px");
+            $(".loginBtn").click(function () {
+                var userName = $(".userName").val();
+                var pwd = $(".pwd").val();
+                console.log(userName,pwd)
+                $.ajax({
+                    dataType: "json",
+                    url: "../User/LogonAuthen",
+                    data: {
+                        Account: userName,
+                        Password: pwd
+                    },
+                    success: function (reData) {
+                        console.log(reData);
+                        if (reData.Status == true) {
+                            window.location.href = "../home/index";
+                        } else {
+                            alert(`登录失败，` + reData.Msg + `！`);
+                        }
+                        //AddUserStudySchedue(reData.Data);
+                    }, error: function () {
+                        alert("登录失败请重新登录！");
+                    }
+                });
+            });
+
+        });
+        //layui控制轮播
+        layui.use('carousel', function () {
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+                , width: '100%' //设置容器宽度
+                , arrow: 'none', //始终显示箭头
+                interval:3000
+                //,anim: 'updown' //切换动画方式
+            });
+        });
+
+        //隐藏text block，显示password block
+        function hideShowPsw() {
+            if (pas.type == "password") {
+                pas.type = "text";
+                demo_img.src = "../assets/img/opensee.png";
+            } else {
+                pas.type = "password";
+                demo_img.src = "../assets/img/closesee.png";
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+﻿
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="cn" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="cn">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>用户页</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <link href="~/css/friends.css" rel="stylesheet" />
+</head>
+<body>
+
+    <ul class="layui-nav header">
+        <li class="searchLi">
+            <input class="searchInput" type="text" name="search" value="" />
+            <button class="layui-btn layui-btn-normal">搜索</button>
+        </li>
+        @*<li class="layui-nav-item">
+                <a href="">控制台<span class="layui-badge">9</span></a>
+            </li>*@
+        <li class="layui-nav-item">
+            <a href="~/Home/mine">个人中心</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/Home/logon">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+    <div class="body">
+        <ul>
+            <li class="itemBody">
+                <ul class="layui-nav layui-nav-tree leftList" lay-filter="test">
+                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+
+                    <li class="layui-nav-item"><a href="~/Home/index">学习心得</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Friends">学友管理</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Notebook">笔记本</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/Schedule">学习日程提醒</a></li>
+                    <li class="layui-nav-item"><a href="~/Home/MoviesList">视频列表</a></li>
+                </ul>
+            </li>
+            <li class="itemBody centerBody">
+
+                <div class="comment" style="min-height:700px">
+                    <ul class="itemShow">
+                        @*<h1>暂无好友！</h1>*@
+                        @*<li class="friendsList">
+                            <div class="userImgDiv">
+                                <img class="userImg" src="~/assets/img/headerImg.jpg" alt="Alternate Text" />
+                            </div>
+                            <p class="itemsP Id" name='`+ item.Id + `'>Nemo</p>
+                            <p class="itemsP">null</p>
+                            <p class="itemsP" name='`+ item.Sex + `'>无</p>
+                            <div>
+                                <button type="button" class="layui-btn layui-btn-danger delBtn"><i class="layui-icon">&#xe640;</i>删除</button>
+                            </div>
+                        </li>*@
+                    </ul>
+                </div>
+
+            </li>
+            <li class="itemBody itemR">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book1.jpg" alt="Alternate Text" />
+                        </div>
+                        <div class="itemImgBook">
+                            <img src="~/assets/img/book2.jpg" alt="Alternate Text" />
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/layui/layui.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/js/public.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.qqFace.js"></script>
+    <script>
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function () {
+            var element = layui.element;
+
+            //…
+        });
+
+
+
+        layui.use('carousel', function () {
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+                , width: '100%' //设置容器宽度
+                , arrow: 'none' //始终显示箭头
+                //,anim: 'updown' //切换动画方式
+            });
+        });
+        $(function () {
+            var bodyH = $(window).height();
+            function GetUserFriends(data) {
+                $(".itemShow").empty();
+                if (data.length ==0) {
+                    $(".itemShow").append(`
+                            <li class="error">
+                                    <h1>未添加任何好友！</h1>
+                            </li>
+                        `);
+                } if (data.length>0) {
+                    
+                    $(data).each(function (i, item) {
+                        if (item.Sex == null) {
+                            $(".itemShow").append(`
+                            <li class="friendsList">
+                                <div class="userImgDiv">
+                                    <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
+                                </div>
+                                <p class="itemsP Id" name='`+ item.Id + `'>` + item.AccountNo + `</p>
+                                <p class="itemsP">`+ item.UniversityName + `</p>
+                                <p class="itemsP" name='`+ item.Sex + `'>无</p>
+                                <div>
+                                    <button type="button" class="layui-btn layui-btn-danger delBtn"><i class="layui-icon">&#xe640;</i>删除</button>
+                                </div>
+                            </li>
+                        `);
+                        }
+                        if (item.Sex == "F") {
+                            $(".itemShow").append(`
+                            <li class="friendsList">
+                                <div class="userImgDiv">
+                                    <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
+                                </div>
+                                <p class="itemsP Id" name='`+ item.Id + `'>` + item.AccountNo + `</p>
+                                <p class="itemsP">`+ item.UniversityName + `</p>
+                                <p class="itemsP" name='`+ item.Sex + `'>女</p>
+                                <div>
+                                    <button type="button" class="layui-btn layui-btn-danger delBtn"><i class="layui-icon">&#xe640;</i>删除</button>
+                                </div>
+                            </li>
+                        `);
+                        }
+                        if (item.Sex == "M") {
+                            $(".itemShow").append(`
+                            <li class="friendsList">
+                                <div class="userImgDiv">
+                                    <img class="userImg" src="../../assets/img/headerImg.jpg" alt="Alternate Text" />
+                                </div>
+                                <p class="itemsP Id" name='`+ item.Id + `'>` + item.AccountNo + `</p>
+                                <p class="itemsP">`+ item.UniversityName + `</p>
+                                <p class="itemsP" name='`+ item.Sex + `'>男</p>
+                                <div>
+                                    <button type="button" class="layui-btn layui-btn-danger delBtn"><i class="layui-icon">&#xe640;</i>删除</button>
+                                </div>
+                            </li>
+                        `);
+                        }
+
+                    });
+                    var bodyH = $(window).height();
+                    $(".userImg").css("height", (bodyH * 0.1) + "px");
+                    $(".userImg").css("width", (bodyH * 0.1) + "px");
+                }
+               
+            };
+
+            $.ajax({
+                dataType: "json",
+                url: "../User/GetUserFriends",
+                data: {
+                },
+                success: function (reData) {
+                    console.log(reData);
+                    if (reData.Data.length == 0) {
+                        $(".itemShow").append(`
+                            <li class="error">
+                                    <h1>未添加任何好友！</h1>
+                            </li>
+                        `);
+                    } else {
+                        GetUserFriends(reData.Data);
+                        //删除好友
+                        $(".delBtn").click(function () {
+                            var UId = $(this).parents("li").find(".Id").attr("name");
+                            console.log(UId);
+                            $.ajax({
+                                dataType: "json",
+                                url: "../User/DeleteFriend",
+                                data: {
+                                    FId: UId
+                                },
+                                success: function (reData) {
+                                    console.log(reData);
+                                    alert("删除成功！");
+                                    $(".itemShow").empty;
+                                    GetUserFriends(reData.Data);
+
+                                }
+                            });
+                        });
+                    }
+
+                    
+                }
+            });
+
+        })
+    </script>
+    <script src="~/js/SearchFriends.js"></script>
+</body>
+</html>
